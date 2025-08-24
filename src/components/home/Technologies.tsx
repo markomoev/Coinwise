@@ -8,7 +8,7 @@ import githubSvg from '../../public/github.svg';
 
 export default function Techs() {
     return (
-        <div className="mt-10 w-full px-1 sm:px-4 md:px-8">
+        <div className="mt-10 w-full px-1 sm:px-4 md:px-8"> 
 
             {/* Heading */}
             <div className="w-full text-center">

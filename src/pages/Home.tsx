@@ -6,10 +6,10 @@ export default function HomePage(){
     return(
         <div className = 'main_div w-full h-auto'>
           <TopBar/>
-          <div className = 'bg-transparent w-full flex flex-row gap-5'>  
+          <div className = 'w-full flex flex-row gap-5 mt-5'>  
               <SideBar/>
-            <div className='flex-1 flex items-center justify-center'>
-              <div className='w-full max-w-[1200px] px-4'>
+            <div className='flex-1 flex justify-center'>
+              <div className='w-full max-w-300 px-4'>
                 <Techs/>
               </div>
             </div>
