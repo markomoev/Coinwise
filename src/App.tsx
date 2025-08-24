@@ -1,0 +1,19 @@
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import HomePage from "./pages/Home";
+import LogSignPage from "./pages/Login&Signup";
+
+export default function App() {
+  return (
+    <div className = "relative min-h-screen w-full overflow-hidden items-center justify-items-center">
+      <div className="mesh-bg"></div>
+
+      <BrowserRouter>
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/login&signup" element={<LogSignPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}

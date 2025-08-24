@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+
+:root {
+  font-family: "Golos Text", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  height: 100%;
+  
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/*Background design*/
+
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+  background: #0f1112; 
+}
+
+
+.mesh-bg::before,
+.mesh-bg::after {
+  content: "";
+  position: absolute;
+  width: 140%;
+  height: 140%;
+  left: -20%;
+  top: -20%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(48px) saturate(120%);
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
+  opacity: 0.10;
+}
+/* ...existing code... */
+
+/* Replaced: single, brighter mesh blob positioned toward top-left */
+/* ...existing code... */
+
+/* ...existing code... */
+
+.mesh-bg::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  left: -20%;
+  top: -30%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(48px) saturate(160%);
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
+  opacity: 0.55; /* slightly reduced from very bright */
+  background:
+    radial-gradient(circle at 12% 12%,
+      oklch(81.915% 0.05884 57.42) 0%,
+      oklch(63.789% 0.17896 45.795 / 0.486) 25%,
+      transparent 60%);
+  animation: meshFloatA 36s ease-in-out infinite;
+}
+
+.mesh-bg::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  right: -10%;
+  top: -5%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(40px) saturate(150%);
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
+  opacity: 0.35; /* supporting blob */
+  background:
+    radial-gradient(circle at 88% 18%,
+      oklch(81.915% 0.05884 57.42) 0%,
+      oklch(63.789% 0.17896 45.795 / 0.404) 25%,
+      transparent 60%);
+  animation: meshFloatB 46s ease-in-out infinite;
+}
