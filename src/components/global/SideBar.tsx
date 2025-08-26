@@ -66,7 +66,7 @@ export default function SideBar() {
                     <div className = ''>
                     {/* SignIn / SignUp */}
                     <div className="w-fit rounded-xl mb-7 pl-3 pr-3 pt-1 pb-0.5 cursor-pointer hover:text-neutral-200 hover:bg-black/25 text-white">
-                        <Link to={'/login&signup'} className="inline-flex items-center gap-2">
+                        <Link to={'/login'} className="inline-flex items-center gap-2">
                             <img src={UserIcon} alt="User Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
                             <p>Add Account</p>
                         </Link>
