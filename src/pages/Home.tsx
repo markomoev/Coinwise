@@ -4,7 +4,7 @@ import Techs from "../components/home/Technologies";
 
 export default function HomePage(){
     return(
-        <div className = 'main_div w-full h-auto'>
+        <div className = 'w-full h-auto'>
           <TopBar/>
           <div className = 'w-full flex flex-row gap-5 mt-5'>  
               <SideBar/>
