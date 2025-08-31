@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import {supabase} from '../../client'
 
 import HomeIcon from '../../public/home.png'
 import DashIcon from '../../public/dashboard.png'
@@ -8,7 +9,24 @@ import UserIcon from '../../public/user.png'
 import SettingsIcon from '../../public/settings.png'
 
 export default function SideBar() {
+
     const [open, setOpen] = useState(false);
+    const [username, setUsername] = useState('Add Account');
+
+    useEffect(() => {
+        const fetchUsername = async () => {
+            const { data, error } = await supabase.auth.getSession()
+
+            if(data){
+                setUsername(data.session?.user.user_metadata.username);
+            }
+            if(error){
+                alert('Error in getting session metadata!');
+            }
+        }
+
+        fetchUsername();
+    })
 
     return (
         <>
@@ -68,13 +86,13 @@ export default function SideBar() {
                     <div className="w-fit rounded-xl mb-7 pl-3 pr-3 pt-1 pb-0.5 cursor-pointer hover:text-neutral-200 hover:bg-black/25 text-white">
                         <Link to={'/login'} className="inline-flex items-center gap-2">
                             <img src={UserIcon} alt="User Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
-                            <p>Add Account</p>
+                            <p>{username}</p>
                         </Link>
                     </div>
 
                     {/* Settings */}
                     <div className="w-fit rounded-xl pl-3 pr-3 pt-1 pb-0.5 cursor-pointer hover:text-neutral-200 hover:bg-black/25 text-white">
-                        <Link to={'/home'} className="inline-flex items-center gap-2">
+                        <Link to={'/settings'} className="inline-flex items-center gap-2 cursor-pointer">
                             <img src={SettingsIcon} alt="Settings Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
                             <p>Settings</p>
                         </Link>

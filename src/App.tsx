@@ -2,6 +2,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import HomePage from "./pages/Home";
 import LogSignPage from "./pages/Login";
 import SignUpPage from "./pages/Signup";
+import SettingsPage from "./pages/Settings";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/login" element={<LogSignPage />} />
           <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,30 +1,68 @@
 import TopBar from "../components/global/TopBar"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useState } from "react"
+import {supabase} from "../client"
 
 export default function LogSignPage(){
+
+    const navigate = useNavigate();
+
+    // Variables
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogIn = async (e:any) => {
+        e.preventDefault();
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        })
+
+        
+        if(error){
+            alert('Error in fetching data!');
+        }
+        if(data){
+            navigate('/home');
+            return null;
+        }
+
+        setEmail('');
+        setPassword(''); 
+    }
+    
+    
+    
     return(
         <div className = 'w-full flex flex-col'>
            <TopBar/>
             <div className = 'w-full flex justify-center sm:flex-row flex-col '>
-                    <form className = 'lg:w-1/2 lg:pl-[15%] w-full h-full flex items-center justify-center mt-[10%]'>
+                    <form
+                        onSubmit={handleLogIn} 
+                        className = 'lg:w-1/2 lg:pl-[15%] w-full h-full flex items-center justify-center mt-[10%]'>
                         <div className="bg-black/20 w-fit pt-4 pb-6 p-20 rounded-3xl flex flex-col gap-13 items-center justify-center">
                             {/* Heading for Login */}
                             <div className="w-full text-center">
                                 <p className="text-3xl font-bold">Login</p>
                             </div>
                             
-                            {/* Username Input */}
+                            {/* Email Input */}
                             <div className="">
-                                <input 
-                                    id = 'username' 
+                                <input required
+                                    value = {email}
+                                    onChange = {(e) => setEmail(e.target.value)}
+                                    id = 'email' 
                                     type="text" 
-                                    placeholder = 'Username' 
+                                    placeholder = 'Email' 
                                     className="bg-stone-500/30 text-white p-1 pl-2 pr-2 rounded-md "/>
                             </div>
 
                             {/* Password */}
                             <div>
-                                <input 
+                                <input required
+                                    value= {password}
+                                    onChange = {(e) => setPassword(e.target.value)}
                                     id = 'password' 
                                     type="password"
                                     placeholder = 'Password' 
