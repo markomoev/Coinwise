@@ -16,7 +16,7 @@ export default function Techs() {
             </div>
 
 
-            <div className="bg-black/20 backdrop-blur-2xl shadow-3xl rounded-2xl flex flex-row flex-wrap justify-center items-center gap-10 sm:gap-6 md:gap-[4vw] mt-5 h-auto py-4 sm:py-6">
+            <div className="bg-white/5 backdrop-blur-lg rounded-4xl border border-white/8 p-6 flex flex-row flex-wrap justify-center items-center gap-10 sm:gap-6 md:gap-10 mt-5 h-auto ">
 
                 {/* React Icon */}                
                 <div className="flex mb-4 flex-row flex-wrap justify-center items-center gap-3 sm:gap-6 md:gap-[4vw] mt-5 h-auto py-4 sm:py-6">

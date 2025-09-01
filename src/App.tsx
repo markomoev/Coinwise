@@ -6,7 +6,7 @@ import SettingsPage from "./pages/Settings";
 
 export default function App() {
   return (
-    <div className = "relative min-h-screen w-full overflow-hidden items-center justify-items-center">
+    <div className = "muje relative min-h-screen w-full overflow-hidden items-center justify-items-center">
       <div className="mesh-bg"></div>
 
       <BrowserRouter basename="/Coinwise">

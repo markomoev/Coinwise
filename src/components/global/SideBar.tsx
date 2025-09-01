@@ -17,11 +17,11 @@ export default function SideBar() {
         const fetchUsername = async () => {
             const { data, error } = await supabase.auth.getSession()
 
-            if(data){
+            if(data?.session?.user?.user_metadata?.username){
                 setUsername(data.session?.user.user_metadata.username);
             }
             if(error){
-                alert('Error in getting session metadata!');
+                alert('Error in fetching data!');
             }
         }
 

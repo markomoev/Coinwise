@@ -17,34 +17,39 @@ export default function SignUpPage(){
     const handleSignUp = async (e:any) => {
         e.preventDefault();
 
-        const { data, error } = await supabase.auth.signUp({
-            email,
-            password,
-            options: {
-                data: { username }
+        //Requirements for the password
+        if(password.length > 6 && /[A-Z]/.test(password) && /\d/.test(password) ){
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: { username }
+                }
+            })
+
+            const {error: insertError} = await supabase
+            .from("users")
+            .insert({
+                username: username,
+            })
+
+            if(insertError){
+                alert('Error in inserting the data!')
             }
-        })
 
-        const {error: insertError} = await supabase
-        .from("users")
-        .insert({
-            username: username,
-        })
-
-        if(insertError){
-            alert('Error in inserting the data!')
+            if(error){
+                alert('Error in fetching data!');
+            }
+            if(data){
+                navigate('/home');
+            }
+        }else{
+            alert('Password must contain at least one upper case and number!')
         }
 
-        if(error){
-            alert('Error in fetching data!');
-        }
-        if(data){
-            navigate('/home');
-        }
-
-        setUsername('');
-        setEmail('');
-        setPassword('');
+            setUsername('');
+            setEmail('');
+            setPassword('');
     }
 
     return(
@@ -58,7 +63,7 @@ export default function SignUpPage(){
                 <form 
                     onSubmit = {handleSignUp}
                     className = 'lg:w-1/2 lg:pl-[15%] w-full h-full flex items-center justify-center mt-[10%]'>
-                    <div className = 'bg-black/20 w-fit pt-4 pb-6 p-20 rounded-3xl flex flex-col gap-13 items-center justify-center'>
+                    <div className = 'bg-white/5 backdrop-blur-lg border border-white/8 w-fit pt-4 pb-6 p-20 rounded-3xl flex flex-col gap-13 items-center justify-center'>
                         
                         <p className="text-3xl font-bold">Signup</p>
 
