@@ -36,15 +36,17 @@ export default function LogSignPage(){
     
     return(
         <div className = 'w-full flex flex-col'>
-           <TopBar/>
-            <div className = 'w-full flex justify-center sm:flex-row flex-col '>
+            <div className = 'w-full flex items-center justify-center'>
+                <TopBar/>
+            </div>
+            <div className = 'w-full flex justify-center sm:flex-row flex-col'>
                     <form
                         onSubmit={handleLogIn} 
                         className = 'lg:w-1/2 lg:pl-[15%] w-full h-full flex items-center justify-center mt-[10%]'>
-                        <div className="bg-black/20 w-fit pt-4 pb-6 p-20 rounded-3xl flex flex-col gap-13 items-center justify-center">
+                        <div className="bg-white/10 shadow-xl border border-black/10 w-fit pt-4 pb-6 p-20 rounded-3xl flex flex-col gap-13 items-center justify-center">
                             {/* Heading for Login */}
                             <div className="w-full text-center">
-                                <p className="text-3xl font-bold">Login</p>
+                                <p className="text-3xl font-bold text-gray-600">Login</p>
                             </div>
                             
                             {/* Email Input */}
@@ -55,7 +57,7 @@ export default function LogSignPage(){
                                     id = 'email' 
                                     type="text" 
                                     placeholder = 'Email' 
-                                    className="bg-stone-500/30 text-white p-1 pl-2 pr-2 rounded-md "/>
+                                    className="bg-gray-600/30 text-white p-1 pl-2 pr-2 rounded-md "/>
                             </div>
 
                             {/* Password */}
@@ -66,12 +68,12 @@ export default function LogSignPage(){
                                     id = 'password' 
                                     type="password"
                                     placeholder = 'Password' 
-                                    className="bg-stone-500/30 text-white p-1 pl-2 pr-2 rounded-md " />
+                                    className="bg-gray-600/30 text-white p-1 pl-2 pr-2 rounded-md " />
                             </div>
 
                             {/* Button for loging in */}
                             <div>
-                                <button className = 'bg-amber-700 rounded-2xl p-2 pl-4 pr-4 cursor-pointer text-xl font-semibold'>
+                                <button className = 'bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl p-2 pl-4 pr-4 cursor-pointer text-xl font-semibold text-white'>
                                     Login
                                 </button>
                             </div>
@@ -81,7 +83,9 @@ export default function LogSignPage(){
                 {/* In order the user does not have an acc */}
                 <div className="lg:w-1/2 lg:pr-[15%] w-full h-full flex flex-col mt-[10%] items-center justify-center">
                     <div className="w-full text-center mt-20">
-                        <p className="text-2xl font-bold mb-2">Join us!</p>
+                        <p className="text-2xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                            Join us!
+                        </p>
                         <p>
                             Motivational speech in order to lie people <br/>
                             so they can join <br/> our stupid comuity
@@ -90,7 +94,7 @@ export default function LogSignPage(){
                         
                         <div className="mt-10">
                             <p>Don't have an account? Fix this mistake:</p>
-                            <Link to = {'/signup'} className="text-amber-700 underline font-semibold">Signup</Link>
+                            <Link to = {'/signup'} className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent underline font-semibold">Signup</Link>
                         </div>
                     </div>
                 </div>

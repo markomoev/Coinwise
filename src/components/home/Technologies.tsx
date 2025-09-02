@@ -1,9 +1,9 @@
-import reactSvg from '../../public/react.svg';
-import tsSvg from '../../public/ts.svg'
-import tailwindSvg from '../../public/tailwind.svg'
-import supabaseSvg from '../../public/supabase.svg'
-import gitSvg from '../../public/git.svg';
-import githubSvg from '../../public/github.svg';
+import reactSvg from '../../public/tech/react.png';
+import tsSvg from '../../public/tech/ts.png'
+import tailwindSvg from '../../public/tech/tailwind.png'
+import supabaseSvg from '../../public/tech/supabase.png'
+import gitSvg from '../../public/tech/git.png';
+import githubSvg from '../../public/tech/github.png';
 
 
 export default function Techs() {

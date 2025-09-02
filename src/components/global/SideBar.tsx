@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {supabase} from '../../client'
 
-import HomeIcon from '../../public/home.png'
-import DashIcon from '../../public/dashboard.png'
-import PlusIcon from '../../public/plus.png'
-import UserIcon from '../../public/user.png'
-import SettingsIcon from '../../public/settings.png'
+import HomeIcon from '../../public/sidebar/home.png'
+import DashIcon from '../../public/sidebar/dashboard.png'
+import PlusIcon from '../../public/sidebar/plus.png'
+import UserIcon from '../../public/sidebar/user.png'
+import SettingsIcon from '../../public/sidebar/settings.png'
 
 export default function SideBar() {
 
@@ -32,70 +32,70 @@ export default function SideBar() {
         <>
             {/* Hamburger button */}
             <button
-                className="cursor-pointer fixed top-3 left-7 z-40 flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-black/30 backdrop-blur-md shadow-lg md:hidden"
+                className="cursor-pointer fixed top-4 left-5 z-40 flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-white backdrop-blur-md shadow-xl md:hidden"
                 onClick={() => setOpen(!open)}
                 aria-label="Toggle sidebar"
             >
-                <span className="block w-6 h-0.5 bg-white mb-1"></span>
-                <span className="block w-6 h-0.5 bg-white mb-1"></span>
-                <span className="block w-6 h-0.5 bg-white"></span>
+                <span className="block w-6 h-0.5 bg-black/40 mb-1"></span>
+                <span className="block w-6 h-0.5 bg-black/40 mb-1"></span>
+                <span className="block w-6 h-0.5 bg-black/40"></span>
             </button>
 
             {/* Sidebar */}
             <div
                 className={`
                     fixed top-0 left-0 z-30 h-full transition-transform duration-300
-                    bg-black/20 pr-3 pl-3 backdrop-blur-2xl shadow-3xl sm:rounded-2xl pt-8 pb-2
-                    text-lg font-normal border-neutral-700
+                    bg-white/88 pr-3 pl-3 backdrop-blur-2xl shadow-3xl sm:rounded-2xl pt-8 pb-2
+                    text-lg font-normal border-white-700
                     w-64
                     ${open ? "translate-x-0" : "-translate-x-full"}
                     md:static md:translate-x-0 md:w-1/9 md:ml-4 md:h-full md:top-0
                 `}
             >
 
-                <div className = 'flex flex-col gap-[42vh] mt-10 md:mt-0'>
+                <div className = 'w-auto flex flex-col gap-85 mt-10 md:mt-0 bg-black/2 rounded-2xl shadow-2xl pt-5 pb-5'>
 
-                    <div className = ''>
+                    <div className = 'flex flex-col gap-10'>
                     {/* Home link */}
-                    <div className="w-fit rounded-xl mb-7 pl-3 pr-3 pt-1 pb-0.5 cursor-pointer hover:text-neutral-200 hover:bg-black/25 text-white">
+                    <div className="w-full rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
                         <Link to={'/home'} className="inline-flex items-center gap-2">
                             <img src={HomeIcon} alt="Home Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
-                            <p>Home</p>
+                            <p className = 'text-gray-600 font-semibold pb-1.5'>Home</p>
                         </Link>
                     </div>
                 
                     {/* Dashboard Icon */}
-                    <div className="w-fit rounded-xl mb-7 pl-3 pr-3 pt-1 pb-0.5 cursor-pointer hover:text-neutral-200 hover:bg-black/25 text-white">
+                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
                         <Link to={'/home'} className="inline-flex items-center gap-2">
                             <img src={DashIcon} alt="Dashboard Icon" className="mb-2 w-8 h-8 md:w-10 md:h-10" />
-                            <p>Dashboard</p>
+                            <p className = 'text-gray-600 font-semibold pb-1.5'>Dashboard</p>
                         </Link>
                     </div>
                     
                     {/* Add expense icon */}
-                    <div className="w-fit rounded-xl mb-7 pl-3 pr-3 pt-1 pb-0.5 cursor-pointer hover:text-neutral-200 hover:bg-black/25 text-white">
+                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
                         <a href="" className="inline-flex items-center gap-2">
                             <img src={PlusIcon} alt="Plus Icon" className="mb-2 w-8 h-8 md:w-10 md:h-10"/>
-                            <p>Add</p>
+                            <p className = 'text-gray-600 font-semibold pb-1.5'>Transactions</p>
                         </a>
                     </div>
                     </div>
 
-                    <div className = ''>
+                    <div className = 'flex flex-col gap-10'>
                     {/* SignIn / SignUp */}
-                    <div className="w-fit rounded-xl mb-7 pl-3 pr-3 pt-1 pb-0.5 cursor-pointer hover:text-neutral-200 hover:bg-black/25 text-white">
-                        <Link to={'/login'} className="inline-flex items-center gap-2">
-                            <img src={UserIcon} alt="User Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
-                            <p>{username}</p>
+                    <div className="bg-gradient-to-r from-purple-500 to-blue-500 w-fit rounded-xl cursor-pointer pr-5 pt-1">
+                        <Link to={'/login'} className="pl-2 inline-flex items-center gap-2">
+                            <img src={UserIcon} alt="User Icon" className ='text-transparent mb-2 w-8 h-8 md:w-10 md:h-10'/>
+                            <p className ='text-white font-semibold pb-1'>{username}</p>
                         </Link>
                     </div>
-
+                    
                     {/* Settings */}
-                    <div className="w-fit rounded-xl pl-3 pr-3 pt-1 pb-0.5 cursor-pointer hover:text-neutral-200 hover:bg-black/25 text-white">
-                        <Link to={'/settings'} className="inline-flex items-center gap-2 cursor-pointer">
-                            <img src={SettingsIcon} alt="Settings Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
-                            <p>Settings</p>
-                        </Link>
+                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10">
+                            <Link to={'/settings'} className="flex items-center gap-2 cursor-pointer pt-2 pl-2 pr-2">
+                                <img  src = {SettingsIcon} alt="Settings Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
+                                <p className = 'text-gray-600 font-semibold pb-1'>Settings</p>
+                            </Link>
                     </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ export default function SideBar() {
             {/* Overlay for mobile */}
             {open && (
                 <div
-                    className="fixed inset-0 z-20 bg-black/40 md:hidden"
+                    className="fixed inset-0 z-20 bg-black/50 md:hidden"
                     onClick={() => setOpen(false)}
                     aria-label="Close sidebar overlay"
                 />

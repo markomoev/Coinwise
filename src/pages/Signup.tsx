@@ -54,7 +54,7 @@ export default function SignUpPage(){
 
     return(
         <div className = 'w-full h-full flex flex-col'>
-            <div>
+            <div className = 'w-full flex items-center justify-center'>
                 <TopBar/>
             </div>
 
@@ -63,9 +63,9 @@ export default function SignUpPage(){
                 <form 
                     onSubmit = {handleSignUp}
                     className = 'lg:w-1/2 lg:pl-[15%] w-full h-full flex items-center justify-center mt-[10%]'>
-                    <div className = 'bg-white/5 backdrop-blur-lg border border-white/8 w-fit pt-4 pb-6 p-20 rounded-3xl flex flex-col gap-13 items-center justify-center'>
+                    <div className = 'bg-white/10 shadow-xl border border-black/10 w-fit pt-4 pb-6 p-20 rounded-3xl flex flex-col gap-13 items-center justify-center'>
                         
-                        <p className="text-3xl font-bold">Signup</p>
+                        <p className="text-3xl font-bold text-gray-600">Signup</p>
 
                         <input required
                             name = 'username'
@@ -73,7 +73,7 @@ export default function SignUpPage(){
                             placeholder = 'Username'
                             value = {username}
                             onChange={(e) => setUsername(e.target.value)}
-                            className="bg-stone-500/30 text-white p-1 pl-2 pr-2 rounded-md"
+                            className="bg-gray-600/30 text-white p-1 pl-2 pr-2 rounded-md"
                         />
                         
                         
@@ -83,7 +83,7 @@ export default function SignUpPage(){
                             placeholder = 'Email'
                             value = {email}
                             onChange={(e) => setEmail(e.target.value)} 
-                            className="bg-stone-500/30 text-white p-1 pl-2 pr-2 rounded-md"
+                            className="bg-gray-600/30 text-white p-1 pl-2 pr-2 rounded-md"
                         />
                         
                         
@@ -93,10 +93,10 @@ export default function SignUpPage(){
                             placeholder = 'Password'
                             value = {password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="bg-stone-500/30 text-white p-1 pl-2 pr-2 rounded-md"
+                            className="bg-gray-600/30 text-white p-1 pl-2 pr-2 rounded-md"
                         />
 
-                        <button className = 'bg-amber-700 rounded-2xl p-2 pl-4 pr-4 cursor-pointer text-xl font-semibold'>
+                        <button className = 'bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl p-2 pl-4 pr-4 cursor-pointer text-xl text-white font-semibold'>
                             Signup
                         </button>
                     </div>
@@ -104,7 +104,9 @@ export default function SignUpPage(){
 
                 <div className="lg:w-1/2 lg:pr-[15%] w-full h-full flex flex-col mt-[10%] items-center justify-center">
                     <div className="w-full text-center mt-20">
-                        <p className="text-2xl font-bold mb-2">Log into you account!</p>
+                        <p className="text-2xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                            Log into you account!
+                        </p>
                         <p>
                             Motivational speech in order to lie people <br/>
                             so they can join <br/> our stupid comuity
@@ -113,7 +115,7 @@ export default function SignUpPage(){
                         
                         <div className="mt-10">
                             <p>Have an account? Don't waste your time:</p>
-                            <Link to = {'/login'} className="text-amber-700 underline font-semibold">Login</Link>
+                            <Link to = {'/login'} className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent underline font-semibold">Login</Link>
                         </div>
                     </div>
                 </div>
