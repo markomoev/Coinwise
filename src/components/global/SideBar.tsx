@@ -49,15 +49,15 @@ export default function SideBar() {
                     text-lg font-normal border-white-700
                     w-64
                     ${open ? "translate-x-0" : "-translate-x-full"}
-                    md:static md:translate-x-0 md:w-1/9 md:ml-4 md:h-full md:top-0
+                    md:static md:translate-x-0 md:w-fit md:ml-4 md:h-full md:top-0
                 `}
             >
 
-                <div className = 'w-auto flex flex-col gap-85 mt-10 md:mt-0 bg-black/2 rounded-2xl shadow-2xl pt-5 pb-5'>
+                <div className = 'w-full flex flex-col md:gap-85 gap-75 mt-10 md:mt-0 md:border md:border-black/10 md:bg-black/2 rounded-2xl md:shadow-2xl pt-5 pb-5'>
 
-                    <div className = 'flex flex-col gap-10'>
+                    <div className = 'ml-3 mr-3 flex flex-col gap-10'>
                     {/* Home link */}
-                    <div className="w-full rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
+                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
                         <Link to={'/home'} className="inline-flex items-center gap-2">
                             <img src={HomeIcon} alt="Home Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
                             <p className = 'text-gray-600 font-semibold pb-1.5'>Home</p>
@@ -81,7 +81,7 @@ export default function SideBar() {
                     </div>
                     </div>
 
-                    <div className = 'flex flex-col gap-10'>
+                    <div className = 'ml-3 mr-3 flex flex-col gap-10'>
                     {/* SignIn / SignUp */}
                     <div className="bg-gradient-to-r from-purple-500 to-blue-500 w-fit rounded-xl cursor-pointer pr-5 pt-1">
                         <Link to={'/login'} className="pl-2 inline-flex items-center gap-2">
