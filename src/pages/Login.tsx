@@ -22,7 +22,31 @@ export default function LogSignPage(){
         
         if(error){
             alert('Error in fetching data!');
+            return;
         }
+
+        const { data: userData, error: getUserError} = await supabase.auth.getUser();
+        if(getUserError){
+            alert('Erorr in fetching data')
+            return;
+        }
+        const user:any = userData.user;
+
+        const { data: profile, error: profileError } = await supabase
+            .from('users')
+            .select('is_deleted')
+            .eq('id', user.id)
+            .single();
+
+        if (profileError) {
+            alert('Error fetching profile: ' + profileError.message);
+            return;
+        }if (profile?.is_deleted) {
+            alert('This account has been deleted');
+            await supabase.auth.signOut();
+            return;
+        }
+
         if(data){
             navigate('/home');
             return null;

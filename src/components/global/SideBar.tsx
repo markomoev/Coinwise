@@ -90,7 +90,7 @@ export default function SideBar() {
                         </Link>
                     </div>
                     
-                    {/* Settings */}
+                    {/* Settings  !!!TODO!!! - PUT RIGHT PADDING ON THE BUTTON*/}  
                     <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10">
                             <Link to={'/settings'} className="flex items-center gap-2 cursor-pointer pt-2 pl-2 pr-2">
                                 <img  src = {SettingsIcon} alt="Settings Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>

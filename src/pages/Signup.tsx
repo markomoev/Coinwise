@@ -27,10 +27,15 @@ export default function SignUpPage(){
                 }
             })
 
+            const { data: userData} = await supabase.auth.getUser();
+            const user: any = userData.user;
+
             const {error: insertError} = await supabase
             .from("users")
             .insert({
+                id: user.id,
                 username: username,
+                is_deleted: false,
             })
 
             if(insertError){
