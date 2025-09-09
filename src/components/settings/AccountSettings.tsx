@@ -8,15 +8,22 @@ export default function accSettings(){
     // displaying email and username
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
-        
+
+    // edit states
+    const [editMode, setEditMode] = useState(false);
+
         useEffect(() => {
-            // TODO: CHECK IF THERE IS ANY SESSION THEN FETCH
+        
+        supabase.auth.onAuthStateChange((event) => {
+            if (event === 'SIGNED_IN'){
+
             const detailsFetcher = async () => {
+
                 // getting email from auth
-                const { data: userData, error: getUserError } = await supabase.auth.getUser();
-                
+                const { data: userData, error: getUserError } = await supabase.auth.getUser();  
                 if(getUserError){
                     console.error('Error fetching email:', getUserError.message);
+                    alert('Error fetching email')
                     return;
                 }
                 
@@ -45,7 +52,47 @@ export default function accSettings(){
                 }
             }
             detailsFetcher();
+            }
+            if(event === 'SIGNED_OUT'){return;}    
+        })
         }, [])
+
+    // edit user profile details
+    const editProfile = () => {
+        setEditMode(true);
+    }
+
+    // save edited changes
+    const saveProfileChanges = async () => {
+        setEditMode(false);
+
+        const { data, error: getUserError } = await supabase.auth.getUser()
+
+        if(getUserError) {
+            console.error(getUserError);
+            alert('Error in getting user data');
+            return;
+        }
+
+        const user: any = data.user;
+
+        const { error: updateUserError } = await supabase
+        .from('users')
+        .update({ username })
+        .eq('id', user.id)
+
+        if(updateUserError){
+            console.error(updateUserError);
+            alert('Erorr in updating user data');
+            return;
+        }
+    }
+    
+    // cancel user changes
+
+    const cancelProfileChanges = () => {
+        setEditMode(false);
+    }
 
     // log out user
     const logOutUser = async () => {
@@ -109,7 +156,7 @@ export default function accSettings(){
                 </div> 
 
                 <form className ='w-1/2 flex gap-5'>
-                    <input readOnly
+                    <input readOnly = {!editMode}
                         className = 'bg-black/18 text-white p-1 pl-2 pr-2 rounded-md border border-black/10 shadow-sm'
                         type ='email'
                         placeholder ='Email here'
@@ -117,7 +164,7 @@ export default function accSettings(){
                         onChange = {(e) => setEmail(e.target.value)}
                     />
 
-                    <input readOnly
+                    <input readOnly = {!editMode}
                         className = 'bg-black/18 text-white p-1 pl-2 pr-2 rounded-md border border-black/10 shadow-sm'
                         type="text"
                         placeholder ='Username here'
@@ -128,14 +175,26 @@ export default function accSettings(){
 
                 <div className = 'flex flex-row justify-between'>
                     <div>
-                        <button className ='pt-1 pb-1 pl-3 pr-3 cursor-pointer border border-black/10 hover:border-black/20 hover:shadow-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent rounded-2xl font-bold text-md shadow-lg'>
+                        <button
+                            onClick={editProfile} 
+                            className ='pt-1 pb-1 pl-3 pr-3 cursor-pointer border border-black/10 hover:border-black/20 hover:shadow-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent rounded-2xl font-bold text-md shadow-lg'>
                             Edit
                         </button>
                     </div>
 
                     <div className = 'flex flex-row gap-5'>
-                        <button className="pt-1 pb-1 pl-3 pr-3 font-bold cursor-pointer border animate-pulse border-green-600 rounded-2xl text-green-700 shadow-lg">
+                        <button 
+                            onClick = {saveProfileChanges}
+                            className={` ${editMode ? '' : 'hidden'}
+                                pt-1 pb-1 pl-3 pr-3 font-bold cursor-pointer border animate-pulse border-green-600 rounded-2xl text-green-700 shadow-lg`}>
                             Save
+                        </button>
+
+                        <button 
+                            onClick = {cancelProfileChanges}
+                            className={` ${editMode ? '' : 'hidden'}
+                                pt-1 pb-1 pl-3 pr-3 font-bold cursor-pointer border animate-pulse border-black/20 hover:border-black/30 rounded-2xl text-black/50 shadow-lg`}>
+                            Cancel
                         </button>
 
                         <button 

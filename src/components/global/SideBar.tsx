@@ -11,7 +11,7 @@ import SettingsIcon from '../../public/sidebar/settings.png'
 export default function SideBar() {
 
     const [open, setOpen] = useState(false);
-    const [username, setUsername] = useState('Add Account');
+    const [username, setUsername] = useState('Add Profile');
 
     useEffect(() => {
         const fetchUsername = async () => {
