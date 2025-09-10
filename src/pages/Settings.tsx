@@ -9,7 +9,7 @@ export default function SettingsPage(){
                 <TopBar/>
             </div>
             <div>
-                <div className = 'w-full h-auto flex flex-row items-center justify-center mt-20 gap-15'>
+                <div className = 'w-full h-auto flex md:flex-row flex-col items-center justify-center mt-20 gap-15'>
                     <SettingsMenu/>
                     <AccountSettings/>
                 </div>

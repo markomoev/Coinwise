@@ -13,9 +13,6 @@ export default function accSettings(){
     const [editMode, setEditMode] = useState(false);
 
         useEffect(() => {
-        
-        supabase.auth.onAuthStateChange((event) => {
-            if (event === 'SIGNED_IN'){
 
             const detailsFetcher = async () => {
 
@@ -23,7 +20,6 @@ export default function accSettings(){
                 const { data: userData, error: getUserError } = await supabase.auth.getUser();  
                 if(getUserError){
                     console.error('Error fetching email:', getUserError.message);
-                    alert('Error fetching email')
                     return;
                 }
                 
@@ -51,10 +47,7 @@ export default function accSettings(){
                     return;
                 }
             }
-            detailsFetcher();
-            }
-            if(event === 'SIGNED_OUT'){return;}    
-        })
+            detailsFetcher(); 
         }, [])
 
     // edit user profile details
@@ -65,7 +58,7 @@ export default function accSettings(){
     // save edited changes
     const saveProfileChanges = async () => {
         setEditMode(false);
-
+        
         const { data, error: getUserError } = await supabase.auth.getUser()
 
         if(getUserError) {
@@ -143,7 +136,7 @@ export default function accSettings(){
 
 
     return(
-        <div className ='w-auto bg-white/20 pl-10 pr-20 pb-5 rounded-2xl border border-black/10 shadow-lg'>
+        <div className ='md:w-auto w-[95%] bg-white/20 pl-[2%] pr-[2%] pb-5 rounded-2xl border border-black/10 shadow-lg'>
             <div className = 'w-full flex flex-col gap-5'>
                 {/* Username */}
                 <div className ='mb-3'>
@@ -155,7 +148,7 @@ export default function accSettings(){
                     </div>
                 </div> 
 
-                <form className ='w-1/2 flex gap-5'>
+                <form className ='w-1/2 flex md:gap-5 gap-4'>
                     <input readOnly = {!editMode}
                         className = 'bg-black/18 text-white p-1 pl-2 pr-2 rounded-md border border-black/10 shadow-sm'
                         type ='email'
