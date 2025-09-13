@@ -66,7 +66,7 @@ export default function SideBar() {
                 
                     {/* Dashboard Icon */}
                     <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
-                        <Link to={'/home'} className="inline-flex items-center gap-2">
+                        <Link to={'/dashboard'} className="inline-flex items-center gap-2">
                             <img src={DashIcon} alt="Dashboard Icon" className="mb-2 w-8 h-8 md:w-10 md:h-10" />
                             <p className = 'text-gray-600 font-semibold pb-1.5'>Dashboard</p>
                         </Link>

@@ -18,10 +18,11 @@ export default function accSettings(){
 
                 // getting email from auth
                 const { data: userData, error: getUserError } = await supabase.auth.getUser();  
-                if(getUserError){
-                    console.error('Error fetching email:', getUserError.message);
-                    return;
-                }
+                
+                supabase.auth.onAuthStateChange((event) => {
+                    if (event === 'SIGNED_IN' && getUserError)
+                        {console.error('Error fetching email:', getUserError)};
+                    })
                 
                 const user: any = userData?.user;
                 if(!user){
