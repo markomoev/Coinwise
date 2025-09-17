@@ -53,7 +53,7 @@ export default function SideBar() {
                 `}
             >
 
-                <div className = 'w-full flex flex-col md:gap-85 gap-75 mt-10 md:mt-0 md:border md:border-black/10 md:bg-black/2 rounded-2xl md:shadow-2xl pt-5 pb-5'>
+                <div className = 'w-full flex flex-col md:gap-60 gap-75 mt-10 md:mt-0 md:border md:border-black/10 md:bg-black/2 rounded-2xl md:shadow-2xl pt-5 pb-5'>
 
                     <div className = 'ml-3 mr-3 flex flex-col gap-10'>
                     {/* Home link */}
@@ -72,12 +72,19 @@ export default function SideBar() {
                         </Link>
                     </div>
                     
-                    {/* Add expense icon */}
+                    {/* Transactions icon */}
                     <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
-                        <a href="" className="inline-flex items-center gap-2">
+                        <Link to={'/transactions'} className="inline-flex items-center gap-2">
                             <img src={PlusIcon} alt="Plus Icon" className="mb-2 w-8 h-8 md:w-10 md:h-10"/>
                             <p className = 'text-gray-600 font-semibold pb-1.5'>Transactions</p>
-                        </a>
+                        </Link>
+                    </div>
+
+                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
+                        <Link to={'/statistics'} className="inline-flex items-center gap-2">
+                            <img className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
+                            <p className = 'text-gray-600 font-semibold pb-1.5'>Statistics</p>
+                        </Link>
                     </div>
                     </div>
 
