@@ -53,7 +53,7 @@ export default function SideBar() {
                 `}
             >
 
-                <div className = 'w-full flex flex-col md:gap-60 gap-75 mt-10 md:mt-0 md:border md:border-black/10 md:bg-black/2 rounded-2xl md:shadow-2xl pt-5 pb-5'>
+                <div className = 'w-full flex flex-col md:gap-65 gap-75 mt-10 md:mt-0 md:border md:border-black/10 md:bg-black/2 rounded-2xl md:shadow-2xl pt-5 pb-5'>
 
                     <div className = 'ml-3 mr-3 flex flex-col gap-10'>
                     {/* Home link */}

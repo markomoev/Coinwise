@@ -1,19 +1,12 @@
-import { useState } from "react";
+type Props = {
+    AddTransaction: () => void;
+}
 
-import TransactionPopup from './TransactionPopup'
+export default function TransactionsList({AddTransaction}: Props) {
 
-export default function TransactionsList() {
-    const [showPopup, setShowPopup] = useState(false);
-
-    
-    const AddTransaction = () => {
-        setShowPopup(true);
-    }
-    
-    
     return(
-        <div className = 'bg-white shadow-lg border border-black/10 rounded-2xl flex flex-col gap-10'>
-            <div>
+        <div className = {`bg-white shadow-lg border border-black/10 rounded-2xl flex flex-col gap-10 transition`}>
+            <div>   
                 <div className = 'flex flex-row justify-between mt-5 pl-[1%] pr-[1%] pb-3'>
                     <p className = 'text-xl font-bold'>
                         Transactions History
@@ -50,10 +43,6 @@ export default function TransactionsList() {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className = {`z-100 ${showPopup ? "flex" : "hidden"} inset-0 fixed w-full h-full items-center justify-center`}>
-                <TransactionPopup/>
             </div>
         </div>
     );
