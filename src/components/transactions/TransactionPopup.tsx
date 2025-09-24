@@ -9,6 +9,10 @@ type Props = {
 export default function TransactionPopup({closePopup}: Props) {
     // storing all the clinets info from the popups
     const [name, setName] = useState('');
+    const [type, setType] = useState('');
+    const [amount, setAmount] = useState('' as number | string);
+    const [date, setDate] = useState('');
+    const [note, setNote] = useState('');
 
 
     const addTransaction = async () => {
@@ -22,6 +26,10 @@ export default function TransactionPopup({closePopup}: Props) {
         .insert([{ 
             user_id: currentUser,
             name: name,
+            type: type,
+            amount: amount,
+            date: date,
+            note: note
         }])
 
         if(error){
@@ -60,8 +68,12 @@ export default function TransactionPopup({closePopup}: Props) {
                     {/* Income transaction */}
                     <input 
                         id = 'income'
+                        name='transaction-type'
                         type="radio" 
                         placeholder = 'Name'
+                        checked={type === 'income'}
+                        onChange={(e) => setType(e.target.value)}
+                        value ='income'
                         className = 'ml-3'
                         />
 
@@ -73,15 +85,18 @@ export default function TransactionPopup({closePopup}: Props) {
 
                     {/* Expense transaction */}
                     <input 
-                        id = 'income'
+                        id = 'expense'
                         type="radio" 
+                        name='transaction-type'
                         placeholder = 'Name'
+                        value ='expense'
+                        checked={type === 'expense'}
+                        onChange={(e) => setType(e.target.value)}
                         className="ml-3"
-
                         />
 
                     <label 
-                            htmlFor="income"
+                            htmlFor="expense"
                             className= 'text-red-700 ml-1 font-semibold' >
                         Expense
                     </label>
@@ -92,10 +107,14 @@ export default function TransactionPopup({closePopup}: Props) {
                 <input 
                     type="number" 
                     placeholder = 'Amount'
+                    value={amount}
+                    onChange={(e) => setAmount(Number(e.target.value))}
                     className="bg-gray-600/15 text-black/70 pl-2 rounded-md" />
 
                 <input 
                     type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
                     className="bg-gray-600/15 text-black/70 pl-2 rounded-md"/>
             </div>
 
@@ -104,6 +123,8 @@ export default function TransactionPopup({closePopup}: Props) {
                     name="note" 
                     id="note"
                     placeholder='Add a note...'
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
                     className = 'w-full bg-gray-600/15 pl-2 rounded-md pt-1'>
                 </textarea>
             </div>
