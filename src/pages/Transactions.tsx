@@ -15,10 +15,8 @@ export default function TransactionsPage() {
                     <TopBar/>
                 </div>
 
-                <div className="w-full flex flex-row gap-20 mt-5 pr-7">
-                    <div>
+                <div className="w-full flex flex-row gap-10 mt-5 pr-7">
                         <SideBar/>
-                    </div>
 
                     <div className="w-7/8 mt-8">
                         <TransactionsList 

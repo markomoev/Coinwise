@@ -16,28 +16,34 @@ export default function TransactionPopup({closePopup}: Props) {
 
 
     const addTransaction = async () => {
-        // add transaction logic
-        const { data: { user } } = await supabase.auth.getUser()
-        const currentUser = user?.id;
+        // check for account
+        const { data: { session } } = await supabase.auth.getSession();
+
+        if(!session){alert('You need to be logged in to add a transaction!'); return;}
+        else{
+            // add transaction logic
+            const { data: { user } } = await supabase.auth.getUser()
+            const currentUser = user?.id;
 
 
-        const { error } = await supabase
-        .from('Transactions')
-        .insert([{ 
-            user_id: currentUser,
-            name: name,
-            type: type,
-            amount: amount,
-            date: date,
-            note: note
-        }])
+            const { error } = await supabase
+            .from('Transactions')
+            .insert([{ 
+                user_id: currentUser,
+                name: name,
+                type: type,
+                amount: amount,
+                date: date,
+                note: note
+            }])
 
-        if(error){
-            alert('Error in adding transaction!');
-            console.error(error.message);
+            if(error){
+                alert('Error in adding transaction!');
+                console.error(error.message);
+            }
+            
+            closePopup();
         }
-        
-        closePopup();
     }
     
     return(
@@ -74,7 +80,7 @@ export default function TransactionPopup({closePopup}: Props) {
                         checked={type === 'income'}
                         onChange={(e) => setType(e.target.value)}
                         value ='income'
-                        className = 'ml-3'
+                        className = 'ml-3 cursor-pointer'
                         />
 
                     <label 
@@ -92,7 +98,7 @@ export default function TransactionPopup({closePopup}: Props) {
                         value ='expense'
                         checked={type === 'expense'}
                         onChange={(e) => setType(e.target.value)}
-                        className="ml-3"
+                        className="ml-3 cursor-pointer"
                         />
 
                     <label 
