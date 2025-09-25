@@ -14,6 +14,7 @@ type Transaction= {
   type: string;
   date: string | null;
   note?: string;
+  created_at: string;
 };
 
 export default function TransactionsPage() {
@@ -48,14 +49,14 @@ export default function TransactionsPage() {
         }, []);
 
     return (
-        <div className="relative w-full h-auto">
+        <div className="relative w-full h-screen overflow-hidden">
             {/* whole content */}
-            <div className={`transition ${showPopup ? "blur-sm" : ""}`}>
+            <div className={`h-full transition ${showPopup ? "blur-sm" : ""}`}>
                 <div className="w-full flex items-center justify-center">
                     <TopBar/>
                 </div>
 
-                <div className="w-full flex flex-row gap-10 mt-5 pr-7">
+                <div className="w-full h-[calc(100%-4rem)] flex flex-row gap-10 mt-5 pr-7">
                         <SideBar/>
 
                     <div className="w-7/8 mt-8">
