@@ -1,11 +1,51 @@
 import { useState } from "react";
+import { useEffect } from "react";
+import { supabase } from "../client";
+
 import SideBar from "../components/global/SideBar";
 import TopBar from '../components/global/TopBar';
 import TransactionsList from "../components/transactions/TransactionsList";
 import TransactionPopup from "../components/transactions/TransactionPopup";
 
+type Transaction= {
+  id: number;
+  name: string;
+  amount: number;
+  type: string;
+  date: string | null;
+  note?: string;
+};
+
 export default function TransactionsPage() {
     const [showPopup, setShowPopup] = useState(false);
+
+        // exporting db data about the last transaction
+        const [transactions, setTransactions] = useState<Transaction[]>([]);
+    
+        const fetchLastTransaction = async () => {
+    
+            const { data: { user } } = await supabase.auth.getUser()
+            const currentUser = user?.id;
+    
+            const { data, error } = await supabase
+            .from('Transactions')
+            .select('*')
+            .eq('user_id', currentUser)
+    
+            if(error){
+                console.error(error.message);
+                return;
+            }
+            if(data){
+                setTransactions(data);
+                return;
+            }
+        }
+    
+        useEffect(() => {
+            fetchLastTransaction();
+    
+        }, []);
 
     return (
         <div className="relative w-full h-auto">
@@ -20,7 +60,8 @@ export default function TransactionsPage() {
 
                     <div className="w-7/8 mt-8">
                         <TransactionsList 
-                            AddTransaction={() => setShowPopup(true)} />
+                            AddTransaction={() => setShowPopup(true)}
+                            transactions = {transactions} />
                     </div>
                 </div>
             </div>
@@ -37,6 +78,7 @@ export default function TransactionsPage() {
                     <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
                         <div className="pointer-events-auto">
                             <TransactionPopup
+                                refreshTransactions = {fetchLastTransaction}
                                 closePopup = {() => setShowPopup(false)} />
                         </div>
                     </div>

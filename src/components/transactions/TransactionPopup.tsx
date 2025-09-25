@@ -4,15 +4,18 @@ import { useState } from 'react';
 
 type Props = {
     closePopup: () => void;
+    refreshTransactions: () => void;
 }
 
-export default function TransactionPopup({closePopup}: Props) {
+export default function TransactionPopup({closePopup, refreshTransactions}: Props) {
     // storing all the clinets info from the popups
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [amount, setAmount] = useState('' as number | string);
     const [date, setDate] = useState('');
     const [note, setNote] = useState('');
+
+    const typeToSave = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
 
 
     const addTransaction = async () => {
@@ -31,7 +34,7 @@ export default function TransactionPopup({closePopup}: Props) {
             .insert([{ 
                 user_id: currentUser,
                 name: name,
-                type: type,
+                type: typeToSave,
                 amount: amount,
                 date: date,
                 note: note
@@ -40,6 +43,9 @@ export default function TransactionPopup({closePopup}: Props) {
             if(error){
                 alert('Error in adding transaction!');
                 console.error(error.message);
+            }
+            if(!error){
+                refreshTransactions();
             }
             
             closePopup();
