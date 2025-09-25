@@ -28,7 +28,6 @@ export default function TransactionPopup({closePopup, refreshTransactions}: Prop
             const { data: { user } } = await supabase.auth.getUser()
             const currentUser = user?.id;
 
-
             const { error } = await supabase
             .from('Transactions')
             .insert([{ 
