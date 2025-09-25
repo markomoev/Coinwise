@@ -38,6 +38,7 @@ export default function accSettings(){
                 .eq('id', user.id)
                 .maybeSingle()
 
+
                 if(detailsFetchingError){
                     alert('Error in fetching username for input')
                     return;
@@ -137,21 +138,21 @@ export default function accSettings(){
 
 
     return(
-        <div className ='md:w-auto w-[95%] bg-white/20 pl-[2%] pr-[2%] pb-5 rounded-2xl border border-black/10 shadow-lg'>
+        <div className ='md:w-1/2 w-[95%] bg-white/20 pl-[5%] pr-[5%] pb-5 mt-[10%] rounded-2xl border border-black/10 shadow-lg'>
             <div className = 'w-full flex flex-col gap-5'>
                 {/* Username */}
                 <div className ='mb-3'>
-                    <div className = 'mt-3'>
+                    <div className = 'mt-5'>
                         <p
-                            className ='font-semibold text-lg bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
+                            className ='font-bold text-xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
                             Profile info   
                         </p>
                     </div>
                 </div> 
 
-                <form className ='w-1/2 flex md:gap-5 gap-4'>
+                <form className ='w-full flex md:gap-5 flex flex-row justify-between'>
                     <input readOnly = {!editMode}
-                        className = 'bg-black/18 text-white p-1 pl-2 pr-2 rounded-md border border-black/10 shadow-sm'
+                        className = 'bg-black/18 text-white text-lg p-1.5 pl-3 pr-3 rounded-lg border border-black/10 shadow-sm'
                         type ='email'
                         placeholder ='Email here'
                         value = {email}
@@ -159,7 +160,7 @@ export default function accSettings(){
                     />
 
                     <input readOnly = {!editMode}
-                        className = 'bg-black/18 text-white p-1 pl-2 pr-2 rounded-md border border-black/10 shadow-sm'
+                        className = 'bg-black/18 text-white text-lg p-1.5 pl-3 pr-3 rounded-md border border-black/10 shadow-sm'
                         type="text"
                         placeholder ='Username here'
                         value = {username}
@@ -167,33 +168,33 @@ export default function accSettings(){
                     />
                 </form>
 
-                <div className = 'flex flex-row justify-between'>
+                <div className = 'flex flex-row justify-between mt-5'>
                     <div>
                         <button
                             onClick={editProfile} 
-                            className ='pt-1 pb-1 pl-3 pr-3 cursor-pointer border border-black/10 hover:border-black/20 hover:shadow-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent rounded-2xl font-bold text-md shadow-lg'>
+                            className ='text-lg pt-2 pb-2 pl-4 pr-4 cursor-pointer border border-black/10 hover:border-black/20 hover:shadow-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent rounded-3xl font-bold text-md shadow-lg'>
                             Edit
                         </button>
                     </div>
 
-                    <div className = 'flex flex-row gap-5'>
+                    <div className = 'flex flex-row gap-7'>
                         <button 
                             onClick = {saveProfileChanges}
                             className={` ${editMode ? '' : 'hidden'}
-                                pt-1 pb-1 pl-3 pr-3 font-bold cursor-pointer border animate-pulse border-green-600 rounded-2xl text-green-700 shadow-lg`}>
+                                text-lg pt-2 pb-2 pl-4 pr-4 pr-3 font-bold cursor-pointer border animate-pulse border-green-600 hover:border-green-600/30 rounded-3xl text-green-600 shadow-lg`}>
                             Save
                         </button>
 
                         <button 
                             onClick = {cancelProfileChanges}
                             className={` ${editMode ? '' : 'hidden'}
-                                pt-1 pb-1 pl-3 pr-3 font-bold cursor-pointer border animate-pulse border-black/20 hover:border-black/30 rounded-2xl text-black/50 shadow-lg`}>
+                                text-lg pt-2 pb-2 pl-4 pr-4 pr-3 font-bold cursor-pointer border animate-pulse border-black/20 hover:border-black/30 rounded-3xl text-black/50 shadow-lg`}>
                             Cancel
                         </button>
 
                         <button 
                             onClick={logOutUser}
-                            className = 'pt-1 pb-1 pl-3 pr-3 cursor-pointer border border-black/10 hover:border-black/20 hover:shadow-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent rounded-2xl font-bold text-md shadow-lg'>
+                            className = 'text-lg pt-2 pb-2 pl-4 pr-4 cursor-pointer border border-black/10 hover:border-black/20 hover:shadow-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent rounded-3xl font-bold text-md shadow-lg'>
                             Log out
                         </button>
 
@@ -203,7 +204,7 @@ export default function accSettings(){
                 <div className = 'flex flex-row items-center justify-center mt-7'>
                     <button 
                         onClick={deleteProfile}
-                        className="pt-1 pb-1 pl-3 pr-3 font-bold cursor-pointer border border-red-600 rounded-2xl text-red-700 shadow-lg">
+                        className="text-lg pt-2 pb-2 pl-4 pr-4 font-bold cursor-pointer border border-red-600 rounded-3xl text-red-700 shadow-lg">
                         Delete profile
                     </button>
                 </div>

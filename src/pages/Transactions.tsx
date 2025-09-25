@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { supabase } from "../client";
 
 import SideBar from "../components/global/SideBar";
-import TopBar from '../components/global/TopBar';
 import TransactionsList from "../components/transactions/TransactionsList";
 import TransactionPopup from "../components/transactions/TransactionPopup";
 
@@ -52,11 +51,8 @@ export default function TransactionsPage() {
         <div className="relative w-full h-screen overflow-hidden">
             {/* whole content */}
             <div className={`h-full transition ${showPopup ? "blur-sm" : ""}`}>
-                <div className="w-full flex items-center justify-center">
-                    <TopBar/>
-                </div>
 
-                <div className="w-full h-[calc(100%-4rem)] flex flex-row gap-10 mt-5 pr-7">
+                <div className="w-full h-[calc(100%-4rem)] flex flex-row gap-10 pr-7">
                         <SideBar/>
 
                     <div className="w-7/8 mt-8">

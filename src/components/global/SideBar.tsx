@@ -7,9 +7,23 @@ import DashIcon from '../../public/sidebar/dashboard.png'
 import PlusIcon from '../../public/sidebar/plus.png'
 import UserIcon from '../../public/sidebar/user.png'
 import SettingsIcon from '../../public/sidebar/settings.png'
+import StatsIcon from '../../public/sidebar/stats.png'
+
+type NavItem = {
+    title: string;
+    path: string;
+    icon: string;
+    alt: string;
+};
+
+const navItems: NavItem[] = [
+    { title: 'Home', path: '/home', icon: HomeIcon, alt: 'Home Icon' },
+    { title: 'Dashboard', path: '/dashboard', icon: DashIcon, alt: 'Dashboard Icon' },
+    { title: 'Transactions', path: '/transactions', icon: PlusIcon, alt: 'Plus Icon' },
+    { title: 'Statistics', path: '/statistics', icon: StatsIcon , alt: 'Statistics Icon' }
+];
 
 export default function SideBar() {
-
     const [open, setOpen] = useState(false);
     const [username, setUsername] = useState('Add Profile');
 
@@ -21,12 +35,12 @@ export default function SideBar() {
                 setUsername(data.session?.user.user_metadata.username);
             }
             if(error){
-                alert('Error in fetching data!');
+                console.error('Error fetching username:', error);
             }
         }
 
         fetchUsername();
-    })
+    }, []); // Add empty dependency array
 
     return (
         <>
@@ -44,66 +58,72 @@ export default function SideBar() {
             {/* Sidebar */}
             <div
                 className={`
-                    fixed top-0 left-0 z-30 h-full transition-transform duration-300
-                    bg-white/88 pr-3 pl-3 backdrop-blur-2xl shadow-3xl sm:rounded-2xl pt-8 pb-2
-                    text-lg font-normal border-white-700
-                    w-64
+                    fixed top-0 left-0 z-30 transition-all duration-300
+                    bg-gradient-to-br from-white/95 to-gray-50/95 backdrop-blur-xl
+                    border-r border-black/5 shadow-lg
+                    text-lg font-normal w-64 min-h-screen max-h-screen overflow-y-auto
                     ${open ? "translate-x-0" : "-translate-x-full"}
-                    md:static md:translate-x-0 md:w-fit md:ml-4 md:h-full md:top-0
+                    md:static md:translate-x-0 md:w-fit md:min-h-screen md:max-h-screen
+                    md:border-r md:bg-white/90
                 `}
             >
+                <div className="w-full flex flex-col p-3 min-h-full">
+                    {/* Website Name */}
+                    <Link to="/home" className="flex items-center gap-3 px-3 py-4 mb-6">
+                        <span className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                            Coinwise
+                        </span>
+                    </Link>
 
-                <div className = 'w-full flex flex-col md:gap-65 gap-75 mt-10 md:mt-0 md:border md:border-black/10 md:bg-black/2 rounded-2xl md:shadow-2xl pt-5 pb-5'>
-
-                    <div className = 'ml-3 mr-3 flex flex-col gap-10'>
-                    {/* Home link */}
-                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
-                        <Link to={'/home'} className="inline-flex items-center gap-2">
-                            <img src={HomeIcon} alt="Home Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
-                            <p className = 'text-gray-600 font-semibold pb-1.5'>Home</p>
-                        </Link>
-                    </div>
-                
-                    {/* Dashboard Icon */}
-                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
-                        <Link to={'/dashboard'} className="inline-flex items-center gap-2">
-                            <img src={DashIcon} alt="Dashboard Icon" className="mb-2 w-8 h-8 md:w-10 md:h-10" />
-                            <p className = 'text-gray-600 font-semibold pb-1.5'>Dashboard</p>
-                        </Link>
-                    </div>
-                    
-                    {/* Transactions icon */}
-                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
-                        <Link to={'/transactions'} className="inline-flex items-center gap-2">
-                            <img src={PlusIcon} alt="Plus Icon" className="mb-2 w-8 h-8 md:w-10 md:h-10"/>
-                            <p className = 'text-gray-600 font-semibold pb-1.5'>Transactions</p>
-                        </Link>
-                    </div>
-
-                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10 pr-3 pt-1 pl-2">
-                        <Link to={'/statistics'} className="inline-flex items-center gap-2">
-                            <img className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
-                            <p className = 'text-gray-600 font-semibold pb-1.5'>Statistics</p>
-                        </Link>
-                    </div>
-                    </div>
-
-                    <div className = 'ml-3 mr-3 flex flex-col gap-10'>
-                    {/* SignIn / SignUp */}
-                    <div className="bg-gradient-to-r from-purple-500 to-blue-500 w-fit rounded-xl cursor-pointer pr-5 pt-1">
-                        <Link to={'/login'} className="pl-2 inline-flex items-center gap-2">
-                            <img src={UserIcon} alt="User Icon" className ='text-transparent mb-2 w-8 h-8 md:w-10 md:h-10'/>
-                            <p className ='text-white font-semibold pb-1'>{username}</p>
-                        </Link>
-                    </div>
-                    
-                    {/* Settings  !!!TODO!!! - PUT RIGHT PADDING ON THE BUTTON*/}  
-                    <div className="w-fit rounded-xl cursor-pointer hover:text-neutral-200 hover:bg-black/10">
-                            <Link to={'/settings'} className="flex items-center gap-2 cursor-pointer pt-2 pl-2 pr-2">
-                                <img  src = {SettingsIcon} alt="Settings Icon" className ='mb-2 w-8 h-8 md:w-10 md:h-10'/>
-                                <p className = 'text-gray-600 font-semibold pb-1'>Settings</p>
+                    {/* Main Navigation */}
+                    <nav className="flex flex-col gap-2">
+                        {navItems.map((item) => (
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                className="group flex items-center gap-4 p-3 rounded-lg transition-all duration-200
+                                         hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10"
+                            >
+                                <div className="w-11 h-11 flex items-center justify-center">
+                                    {item.icon && <img src={item.icon} alt={item.alt} className="w-8 h-8 transition-transform duration-200 group-hover:scale-110" />}
+                                </div>
+                                <span className="text-xl text-gray-600 font-medium group-hover:text-gray-800 transition-colors duration-200">
+                                    {item.title}
+                                </span>
                             </Link>
-                    </div>
+                        ))}
+                    </nav>
+
+                    {/* Spacer to push the user section to bottom */}
+                    <div className="flex-grow"></div>
+
+                    {/* User Section */}
+                    <div className="flex flex-col gap-2 pt-6 mt-2 border-t border-gray-100">
+                        <Link 
+                            to="/login"
+                            className="group flex items-center gap-4 p-3 rounded-lg transition-all duration-200
+                                     hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10"
+                        >
+                            <div className="w-11 h-11 flex items-center justify-center">
+                                <img src={UserIcon} alt="User Icon" className="w-8 h-8 opacity-90 bg-clip-text transition-transform duration-200 group-hover:scale-110" />
+                            </div>
+                            <span className="text-xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent font-medium">
+                                {username}
+                            </span>
+                        </Link>
+                        
+                        <Link 
+                            to="/settings"
+                            className="group flex items-center gap-4 p-3 rounded-lg transition-all duration-200
+                                     hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10"
+                        >
+                            <div className="w-11 h-11 flex items-center justify-center">
+                                <img src={SettingsIcon} alt="Settings Icon" className="w-8 h-8 transition-transform duration-200 group-hover:scale-110" />
+                            </div>
+                            <span className="text-xl text-gray-600 font-medium group-hover:text-gray-800">
+                                Settings
+                            </span>
+                        </Link>
                     </div>
                 </div>
             </div>

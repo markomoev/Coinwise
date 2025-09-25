@@ -32,7 +32,7 @@ export default function TransactionLine({name, amount, type, date, note, created
                 <div className = 'flex flex-row justify-between'>
                     <div className = 'flex flex-row gap-5'>
                         <p className = ''>{amount}</p>
-                        <p className = {type === 'expense' ? 'text-red-600 font-semibold' : 'text-green-600 font-semibold'}>{type}</p>
+                        <p className = {type === 'Expense' ? 'text-red-600 font-semibold' : 'text-green-600 font-semibold'}>{type}</p>
                     </div>
 
                     <div className = 'flex flex-col w-auto items-end'>

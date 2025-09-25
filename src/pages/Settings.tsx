@@ -1,18 +1,12 @@
-import TopBar from "../components/global/TopBar"
-import SettingsMenu from "../components/settings/SettingsMenu"
+import SideBar from "../components/global/SideBar"
 import AccountSettings from '../components/settings/AccountSettings'
 
 export default function SettingsPage(){
     return(
-        <div className = 'w-full flex flex-col'>
-            <div className = 'w-full flex items-center justify-center'>
-                <TopBar/>
-            </div>
-            <div>
-                <div className = 'w-full h-auto flex md:flex-row flex-col items-center justify-center mt-20 gap-15'>
-                    <SettingsMenu/>
+        <div className = 'w-full flex flex-row'>
+                <SideBar/>
+            <div className ='w-[87%] h-full flex items-center justify-center'>
                     <AccountSettings/>
-                </div>
             </div>
         </div>
     )
