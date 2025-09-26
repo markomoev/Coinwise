@@ -1,8 +1,46 @@
+import { useEffect, useState } from "react"
+
+import { supabase } from "../../client"
+
 type Props = {
     showPopup: () => void;
 }
 
 export default function TotalCard({showPopup}: Props) {
+
+    const [totalBalance, setTotalBalance] = useState(0);
+
+
+        const fetchTotalBalance = async () => {
+            // check for account
+            const { data: { session } } = await supabase.auth.getSession();
+            
+            if (!session) {
+            alert('You need to be logged in to add a transaction!');
+            return;
+            }
+
+            const { data: { user } } = await supabase.auth.getUser();
+            const currentUser = user?.id;
+
+            const { data, error } = await supabase
+            .from("Transactions")
+            .select("amount")
+            .eq("type", "Total")
+            .eq("user_id", currentUser)
+            .gte("created_at", new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString());
+            
+            if (error) {
+            console.error(error.message);
+            return;
+            }
+
+            const totalAmount = data?.reduce((acc, row) => acc + Number(row.amount), 0)||0;
+            setTotalBalance(totalAmount);
+        };
+    useEffect(() => {
+    fetchTotalBalance();});
+
     return(
         <div className="w-[95%] mt-10 flex flex-col gap-3 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl">
         <div>
@@ -11,7 +49,9 @@ export default function TotalCard({showPopup}: Props) {
 
         <div className = 'w-full flex flex-row justify-between'>
             <div> {/* TODO: Here the price would be a variable */}
-                <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>23 500$</p>
+                <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
+                    {totalBalance}
+                </p>
             </div>
 
             <div>
@@ -24,4 +64,5 @@ export default function TotalCard({showPopup}: Props) {
         </div>
         </div>
     )
+
 }

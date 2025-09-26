@@ -5,7 +5,7 @@ import ExpenseCard from "../components/dashboard/ExpenseCard";
 import SavingsCard from "../components/dashboard/SavingsCard"
 import FundsPopup from "../components/dashboard/FundsPopup";
 
-import { useState } from "react";
+import { useState} from "react";
 
 export default function DashboardPage() {
     const [showPopup, setShowPopup] = useState(false);
