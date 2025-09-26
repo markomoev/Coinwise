@@ -11,24 +11,17 @@ export default function DashboardPage() {
                     
                     <SideBar/>
 
-                <div className="md:mr-10 flex flex-1 flex-col gap-10">
-                    {/* For everything in the dashboard */}
-                    <div className = ''>
+                <div className="md:mr-10 md:mt-0 mt-10 flex flex-1 flex-col gap-10 w-full h-auto items-center">
+                    {/* for everything in the dashboard */}
+
                         <TotalCard/>
-                    </div>
 
-                    <div className = 'w-full flex flex-row gap-95'>
-                        <div className = ''>
+                    <div className = 'w-full flex md:flex-row flex-col md:gap-88.5 gap-10 justify-center items-center'>  
                             <IncomeCard/>
-                        </div>
 
-                        <div className = ''>
                             <ExpenseCard/>
-                        </div>
 
-                        <div className = ''>
                             <SavingsCard/>
-                        </div>
                     </div>
 
                     <div>

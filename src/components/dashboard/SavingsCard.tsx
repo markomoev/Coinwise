@@ -1,6 +1,6 @@
 export default function SavingsCard(){
     return(
-        <div className = 'flex flex-col gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
+        <div className = 'flex flex-col md:w-auto w-[55%] gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
             <div className = ''>
                 <p className = 'text-lg'>Savings:</p>
             </div>

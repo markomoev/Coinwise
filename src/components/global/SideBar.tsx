@@ -61,13 +61,13 @@ export default function SideBar() {
                     fixed top-0 left-0 z-30 transition-all duration-300
                     bg-gradient-to-br from-white/95 to-gray-50/95 backdrop-blur-xl
                     border-r border-black/5 shadow-lg
-                    text-lg font-normal w-64 min-h-screen max-h-screen overflow-y-auto
+                    text-lg font-normal w-64 h-screen max-h-screen overflow-y-auto
                     ${open ? "translate-x-0" : "-translate-x-full"}
                     md:static md:translate-x-0 md:w-fit md:min-h-screen md:max-h-screen
                     md:border-r md:bg-white/90
                 `}
             >
-                <div className="w-full flex flex-col p-3 min-h-full">
+                <div className="w-full flex flex-col p-3 h-full">
                     {/* Website Name */}
                     <Link to="/home" className="flex items-center gap-3 px-3 py-4 mb-6 md:mt-0 mt-10 border-b border-gray-100">
                         <span className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">

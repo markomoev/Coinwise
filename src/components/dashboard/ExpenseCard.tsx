@@ -37,7 +37,7 @@ export default function ExpenseCard(){
         fetchLastExpense();
     }, []);
     return(
-        <div className = 'flex flex-col gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
+        <div className = 'flex flex-col gap-8 md:w-auto w-[55%] bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
             <div className = ''>
                 <p className = 'text-lg'>Expenses:</p>
             </div>

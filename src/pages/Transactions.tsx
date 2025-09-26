@@ -55,7 +55,7 @@ export default function TransactionsPage() {
                 <div className="w-full h-[calc(100%-4rem)] flex flex-row gap-10 md:pr-7">
                         <SideBar/>
 
-                    <div className="md:w-[88%] w-full md:mt-8 mt-17 justify-center items-center">
+                    <div className="md:w-[88%] w-full md:mt-8 mt-30 flex justify-center items-center">
                         <TransactionsList 
                             AddTransaction={() => setShowPopup(true)}
                             transactions = {transactions} />

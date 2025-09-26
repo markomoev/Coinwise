@@ -1,6 +1,6 @@
 export default function TotalCard() {
     return(
-        <div className="w-full mt-10 flex flex-col gap-3 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl">
+        <div className="w-[95%] mt-10 flex flex-col gap-3 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl">
         <div>
             <p className = 'text-lg'>Total balance:</p>
         </div>
