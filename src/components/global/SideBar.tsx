@@ -69,7 +69,7 @@ export default function SideBar() {
             >
                 <div className="w-full flex flex-col p-3 min-h-full">
                     {/* Website Name */}
-                    <Link to="/home" className="flex items-center gap-3 px-3 py-4 mb-6">
+                    <Link to="/home" className="flex items-center gap-3 px-3 py-4 mb-6 md:mt-0 mt-10 border-b border-gray-100">
                         <span className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
                             Coinwise
                         </span>

@@ -1,4 +1,41 @@
+import {supabase} from "../../client"
+import { useState, useEffect } from "react";
+
 export default function ExpenseCard(){
+
+    // last expense amount variable
+    const [lastExpense, setLastExpense] = useState(0);
+
+
+    const fetchLastExpense = async () => {
+        // gettng user id
+        const { data: { user } } = await supabase.auth.getUser()
+        const currentUser = user?.id;
+
+        // getting last expense transaction
+        const { data, error } = await supabase
+            .from('Transactions')
+            .select('amount')
+            .eq('user_id', currentUser)
+            .eq('type', 'Expense')
+            .order('date', { ascending: false })
+            .limit(1)
+
+        if(error){
+            alert('Error in fetching the last expense transaction');
+            console.error(error.message);
+            return;
+        }
+        if(data && data.length > 0){
+            const lastTransaction = data[0];
+            setLastExpense(lastTransaction.amount);
+        }
+        
+    }
+
+    useEffect(() => {
+        fetchLastExpense();
+    }, []);
     return(
         <div className = 'flex flex-col gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
             <div className = ''>
@@ -12,7 +49,7 @@ export default function ExpenseCard(){
 
                 <div className = 'h-full pl-7 pt-1 border border-l-black/10 border-t-transparent border-r-transparent border-b-transparent'>
                     <div>
-                        <p className = 'text-lg font-semibold text-red-700'>-150$</p>
+                        <p className = 'text-lg font-semibold text-red-700'>-{lastExpense}</p>
                     </div>
                 </div>
            </div>

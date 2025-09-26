@@ -52,10 +52,10 @@ export default function TransactionsPage() {
             {/* whole content */}
             <div className={`h-full transition ${showPopup ? "blur-sm" : ""}`}>
 
-                <div className="w-full h-[calc(100%-4rem)] flex flex-row gap-10 pr-7">
+                <div className="w-full h-[calc(100%-4rem)] flex flex-row gap-10 md:pr-7">
                         <SideBar/>
 
-                    <div className="w-7/8 mt-8">
+                    <div className="md:w-[88%] w-full md:mt-8 mt-17 justify-center items-center">
                         <TransactionsList 
                             AddTransaction={() => setShowPopup(true)}
                             transactions = {transactions} />
