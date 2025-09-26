@@ -5,6 +5,39 @@ export default function IncomeCard(){
     // last income amount variable
     const [lastIncome, setLastIncome] = useState(0);
 
+    const [totalIncome, setTotalIncome] = useState(0);
+
+
+        const fetchTotalIncome = async () => {
+            // check for account
+            const { data: { session } } = await supabase.auth.getSession();
+            
+            if (!session) {
+            alert('You need to be logged in to add a transaction!');
+            return;
+            }
+
+            const { data: { user } } = await supabase.auth.getUser();
+            const currentUser = user?.id;
+
+            const { data, error } = await supabase
+            .from("Transactions")
+            .select("amount")
+            .eq("type", "Income")
+            .eq("user_id", currentUser)
+            .gte("created_at", new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString());
+            
+            if (error) {
+            console.error(error.message);
+            return;
+            }
+
+            const totalAmount = data?.reduce((acc, row) => acc + Number(row.amount), 0)||0;
+            setTotalIncome(totalAmount);
+        };
+    useEffect(() => {
+    fetchTotalIncome();});
+
 
     const fetchLastIncome = async () => {
         // gettng user id
@@ -44,7 +77,9 @@ export default function IncomeCard(){
            
            <div className = 'flex flex-row gap-7'> {/* Container for the sum and the last transaction */}
                 <div className = 'h-full'>
-                    <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>4530$</p>
+                    <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
+                        {totalIncome}
+                    </p>
                 </div>
 
                 <div className = 'h-full pl-7 pt-1 border border-l-black/10 border-t-transparent border-r-transparent border-b-transparent'>

@@ -6,6 +6,39 @@ export default function ExpenseCard(){
     // last expense amount variable
     const [lastExpense, setLastExpense] = useState(0);
 
+    const [totalEpenses, setTotalExpenses] = useState(0);
+
+
+        const fetchTotalExpenses = async () => {
+            // check for account
+            const { data: { session } } = await supabase.auth.getSession();
+            
+            if (!session) {
+            alert('You need to be logged in to add a transaction!');
+            return;
+            }
+
+            const { data: { user } } = await supabase.auth.getUser();
+            const currentUser = user?.id;
+
+            const { data, error } = await supabase
+            .from("Transactions")
+            .select("amount")
+            .eq("type", "Expense")
+            .eq("user_id", currentUser)
+            .gte("created_at", new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString());
+            
+            if (error) {
+            console.error(error.message);
+            return;
+            }
+
+            const totalAmount = data?.reduce((acc, row) => acc + Number(row.amount), 0)||0;
+            setTotalExpenses(totalAmount);
+        };
+    useEffect(() => {
+    fetchTotalExpenses();});
+
 
     const fetchLastExpense = async () => {
         // gettng user id
@@ -44,7 +77,9 @@ export default function ExpenseCard(){
            
            <div className = 'flex flex-row gap-7'> {/* Container for the sum and the last transaction */}
                 <div className = 'h-full'>
-                    <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>2780$</p>
+                    <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
+                        {totalEpenses}
+                    </p>
                 </div>
 
                 <div className = 'h-full pl-7 pt-1 border border-l-black/10 border-t-transparent border-r-transparent border-b-transparent'>
