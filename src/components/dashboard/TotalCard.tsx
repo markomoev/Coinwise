@@ -1,4 +1,8 @@
-export default function TotalCard() {
+type Props = {
+    showPopup: () => void;
+}
+
+export default function TotalCard({showPopup}: Props) {
     return(
         <div className="w-[95%] mt-10 flex flex-col gap-3 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl">
         <div>
@@ -11,7 +15,11 @@ export default function TotalCard() {
             </div>
 
             <div>
-                <p>here we would have a chart</p>
+                <button
+                    onClick = {showPopup}
+                    className="font-semibold border border-black/10 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer px-3 py-1 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                    Add funds
+                </button>
             </div>
         </div>
         </div>

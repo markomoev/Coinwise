@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {supabase} from '../../client'
+import {supabase} from '../../client';
 
 import HomeIcon from '../../public/sidebar/home.png'
 import DashIcon from '../../public/sidebar/dashboard.png'
@@ -40,11 +40,11 @@ export default function SideBar() {
         }
 
         fetchUsername();
-    }, []); // Add empty dependency array
+    }, []);
 
     return (
         <>
-            {/* Hamburger button */}
+            {/* hamburger button */}
             <button
                 className="cursor-pointer fixed top-4 left-5 z-40 flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-white backdrop-blur-md shadow-xl md:hidden"
                 onClick={() => setOpen(!open)}
