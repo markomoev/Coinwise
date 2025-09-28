@@ -1,6 +1,7 @@
 import {supabase} from '../../client'
 import {useState, useEffect} from 'react'
 
+
 export default function SavingsCard(){
 
     
@@ -8,7 +9,6 @@ export default function SavingsCard(){
     const [lastSavings, setLastSavings] = useState(0);
 
     const [totalSavings, setTotalSavings] = useState(0);
-
 
         const fetchTotalSavings = async () => {
             // check for account
@@ -77,7 +77,7 @@ export default function SavingsCard(){
                 <p className = 'text-lg'>Savings:</p>
             </div>
            
-           <div className = 'flex flex-row gap-7'> {/* Container for the sum and the last transaction */}
+           <div className = 'flex flex-row gap-7'>
                 <div className = 'h-full'>
                     <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
                         {totalSavings}

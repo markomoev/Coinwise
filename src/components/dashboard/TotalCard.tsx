@@ -6,10 +6,18 @@ type Props = {
     showPopup: () => void;
 }
 
+type Balance = {
+    totalBalance: number;
+    savingsBalance: number;
+}
+type Transactions = {
+    type: "Income" | "Expense" | "Savings" | "Withdrawl";
+    amount: number | string;
+}
+
+
 export default function TotalCard({showPopup}: Props) {
-
-    const [totalBalance, setTotalBalance] = useState(0);
-
+        const [totalBalance, setTotalBalance] = useState(0);
 
         const fetchTotalBalance = async () => {
             // check for account
@@ -34,18 +42,59 @@ export default function TotalCard({showPopup}: Props) {
             console.error(error.message);
             return;
             }
+            const initialTotal = data?.reduce((acc, row) => acc + Number(row.amount), 0)||0;
 
-            const totalAmount = data?.reduce((acc, row) => acc + Number(row.amount), 0)||0;
-            setTotalBalance(totalAmount);
+            // get the income and the expenses amounts and calculate the balance
+            const {data: transactionData, error: transactionError} = await supabase
+            .from("Transactions")
+            .select("type, amount")
+
+            if(transactionError){
+                alert('Error in calculating the balance')
+                console.error(transactionError.message);
+                return;
+            }
+            const transactions = transactionData as Transactions[] | null;
+            if(transactions){
+
+                const {totalBalance, savingsBalance} = transactions.reduce<Balance>(
+                    (acc, t) => {
+                        const amount = Number(t.amount) || 0;
+                        const type = t.type;
+
+                        switch(type){
+                            case "Income":
+                                acc.totalBalance += amount;
+                                break;
+
+                            case "Expense":
+                                acc.totalBalance -= amount;
+                                break;
+
+                            case "Savings":
+                                acc.savingsBalance += amount;
+                                acc.totalBalance -= amount;
+                                break;
+                            
+                            case "Withdrawl":
+                                acc.savingsBalance -= amount;
+                                acc.totalBalance += amount;
+                                break;
+                        }
+                        return acc;
+                    }, {totalBalance: 0, savingsBalance: 0}
+                )
+                setTotalBalance(initialTotal + totalBalance);
+            }
         };
     useEffect(() => {
     fetchTotalBalance();});
 
     return(
         <div className="w-[95%] mt-10 flex flex-col gap-3 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl">
-        <div>
-            <p className = 'text-lg'>Total balance:</p>
-        </div>
+            <div>
+                <p className = 'text-lg'>Total balance:</p>
+            </div>
 
         <div className = 'w-full flex flex-row justify-between'>
             <div> {/* TODO: Here the price would be a variable */}
