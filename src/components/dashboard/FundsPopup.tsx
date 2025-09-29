@@ -105,7 +105,7 @@ export default function FundsPopup({closePopup}: Props) {
                         />
 
                     <label 
-                            htmlFor="saivings"
+                            htmlFor="savings"
                             className= 'ml-1 font-semibold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent' >
                         Savings
                     </label>
