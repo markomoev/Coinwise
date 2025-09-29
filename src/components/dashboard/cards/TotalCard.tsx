@@ -7,15 +7,6 @@ type Props = {
     showTransferPopup: () => void;
 }
 
-type Balance = {
-    totalBalance: number;
-    savingsBalance: number;
-}
-type Transactions = {
-    type: "Income" | "Expense" | "Savings" | "Withdrawl";
-    amount: number | string;
-}
-
 
 export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
         const [totalBalance, setTotalBalance] = useState(0);
@@ -32,62 +23,22 @@ export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
             const { data: { user } } = await supabase.auth.getUser();
             const currentUser = user?.id;
 
-            const { data, error } = await supabase
-            .from("Transactions")
-            .select("amount")
-            .eq("type", "Total")
+            const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
+            .from("Balances")
+            .select("total")
             .eq("user_id", currentUser)
-            .gte("created_at", new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString());
-            
-            if (error) {
-            console.error(error.message);
-            return;
-            }
-            const initialTotal = data?.reduce((acc, row) => acc + Number(row.amount), 0)||0;
+            .maybeSingle()
 
-            // get the income and the expenses amounts and calculate the balance
-            const {data: transactionData, error: transactionError} = await supabase
-            .from("Transactions")
-            .select("type, amount")
-
-            if(transactionError){
-                alert('Error in calculating the balance')
-                console.error(transactionError.message);
+            if(fetchingBalanceError){
+                console.error(fetchingBalanceError.message)
                 return;
             }
-            const transactions = transactionData as Transactions[] | null;
-            if(transactions){
-
-                const {totalBalance, savingsBalance} = transactions.reduce<Balance>(
-                    (acc, t) => {
-                        const amount = Number(t.amount) || 0;
-                        const type = t.type;
-
-                        switch(type){
-                            case "Income":
-                                acc.totalBalance += amount;
-                                break;
-
-                            case "Expense":
-                                acc.totalBalance -= amount;
-                                break;
-
-                            case "Savings":
-                                acc.savingsBalance += amount;
-                                //acc.totalBalance -= amount;
-                                break;
-                            
-                            case "Withdrawl":
-                                acc.savingsBalance -= amount;
-                                acc.totalBalance += amount;
-                                break;
-                        }
-                        return acc;
-                    }, {totalBalance: 0, savingsBalance: 0}
-                )
-                setTotalBalance(initialTotal + totalBalance);
+            
+            if(fetchUserBalance){
+                setTotalBalance(fetchUserBalance.total);
             }
-        };
+
+            }
     useEffect(() => {
     fetchTotalBalance();});
 
@@ -121,4 +72,4 @@ export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
         </div>
     )
 
-}
+}   

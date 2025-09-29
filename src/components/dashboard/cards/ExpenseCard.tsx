@@ -21,20 +21,20 @@ export default function ExpenseCard(){
             const { data: { user } } = await supabase.auth.getUser();
             const currentUser = user?.id;
 
-            const { data, error } = await supabase
-            .from("Transactions")
-            .select("amount")
-            .eq("type", "Expense")
+            const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
+            .from("Balances")
+            .select("expenses")
             .eq("user_id", currentUser)
-            .gte("created_at", new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString());
-            
-            if (error) {
-            console.error(error.message);
-            return;
-            }
+            .maybeSingle()
 
-            const totalAmount = data?.reduce((acc, row) => acc + Number(row.amount), 0)||0;
-            setTotalExpenses(totalAmount);
+            if(fetchingBalanceError){
+                console.error(fetchingBalanceError.message)
+                return;
+            }
+            
+            if(fetchUserBalance){
+                setTotalExpenses(fetchUserBalance.expenses);
+            }
         };
     useEffect(() => {
     fetchTotalExpenses();});

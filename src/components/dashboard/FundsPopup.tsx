@@ -80,6 +80,10 @@ export default function FundsPopup({closePopup}: Props) {
                     newSavings += Number(amount);
                 break;
 
+                case "Total": 
+                    newTotal += Number(amount);
+                break;
+
             }
 
                 const {error: updatingBalanceError} = await supabase
