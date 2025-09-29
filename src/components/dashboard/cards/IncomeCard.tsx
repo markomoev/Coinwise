@@ -1,4 +1,4 @@
-import {supabase} from "../../client"
+import {supabase} from "../../../client"
 import { useState, useEffect } from "react";
 
 export default function IncomeCard(){

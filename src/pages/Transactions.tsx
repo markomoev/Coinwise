@@ -31,6 +31,7 @@ export default function TransactionsPage() {
             .from('Transactions')
             .select('*')
             .eq('user_id', currentUser)
+            .order('date', { ascending: false })
     
             if(error){
                 console.error(error.message);

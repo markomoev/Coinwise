@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 
-import { supabase } from "../../client"
+import { supabase } from "../../../client"
 
 type Props = {
-    showPopup: () => void;
+    showFundsPopup: () => void;
+    showTransferPopup: () => void;
 }
 
 type Balance = {
@@ -16,7 +17,7 @@ type Transactions = {
 }
 
 
-export default function TotalCard({showPopup}: Props) {
+export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
         const [totalBalance, setTotalBalance] = useState(0);
 
         const fetchTotalBalance = async () => {
@@ -73,7 +74,7 @@ export default function TotalCard({showPopup}: Props) {
 
                             case "Savings":
                                 acc.savingsBalance += amount;
-                                acc.totalBalance -= amount;
+                                //acc.totalBalance -= amount;
                                 break;
                             
                             case "Withdrawl":
@@ -97,15 +98,21 @@ export default function TotalCard({showPopup}: Props) {
             </div>
 
         <div className = 'w-full flex flex-row justify-between'>
-            <div> {/* TODO: Here the price would be a variable */}
+            <div> 
                 <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
                     {totalBalance}
                 </p>
             </div>
 
-            <div>
+            <div className ='flex flex-row gap-4'>
                 <button
-                    onClick = {showPopup}
+                    onClick = {showTransferPopup}
+                    className="font-semibold border border-black/10 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer px-3 py-1 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                    Transfer
+                </button> 
+
+                <button
+                    onClick = {showFundsPopup}
                     className="font-semibold border border-black/10 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer px-3 py-1 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
                     Add funds
                 </button>

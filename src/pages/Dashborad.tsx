@@ -1,14 +1,21 @@
 import SideBar from "../components/global/SideBar";
-import TotalCard from "../components/dashboard/TotalCard";
-import IncomeCard from "../components/dashboard/IncomeCard";
-import ExpenseCard from "../components/dashboard/ExpenseCard";
-import SavingsCard from "../components/dashboard/SavingsCard"
+
+
+import TotalCard from "../components/dashboard/cards/TotalCard";
+import IncomeCard from "../components/dashboard/cards/IncomeCard";
+import ExpenseCard from "../components/dashboard/cards/ExpenseCard";
+import SavingsCard from "../components/dashboard/cards/SavingsCard"
+
+
 import FundsPopup from "../components/dashboard/FundsPopup";
+import TransferPopup from "../components/dashboard/TransferPopup";
+
 
 import { useState} from "react";
 
 export default function DashboardPage() {
-    const [showPopup, setShowPopup] = useState(false);
+    const [showFundsPopup, setShowFundsPopup] = useState(false);
+    const [showTransferPopup, setShowTransferPopup] = useState(false);
 
     return(
         <div className="w-full h-auto">
@@ -20,7 +27,8 @@ export default function DashboardPage() {
                     {/* for everything in the dashboard */}
 
                         <TotalCard
-                            showPopup = {() => setShowPopup(true)}/>
+                            showTransferPopup = {() => setShowTransferPopup(true)}
+                            showFundsPopup = {() => setShowFundsPopup(true)}/>
 
                     <div className = 'w-full flex md:flex-row flex-col md:gap-88.5 gap-10 justify-center items-center'>  
                             <IncomeCard/>
@@ -38,19 +46,37 @@ export default function DashboardPage() {
 
             </div>
 
-            {showPopup &&
+            {showFundsPopup &&
                 <>
                 {/* overlay */}
                     <div
                         className="fixed inset-0 z-40 bg-black/50"
-                        onClick={() => setShowPopup(false)} // close on outside click
+                        onClick={() => setShowFundsPopup(false)} // close on outside click
                     />
                     
                 {/* popup */}
                 <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
                     <div className="pointer-events-auto">
                         <FundsPopup
-                            closePopup = {() => setShowPopup(false)}/>
+                            closePopup = {() => setShowFundsPopup(false)}/>
+                    </div>
+                </div>
+                </>
+            }
+
+            {showTransferPopup &&
+                <>
+                {/* overlay */}
+                    <div
+                        className="fixed inset-0 z-40 bg-black/50"
+                        onClick={() => setShowTransferPopup(false)} // close on outside click
+                    />
+                    
+                {/* popup */}
+                <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+                    <div className="pointer-events-auto">
+                        <TransferPopup
+                            closeTransferPopup = {() => setShowTransferPopup(false)}/>
                     </div>
                 </div>
                 </>
