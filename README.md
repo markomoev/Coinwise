@@ -1,69 +1,54 @@
-# React + TypeScript + Vite
+# 💰 Money Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Money Manager** is a simple and intuitive web app to help you manage your finances. Track your total balance, savings, and transactions effortlessly, so you can make smarter money decisions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📝 Key Features
 
-## Expanding the ESLint configuration
+* **Dashboard Overview**
+  See your total balance, savings, and recent transactions at a glance.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **Add Transactions**
+  Quickly log income, expenses, savings deposits, and withdrawals.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **Transfer Money**
+  Move funds between your total balance and savings easily.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+* **Edit or Delete Transactions**
+  Keep your records accurate and up to date.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **Responsive Design**
+  Works perfectly on both desktop and mobile devices.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 💡 How to Use
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **View Your Finances** – Open the app to see your total balance, savings, and transaction history.
+2. **Add a Transaction** – Click the “Add” button, select the type (Income, Expense, Savings, Withdrawal), enter the amount, and save.
+3. **Transfer Funds** – Use the “Transfer” button to move money between total balance and savings.
+4. **Edit or Remove Transactions** – Click a transaction to edit details or delete it.
+
+---
+
+## 📊 Benefits
+
+* Track your income and expenses effortlessly
+* Save money and manage funds efficiently
+* Keep a clear record of all financial activity
+
+---
+
+## 🔒 Privacy & Security
+
+* All data is stored securely in the cloud.
+* No sensitive information is shared with third parties.
+
+---
+
+## 🛠 Coming Soon
+
+* Charts and analytics to visualize spending
+* Multi-user support
+* Dark mode
