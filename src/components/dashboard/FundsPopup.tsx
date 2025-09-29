@@ -45,6 +45,58 @@ export default function FundsPopup({closePopup}: Props) {
                 console.error(transactionError.message);
                 return;
             }
+
+            const { data: balancesData } = await supabase
+            .from('Balances')
+            .select('*')
+            .eq('user_id', currentUser)
+            .maybeSingle()
+
+            const total = balancesData?.total || 0;
+            const income = balancesData?.income || 0;
+            const expenses = balancesData?.expenses || 0;
+            const savings = balancesData?.savings || 0;
+
+
+            let newTotal = total;
+            let newIncome = income;
+            let newExpenses = expenses;
+            let newSavings = savings;
+
+
+            switch(typeToSave){
+                case "Income":
+                    newTotal += Number(amount);
+                    newIncome += Number(amount);
+                break;
+
+                case "Expense":
+                    newTotal -= Number(amount);
+                    newExpenses += Number(amount);
+                break;
+
+                case "Savings":
+                    newTotal += Number(amount);
+                    newSavings += Number(amount);
+                break;
+
+            }
+
+                const {error: updatingBalanceError} = await supabase
+                .from('Balances')
+                .upsert({
+                    user_id: currentUser,
+                    total: newTotal,
+                    income: newIncome,
+                    expenses: newExpenses,
+                    savings: newSavings
+                }as any, { onConflict: ['user_id'] } as any); 
+
+                    if(updatingBalanceError){
+                        alert("Error in updating the balances!")
+                        console.error(updatingBalanceError.message)
+                        return;
+                    }
             
             closePopup();
         }

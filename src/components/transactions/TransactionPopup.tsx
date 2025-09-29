@@ -28,7 +28,7 @@ export default function TransactionPopup({closePopup, refreshTransactions}: Prop
             const { data: { user } } = await supabase.auth.getUser()
             const currentUser = user?.id;
 
-            const { error } = await supabase
+            const { error:TransactionListError } = await supabase
             .from('Transactions')
             .insert([{ 
                 user_id: currentUser,
@@ -39,13 +39,56 @@ export default function TransactionPopup({closePopup, refreshTransactions}: Prop
                 note: note
             }])
 
-            if(error){
+            if(TransactionListError){
                 alert('Error in adding transaction!');
-                console.error(error.message);
+                console.error(TransactionListError.message);
             }
-            if(!error){
+            if(!TransactionListError){
                 refreshTransactions();
             }
+
+            const { data: balancesData } = await supabase
+            .from('Balances')
+            .select('*')
+            .eq('user_id', currentUser)
+            .maybeSingle()
+
+            const total = balancesData?.total || 0;
+            const income = balancesData?.income || 0;
+            const expenses = balancesData?.expenses || 0;
+
+
+            let newTotal = total;
+            let newIncome = income;
+            let newExpenses = expenses;
+
+
+            switch(typeToSave){
+                case "Income":
+                    newTotal += Number(amount);
+                    newIncome += Number(amount);
+                break;
+
+                case "Expense":
+                    newTotal -= Number(amount);
+                    newExpenses += Number(amount);
+                break;
+            }
+
+                const {error: updatingBalanceError} = await supabase
+                .from('Balances')
+                .upsert({
+                    user_id: currentUser,
+                    total: newTotal,
+                    income: newIncome,
+                    expenses: newExpenses,
+                }as any, { onConflict: ['user_id'] } as any); 
+
+                    if(updatingBalanceError){
+                        alert("Error in updating the balances!")
+                        console.error(updatingBalanceError.message)
+                        return;
+                    }
             
             closePopup();
         }
