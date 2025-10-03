@@ -1,4 +1,4 @@
-import SideBar from "../components/global/SideBar"
+import SideBar from "../../components/global/SideBar"
 
 export default function StatsPage () {
     return (

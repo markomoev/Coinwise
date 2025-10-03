@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { supabase } from "../client";
+import { useState, useEffect } from "react";
+import { supabase } from "../../client";
 
-import SideBar from "../components/global/SideBar";
-import TransactionsList from "../components/transactions/TransactionsList";
-import TransactionPopup from "../components/transactions/TransactionPopup";
+import SideBar from "../../components/global/SideBar";
+import TransactionsList from "../../components/transactions/TransactionsList";
+import TransactionPopup from "../../components/transactions/TransactionPopup";
 
 type Transaction= {
   id: number;

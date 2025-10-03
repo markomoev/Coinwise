@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
-import {supabase} from "../client"
+import { supabase } from "../../client"
 
-import SideBar from "../components/global/SideBar";
+import SideBar from "../../components/global/SideBar"
 
 export default function LogSignPage(){
 

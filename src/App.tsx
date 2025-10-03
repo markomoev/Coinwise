@@ -1,11 +1,11 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import HomePage from "./features/Home";
-import LogSignPage from "./features/Login";
-import SignUpPage from "./features/Signup";
-import SettingsPage from "./features/Settings";
-import DashboardPage from "./features/Dashborad";
-import StatsPage from "./features/Statistics";
-import TransactionsPage from "./features/Transactions";
+import HomePage from "./features/home/Home";
+import LogSignPage from "./features/auth/Login";
+import SignUpPage from "./features/auth/Signup";
+import SettingsPage from "./features/settings/Settings";
+import DashboardPage from "./features/dashboard/Dashboard";
+import StatsPage from "./features/statistics/Statistics";
+import TransactionsPage from "./features/transactions/Transactions";
 
 export default function App() {
   return (

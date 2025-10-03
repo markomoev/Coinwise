@@ -1,17 +1,14 @@
-import SideBar from "../components/global/SideBar";
+import SideBar from "../../components/global/SideBar";
 
+import TotalCard from "../../components/dashboard/cards/TotalCard";
+import IncomeCard from "../../components/dashboard/cards/IncomeCard";
+import ExpenseCard from "../../components/dashboard/cards/ExpenseCard";
+import SavingsCard from "../../components/dashboard/cards/SavingsCard";
 
-import TotalCard from "../components/dashboard/cards/TotalCard";
-import IncomeCard from "../components/dashboard/cards/IncomeCard";
-import ExpenseCard from "../components/dashboard/cards/ExpenseCard";
-import SavingsCard from "../components/dashboard/cards/SavingsCard"
+import FundsPopup from "../../components/dashboard/FundsPopup";
+import TransferPopup from "../../components/dashboard/TransferPopup";
 
-
-import FundsPopup from "../components/dashboard/FundsPopup";
-import TransferPopup from "../components/dashboard/TransferPopup";
-
-
-import { useState} from "react";
+import { useState } from "react";
 
 export default function DashboardPage() {
     const [showFundsPopup, setShowFundsPopup] = useState(false);

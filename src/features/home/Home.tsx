@@ -1,5 +1,5 @@
-import SideBar from "../components/global/SideBar";
-import Techs from "../components/home/Technologies";
+import SideBar from "../../components/global/SideBar";
+import Techs from "../../components/home/Technologies";
 
 export default function HomePage(){
     return(
