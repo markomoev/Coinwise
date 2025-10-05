@@ -18,20 +18,20 @@ export default function ExpenseCard(){
         fetchData();
     }, []);
 
-    // useEffect to fetch total expenses when userId changes or refresh is triggered
+    // when user make changes, refresh data
     useEffect(() => {
         if (userId) {
             fetchTotalExpenses(userId);
         }
     }, [userId, refreshTrigger]);
 
-    // useEffect to fetch last expense when userId changes or refresh is triggered
     useEffect(() => {
         if (userId) {
             fetchLastExpense(userId);
         }
     }, [userId, refreshTrigger]);
 
+    // fetching total expenses from the db
     const fetchTotalExpenses = async (userId: string) => {
         const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
         .from("Balances")
@@ -51,6 +51,7 @@ export default function ExpenseCard(){
         }
     };
 
+    // fetching last expense from the db
     const fetchLastExpense = async (userId: string) => {
         // getting last expense transaction
         const { data: transactionData, error } = await supabase
@@ -74,13 +75,11 @@ export default function ExpenseCard(){
         }
     }
 
-    // You can trigger refresh by updating this value from parent component
-    // Or set up a timer to refresh periodically
+    // Auto-refresh
     useEffect(() => {
-        // Optional: Auto-refresh every 30 seconds
         const interval = setInterval(() => {
             setRefreshTrigger(prev => prev + 1);
-        }, 30000); // 30 seconds
+        }, 1000); // 1 second
 
         return () => clearInterval(interval);
     }, []);

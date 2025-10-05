@@ -19,20 +19,21 @@ export default function SavingsCard(){
         userAuth();
     }, []);
 
-    // useEffect to fetch total savings when userId changes or refresh is triggered
+    // when user make chnges, refresh data
     useEffect(() => {
         if (userId) {
             fetchTotalSavings(userId);
         }
     }, [userId, refreshTrigger]);
 
-    // useEffect to fetch last savings when userId changes or refresh is triggered
     useEffect(() => {
         if (userId) {
             fetchLastSavings(userId);
         }
     }, [userId, refreshTrigger]);
 
+
+    // fetching total savgings from the db
     const fetchTotalSavings = async (userId: string) => {
         const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
         .from("Balances")
@@ -52,6 +53,7 @@ export default function SavingsCard(){
         }
     };
 
+    // fetching last savings from the db
     const fetchLastSavings = async (userId: string) => {
         // getting last savings transaction
         const { data: transactionData, error } = await supabase
@@ -75,11 +77,11 @@ export default function SavingsCard(){
         }
     }
 
-    // Auto-refresh every 30 seconds
+    // Auto-refresh 
     useEffect(() => {
         const interval = setInterval(() => {
             setRefreshTrigger(prev => prev + 1);
-        }, 30000); // 30 seconds
+        }, 1000); // 1 second 
 
         return () => clearInterval(interval);
     }, []);

@@ -18,20 +18,21 @@ export default function IncomeCard(){
         fetchData();
     }, []);
 
-    // useEffect to fetch total income when userId changes or refresh is triggered
+    // when user make changes
     useEffect(() => {
         if (userId) {
             fetchTotalIncome(userId);
         }
     }, [userId, refreshTrigger]);
 
-    // useEffect to fetch last income when userId changes or refresh is triggered
     useEffect(() => {
         if (userId) {
             fetchLastIncome(userId);
         }
     }, [userId, refreshTrigger]);
 
+
+    // fetching total income from the db
     const fetchTotalIncome = async (userId: string) => {
         const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
         .from("Balances")
@@ -51,6 +52,7 @@ export default function IncomeCard(){
         }
     };
 
+    // fetching last income from the db
     const fetchLastIncome = async (userId: string) => {
         // getting last income transaction
         const { data: transactionData, error } = await supabase
@@ -74,11 +76,11 @@ export default function IncomeCard(){
         }
     }
 
-    // Auto-refresh every 30 seconds
+    // Auto-refresh
     useEffect(() => {
         const interval = setInterval(() => {
             setRefreshTrigger(prev => prev + 1);
-        }, 30000); // 30 seconds
+        }, 1000); // 1 second
 
         return () => clearInterval(interval);
     }, []);
