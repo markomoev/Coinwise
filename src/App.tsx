@@ -12,7 +12,7 @@ export default function App() {
     <div className = "muje relative min-h-screen w-full overflow-hidden items-center justify-items-center">
       <div className="mesh-bg"></div>
 
-      <BrowserRouter basename="/Coinwise">
+      <BrowserRouter>
         <Routes>
           <Route index element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
