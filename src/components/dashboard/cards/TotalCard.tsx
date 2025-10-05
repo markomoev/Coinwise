@@ -10,15 +10,33 @@ type Props = {
 
 export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
     const [totalBalance, setTotalBalance] = useState(0);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
+    const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
-                await fetchTotalBalance(user.id);
+                setUserId(user.id);
             }
         };
         fetchData();
+    }, []);
+
+    // useEffect to fetch total balance when userId changes or refresh is triggered
+    useEffect(() => {
+        if (userId) {
+            fetchTotalBalance(userId);
+        }
+    }, [userId, refreshTrigger]);
+
+    // Auto-refresh every 30 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setRefreshTrigger(prev => prev + 1);
+        }, 30000); // 30 seconds
+
+        return () => clearInterval(interval);
     }, []);
 
     const fetchTotalBalance = async (userId: string) => {

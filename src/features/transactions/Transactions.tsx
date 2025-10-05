@@ -22,10 +22,32 @@ export default function TransactionsPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        const checkAuth = async () => {
+            const { data: { user }, error } = await supabase.auth.getUser();
+            
+            if (error) {
+                console.error('Auth error:', error.message);
+                setIsAuthenticated(false);
+            } else {
+                setIsAuthenticated(!!user);
+                // If user is authenticated, fetch transactions
+                if (user) {
+                    await fetchLastTransaction();
+                }
+            }
+            setIsLoading(false);
+        };
+
+        checkAuth();
+    }, []);
+
     // exporting db data about the last transaction
     const fetchLastTransaction = async () => {
         const { data: { user } } = await supabase.auth.getUser()
         const currentUser = user?.id;
+
+        if (!currentUser) return;
 
         const { data, error } = await supabase
         .from('Transactions')
@@ -42,23 +64,6 @@ export default function TransactionsPage() {
             return;
         }
     }
-
-    useEffect(() => {
-        const checkAuth = async () => {
-            const { data: { user }, error } = await supabase.auth.getUser();
-            
-            if (error) {
-                console.error('Auth error:', error.message);
-                setIsAuthenticated(false);
-            } else {
-                setIsAuthenticated(!!user);
-            }
-            setIsLoading(false);
-        };
-
-        checkAuth();
-    }, []);
-
 
     // quick loading screen (bubble)
     if (isLoading) {
@@ -98,7 +103,7 @@ export default function TransactionsPage() {
                                 <div className="bg-white/95 border border-black/20 backdrop-blur-2xl shadow-2xl p-12 rounded-3xl text-center max-w-md w-full mx-auto">
                                     <div className="mb-4">
                                         <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
                                         </div>

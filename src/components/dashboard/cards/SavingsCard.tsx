@@ -6,19 +6,32 @@ export default function SavingsCard(){
     // last savings amount variable
     const [lastSavings, setLastSavings] = useState(0);
     const [totalSavings, setTotalSavings] = useState(0);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
+    const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
         const userAuth = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
-                await Promise.all([
-                    fetchTotalSavings(user.id),
-                    fetchLastSavings(user.id)
-                ]);
+                setUserId(user.id);
             }
         };
         userAuth();
     }, []);
+
+    // useEffect to fetch total savings when userId changes or refresh is triggered
+    useEffect(() => {
+        if (userId) {
+            fetchTotalSavings(userId);
+        }
+    }, [userId, refreshTrigger]);
+
+    // useEffect to fetch last savings when userId changes or refresh is triggered
+    useEffect(() => {
+        if (userId) {
+            fetchLastSavings(userId);
+        }
+    }, [userId, refreshTrigger]);
 
     const fetchTotalSavings = async (userId: string) => {
         const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
@@ -61,6 +74,15 @@ export default function SavingsCard(){
             setLastSavings(0);
         }
     }
+
+    // Auto-refresh every 30 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setRefreshTrigger(prev => prev + 1);
+        }, 30000); // 30 seconds
+
+        return () => clearInterval(interval);
+    }, []);
 
     return(
         <div className = 'flex flex-col md:w-auto w-[55%] gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>

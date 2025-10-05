@@ -5,19 +5,32 @@ export default function ExpenseCard(){
     // last expense amount variable
     const [lastExpense, setLastExpense] = useState(0);
     const [totalEpenses, setTotalExpenses] = useState(0);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
+    const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
-                await Promise.all([
-                    fetchTotalExpenses(user.id),
-                    fetchLastExpense(user.id)
-                ]);
+                setUserId(user.id);
             }
         };
         fetchData();
     }, []);
+
+    // useEffect to fetch total expenses when userId changes or refresh is triggered
+    useEffect(() => {
+        if (userId) {
+            fetchTotalExpenses(userId);
+        }
+    }, [userId, refreshTrigger]);
+
+    // useEffect to fetch last expense when userId changes or refresh is triggered
+    useEffect(() => {
+        if (userId) {
+            fetchLastExpense(userId);
+        }
+    }, [userId, refreshTrigger]);
 
     const fetchTotalExpenses = async (userId: string) => {
         const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
@@ -60,6 +73,18 @@ export default function ExpenseCard(){
             setLastExpense(0);
         }
     }
+
+    // You can trigger refresh by updating this value from parent component
+    // Or set up a timer to refresh periodically
+    useEffect(() => {
+        // Optional: Auto-refresh every 30 seconds
+        const interval = setInterval(() => {
+            setRefreshTrigger(prev => prev + 1);
+        }, 30000); // 30 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
     return(
         <div className = 'flex flex-col gap-8 md:w-auto w-[55%] bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
             <div className = ''>

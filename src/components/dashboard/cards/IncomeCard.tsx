@@ -5,19 +5,32 @@ export default function IncomeCard(){
     // last income amount variable
     const [lastIncome, setLastIncome] = useState(0);
     const [totalIncome, setTotalIncome] = useState(0);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
+    const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
-                await Promise.all([
-                    fetchTotalIncome(user.id),
-                    fetchLastIncome(user.id)
-                ]);
+                setUserId(user.id);
             }
         };
         fetchData();
     }, []);
+
+    // useEffect to fetch total income when userId changes or refresh is triggered
+    useEffect(() => {
+        if (userId) {
+            fetchTotalIncome(userId);
+        }
+    }, [userId, refreshTrigger]);
+
+    // useEffect to fetch last income when userId changes or refresh is triggered
+    useEffect(() => {
+        if (userId) {
+            fetchLastIncome(userId);
+        }
+    }, [userId, refreshTrigger]);
 
     const fetchTotalIncome = async (userId: string) => {
         const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
@@ -60,6 +73,15 @@ export default function IncomeCard(){
             setLastIncome(0);
         }
     }
+
+    // Auto-refresh every 30 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setRefreshTrigger(prev => prev + 1);
+        }, 30000); // 30 seconds
+
+        return () => clearInterval(interval);
+    }, []);
 
     return(
         <div className = 'flex flex-col md:w-auto w-[55%] gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
