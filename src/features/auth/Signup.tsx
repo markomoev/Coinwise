@@ -58,67 +58,131 @@ export default function SignUpPage(){
     }
 
     return(
-        <div className = 'w-full h-full flex flex-row'>
-            <SideBar/>
+        <div className='w-full h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50'>
+            <div className='w-full flex flex-row gap-0 h-full'>
+                <SideBar/>
 
+                <div className='flex-1 flex justify-center items-center'>
+                    <div className='w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
+                        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen py-12'>
+                            {/* Signup Form Section */}
+                            <div className='flex justify-center'>
+                                <form 
+                                    onSubmit={handleSignUp}
+                                    className='w-full max-w-md'>
+                                    <div className='bg-white/80 backdrop-blur-lg shadow-2xl border border-gray-200 rounded-3xl p-8 sm:p-10'>
+                                        
+                                        {/* Heading for Signup */}
+                                        <div className="text-center mb-8">
+                                            <h1 className="text-4xl font-bold text-gray-800 mb-2">
+                                                Join <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-700'>Coinwise</span>
+                                            </h1>
+                                            <p className="text-gray-600">Create your account and start tracking</p>
+                                        </div>
 
-            <div className ='w-[88%] flex justify-center sm:flex-row flex-col'>
-                <form 
-                    onSubmit = {handleSignUp}
-                    className = 'lg:w-1/2 lg:pl-[15%] w-full h-full flex items-center justify-center'>
-                    <div className = 'bg-white/10 shadow-xl border border-black/10 w-fit pt-4 pb-6 p-20 rounded-3xl flex flex-col gap-13 items-center justify-center'>
-                        
-                        <p className="text-3xl font-bold text-gray-600">Signup</p>
+                                        <div className="space-y-6">
+                                            {/* Username Input */}
+                                            <div>
+                                                <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+                                                    Username
+                                                </label>
+                                                <input required
+                                                    name='username'
+                                                    type="text" 
+                                                    placeholder='Choose a username'
+                                                    value={username}
+                                                    onChange={(e) => setUsername(e.target.value)}
+                                                    className="w-full bg-white/50 border border-gray-300 text-gray-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
+                                                />
+                                            </div>
+                                            
+                                            {/* Email Input */}
+                                            <div>
+                                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                                                    Email Address
+                                                </label>
+                                                <input required
+                                                    name='email'
+                                                    type="email" 
+                                                    placeholder='Enter your email'
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)} 
+                                                    className="w-full bg-white/50 border border-gray-300 text-gray-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
+                                                />
+                                            </div>
+                                            
+                                            {/* Password Input */}
+                                            <div>
+                                                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                                                    Password
+                                                </label>
+                                                <input required
+                                                    name='password'
+                                                    type="password" 
+                                                    placeholder='Create a password'
+                                                    value={password}
+                                                    onChange={(e) => setPassword(e.target.value)}
+                                                    className="w-full bg-white/50 border border-gray-300 text-gray-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
+                                                />
+                                                <p className="text-xs text-gray-500 mt-1">Must contain at least one uppercase letter and number</p>
+                                            </div>
 
-                        <input required
-                            name = 'username'
-                            type="text" 
-                            placeholder = 'Username'
-                            value = {username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            className="bg-gray-600/30 text-white p-1 pl-2 pr-2 rounded-md"
-                        />
-                        
-                        
-                        <input required
-                            name = 'email'
-                            type="email" 
-                            placeholder = 'Email'
-                            value = {email}
-                            onChange={(e) => setEmail(e.target.value)} 
-                            className="bg-gray-600/30 text-white p-1 pl-2 pr-2 rounded-md"
-                        />
-                        
-                        
-                        <input required
-                            name = 'password'
-                            type="password" 
-                            placeholder = 'Password'
-                            value = {password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="bg-gray-600/30 text-white p-1 pl-2 pr-2 rounded-md"
-                        />
+                                            {/* Signup Button */}
+                                            <button className='w-full bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg'>
+                                                Create Account
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
 
-                        <button className = 'bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl p-2 pl-4 pr-4 cursor-pointer text-xl text-white font-semibold'>
-                            Signup
-                        </button>
-                    </div>
-                </form>
-
-                <div className="lg:w-1/2 lg:pr-[15%] w-full h-full flex flex-col items-center justify-center">
-                    <div className="w-full text-center mt-20">
-                        <p className="text-2xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                            Log into you account!
-                        </p>
-                        <p>
-                            Motivational speech in order to lie people <br/>
-                            so they can join <br/> our stupid comuity
-                            just for money
-                        </p>
-                        
-                        <div className="mt-10">
-                            <p>Have an account? Don't waste your time:</p>
-                            <Link to = {'/login'} className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent underline font-semibold">Login</Link>
+                            {/* Welcome Back Section */}
+                            <div className="text-center lg:text-left">
+                                <div className="mb-8">
+                                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
+                                        Already have an <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-700'>account?</span>
+                                    </h2>
+                                    <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                                        Welcome back! Sign in to continue managing your finances and tracking your progress toward your goals.
+                                    </p>
+                                    <div className="space-y-4 text-left">
+                                        <div className="flex items-center space-x-3">
+                                            <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <span className="text-gray-700">Access your saved data</span>
+                                        </div>
+                                        <div className="flex items-center space-x-3">
+                                            <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <span className="text-gray-700">Continue tracking expenses</span>
+                                        </div>
+                                        <div className="flex items-center space-x-3">
+                                            <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                                <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <span className="text-gray-700">View your financial insights</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="bg-gradient-to-r from-blue-100/50 to-purple-100/50 backdrop-blur-lg rounded-2xl border border-gray-200 p-6">
+                                    <p className="text-gray-700 mb-4">Already have an account?</p>
+                                    <Link to={'/login'} className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                        Sign In
+                                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
