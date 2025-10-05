@@ -4,10 +4,9 @@ import { useState } from 'react';
 
 type Props = {
     closePopup: () => void;
-    refreshTransactions: () => void;
 }
 
-export default function TransactionPopup({closePopup, refreshTransactions}: Props) {
+export default function TransactionPopup({closePopup}: Props) {
     // storing all the clinets info from the popups
     const [name, setName] = useState('');
     const [type, setType] = useState('');
@@ -43,9 +42,7 @@ export default function TransactionPopup({closePopup, refreshTransactions}: Prop
                 alert('Error in adding transaction!');
                 console.error(TransactionListError.message);
             }
-            if(!TransactionListError){
-                refreshTransactions();
-            }
+            // Auto-refresh will handle updating the transaction list
 
             const { data: balancesData } = await supabase
             .from('Balances')

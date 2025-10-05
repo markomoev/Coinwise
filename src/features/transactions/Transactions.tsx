@@ -21,6 +21,8 @@ export default function TransactionsPage() {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
+    const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -31,9 +33,9 @@ export default function TransactionsPage() {
                 setIsAuthenticated(false);
             } else {
                 setIsAuthenticated(!!user);
-                // If user is authenticated, fetch transactions
+                // If user is authenticated, set userId
                 if (user) {
-                    await fetchLastTransaction();
+                    setUserId(user.id);
                 }
             }
             setIsLoading(false);
@@ -42,17 +44,32 @@ export default function TransactionsPage() {
         checkAuth();
     }, []);
 
+    // when user make changes, refresh data
+    useEffect(() => {
+        if (userId && isAuthenticated) {
+            fetchLastTransaction();
+        }
+    }, [userId, refreshTrigger, isAuthenticated]);
+
+    // Auto-refresh
+    useEffect(() => {
+        if (isAuthenticated) {
+            const interval = setInterval(() => {
+                setRefreshTrigger(prev => prev + 1);
+            }, 1000); // 1 second
+
+            return () => clearInterval(interval);
+        }
+    }, [isAuthenticated]);
+
     // exporting db data about the last transaction
     const fetchLastTransaction = async () => {
-        const { data: { user } } = await supabase.auth.getUser()
-        const currentUser = user?.id;
-
-        if (!currentUser) return;
+        if (!userId) return;
 
         const { data, error } = await supabase
         .from('Transactions')
         .select('*')
-        .eq('user_id', currentUser)
+        .eq('user_id', userId)
         .order('date', { ascending: false })
 
         if(error){
@@ -157,7 +174,6 @@ export default function TransactionsPage() {
                     <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
                         <div className="pointer-events-auto">
                             <TransactionPopup
-                                refreshTransactions = {fetchLastTransaction}
                                 closePopup = {() => setShowPopup(false)} />
                         </div>
                     </div>
