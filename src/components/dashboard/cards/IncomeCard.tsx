@@ -4,70 +4,62 @@ import { useState, useEffect } from "react";
 export default function IncomeCard(){
     // last income amount variable
     const [lastIncome, setLastIncome] = useState(0);
-
     const [totalIncome, setTotalIncome] = useState(0);
 
-
-        const fetchTotalIncome = async () => {
-            // check for account
-            const { data: { session } } = await supabase.auth.getSession();
-            
-            if (!session) {
-            alert('You need to be logged in to add a transaction!');
-            return;
-            }
-
+    useEffect(() => {
+        const fetchData = async () => {
             const { data: { user } } = await supabase.auth.getUser();
-            const currentUser = user?.id;
-
-            const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
-            .from("Balances")
-            .select("income")
-            .eq("user_id", currentUser)
-            .maybeSingle()
-
-            if(fetchingBalanceError){
-                console.error(fetchingBalanceError.message)
-                return;
-            }
-            
-            if(fetchUserBalance){
-                setTotalIncome(fetchUserBalance.income);
+            if (user) {
+                await Promise.all([
+                    fetchTotalIncome(user.id),
+                    fetchLastIncome(user.id)
+                ]);
             }
         };
-    useEffect(() => {
-    fetchTotalIncome();});
+        fetchData();
+    }, []);
 
+    const fetchTotalIncome = async (userId: string) => {
+        const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
+        .from("Balances")
+        .select("income")
+        .eq("user_id", userId)
+        .maybeSingle()
 
-    const fetchLastIncome = async () => {
-        // gettng user id
-        const { data: { user } } = await supabase.auth.getUser()
-        const currentUser = user?.id;
+        if(fetchingBalanceError){
+            console.error('Error fetching income:', fetchingBalanceError.message);
+            return;
+        }
+        
+        if(fetchUserBalance){
+            setTotalIncome(fetchUserBalance.income);
+        } else {
+            setTotalIncome(0); 
+        }
+    };
 
+    const fetchLastIncome = async (userId: string) => {
         // getting last income transaction
-        const { data, error } = await supabase
+        const { data: transactionData, error } = await supabase
             .from('Transactions')
             .select('amount')
-            .eq('user_id', currentUser)
+            .eq('user_id', userId)
             .eq('type', 'Income')
             .order('date', { ascending: false })
             .limit(1)
 
         if(error){
-            alert('Error in fetching the last income transaction');
-            console.error(error.message);
+            console.error('Error fetching last income:', error.message);
             return;
         }
-        if(data && data.length > 0){
-            const lastTransaction = data[0];
-            setLastIncome(lastTransaction.amount);
-        }
         
+        if(transactionData && transactionData.length > 0){
+            const lastTransaction = transactionData[0];
+            setLastIncome(lastTransaction.amount);
+        } else {
+            setLastIncome(0);
+        }
     }
-
-    useEffect(() => {
-        fetchLastIncome();
-    });
 
     return(
         <div className = 'flex flex-col md:w-auto w-[55%] gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>

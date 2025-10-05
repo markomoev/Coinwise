@@ -3,73 +3,64 @@ import {useState, useEffect} from 'react'
 
 
 export default function SavingsCard(){
-
-    
     // last savings amount variable
     const [lastSavings, setLastSavings] = useState(0);
-
     const [totalSavings, setTotalSavings] = useState(0);
 
-        const fetchTotalSavings = async () => {
-            // check for account
-            const { data: { session } } = await supabase.auth.getSession();
-            
-            if (!session) {
-            alert('You need to be logged in to add a transaction!');
-            return;
-            }
-
+    useEffect(() => {
+        const userAuth = async () => {
             const { data: { user } } = await supabase.auth.getUser();
-            const currentUser = user?.id;
-
-            const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
-            .from("Balances")
-            .select("savings")
-            .eq("user_id", currentUser)
-            .maybeSingle()
-
-            if(fetchingBalanceError){
-                console.error(fetchingBalanceError.message)
-                return;
-            }
-            
-            if(fetchUserBalance){
-                setTotalSavings(fetchUserBalance.savings);
+            if (user) {
+                await Promise.all([
+                    fetchTotalSavings(user.id),
+                    fetchLastSavings(user.id)
+                ]);
             }
         };
-    useEffect(() => {
-    fetchTotalSavings();});
+        userAuth();
+    }, []);
 
+    const fetchTotalSavings = async (userId: string) => {
+        const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
+        .from("Balances")
+        .select("savings")
+        .eq("user_id", userId)
+        .maybeSingle()
 
-    const fetchLastSavings = async () => {
-        // gettng user id
-        const { data: { user } } = await supabase.auth.getUser()
-        const currentUser = user?.id;
+        if(fetchingBalanceError){
+            console.error('Error fetching savings:', fetchingBalanceError.message);
+            return;
+        }
+        
+        if(fetchUserBalance){
+            setTotalSavings(fetchUserBalance.savings);
+        } else {
+            setTotalSavings(0);
+        }
+    };
 
+    const fetchLastSavings = async (userId: string) => {
         // getting last savings transaction
-        const { data, error } = await supabase
+        const { data: transactionData, error } = await supabase
             .from('Transactions')
             .select('amount')
-            .eq('user_id', currentUser)
+            .eq('user_id', userId)
             .eq('type', 'Savings')
             .order('date', { ascending: false })
             .limit(1)
 
         if(error){
-            alert('Error in fetching the last expense transaction');
-            console.error(error.message);
+            console.error('Error fetching last savings transaction:', error.message);
             return;
         }
-        if(data && data.length > 0){
-            const lastTransaction = data[0];
-            setLastSavings(lastTransaction.amount);
-        }
         
+        if(transactionData && transactionData.length > 0){
+            const lastTransaction = transactionData[0];
+            setLastSavings(lastTransaction.amount);
+        } else {
+            setLastSavings(0);
+        }
     }
-
-    useEffect(() => {
-        fetchLastSavings();
-    });
 
     return(
         <div className = 'flex flex-col md:w-auto w-[55%] gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>

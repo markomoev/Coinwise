@@ -9,38 +9,36 @@ type Props = {
 
 
 export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
-        const [totalBalance, setTotalBalance] = useState(0);
+    const [totalBalance, setTotalBalance] = useState(0);
 
-        const fetchTotalBalance = async () => {
-            // check for account
-            const { data: { session } } = await supabase.auth.getSession();
-            
-            if (!session) {
-            alert('You need to be logged in to add a transaction!');
-            return;
-            }
-
-            const { data: { user } } = await supabase.auth.getUser();
-            const currentUser = user?.id;
-
-            const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
-            .from("Balances")
-            .select("total")
-            .eq("user_id", currentUser)
-            .maybeSingle()
-
-            if(fetchingBalanceError){
-                console.error(fetchingBalanceError.message)
-                return;
-            }
-            
-            if(fetchUserBalance){
-                setTotalBalance(fetchUserBalance.total);
-            }
-
-            }
     useEffect(() => {
-    fetchTotalBalance();});
+        const fetchData = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                await fetchTotalBalance(user.id);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const fetchTotalBalance = async (userId: string) => {
+        const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
+        .from("Balances")
+        .select("total")
+        .eq("user_id", userId)
+        .maybeSingle()
+
+        if(fetchingBalanceError){
+            console.error('Error fetching total balance:', fetchingBalanceError.message);
+            return;
+        }
+        
+        if(fetchUserBalance){
+            setTotalBalance(fetchUserBalance.total);
+        } else {
+            setTotalBalance(0); // No balance record found
+        }
+    }
 
     return(
         <div className="w-[95%] mt-10 flex flex-col gap-3 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl">

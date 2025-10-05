@@ -2,73 +2,64 @@ import {supabase} from "../../../client"
 import { useState, useEffect } from "react";
 
 export default function ExpenseCard(){
-
     // last expense amount variable
     const [lastExpense, setLastExpense] = useState(0);
-
     const [totalEpenses, setTotalExpenses] = useState(0);
 
-
-        const fetchTotalExpenses = async () => {
-            // check for account
-            const { data: { session } } = await supabase.auth.getSession();
-            
-            if (!session) {
-            alert('You need to be logged in to add a transaction!');
-            return;
-            }
-
+    useEffect(() => {
+        const fetchData = async () => {
             const { data: { user } } = await supabase.auth.getUser();
-            const currentUser = user?.id;
-
-            const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
-            .from("Balances")
-            .select("expenses")
-            .eq("user_id", currentUser)
-            .maybeSingle()
-
-            if(fetchingBalanceError){
-                console.error(fetchingBalanceError.message)
-                return;
-            }
-            
-            if(fetchUserBalance){
-                setTotalExpenses(fetchUserBalance.expenses);
+            if (user) {
+                await Promise.all([
+                    fetchTotalExpenses(user.id),
+                    fetchLastExpense(user.id)
+                ]);
             }
         };
-    useEffect(() => {
-    fetchTotalExpenses();});
+        fetchData();
+    }, []);
 
+    const fetchTotalExpenses = async (userId: string) => {
+        const {data: fetchUserBalance, error: fetchingBalanceError} = await supabase
+        .from("Balances")
+        .select("expenses")
+        .eq("user_id", userId)
+        .maybeSingle()
 
-    const fetchLastExpense = async () => {
-        // gettng user id
-        const { data: { user } } = await supabase.auth.getUser()
-        const currentUser = user?.id;
+        if(fetchingBalanceError){
+            console.error('Error fetching expenses:', fetchingBalanceError.message);
+            return;
+        }
+        
+        if(fetchUserBalance){
+            setTotalExpenses(fetchUserBalance.expenses);
+        } else {
+            setTotalExpenses(0);
+        }
+    };
 
+    const fetchLastExpense = async (userId: string) => {
         // getting last expense transaction
-        const { data, error } = await supabase
+        const { data: transactionData, error } = await supabase
             .from('Transactions')
             .select('amount')
-            .eq('user_id', currentUser)
+            .eq('user_id', userId)
             .eq('type', 'Expense')
             .order('date', { ascending: false })
             .limit(1)
 
         if(error){
-            alert('Error in fetching the last expense transaction');
-            console.error(error.message);
+            console.error('Error fetching last expense:', error.message);
             return;
         }
-        if(data && data.length > 0){
-            const lastTransaction = data[0];
-            setLastExpense(lastTransaction.amount);
-        }
         
+        if(transactionData && transactionData.length > 0){
+            const lastTransaction = transactionData[0];
+            setLastExpense(lastTransaction.amount);
+        } else {
+            setLastExpense(0);
+        }
     }
-
-    useEffect(() => {
-        fetchLastExpense();
-    }, []);
     return(
         <div className = 'flex flex-col gap-8 md:w-auto w-[55%] bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
             <div className = ''>
