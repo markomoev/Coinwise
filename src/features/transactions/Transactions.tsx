@@ -52,15 +52,13 @@ export default function TransactionsPage() {
                 setIsAuthenticated(false);
             } else {
                 setIsAuthenticated(!!user);
-                if (user) {
-                    await fetchLastTransaction();
-                }
             }
             setIsLoading(false);
         };
 
         checkAuth();
     }, []);
+
 
     // quick loading screen (bubble)
     if (isLoading) {
