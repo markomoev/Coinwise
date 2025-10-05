@@ -138,74 +138,132 @@ export default function accSettings(){
 
 
     return(
-        <div className ='md:w-1/2 w-[95%] bg-white/20 pl-[5%] pr-[5%] pb-5 mt-[10%] rounded-2xl border border-black/10 shadow-lg'>
-            <div className = 'w-full flex flex-col gap-5'>
-                {/* Username */}
-                <div className ='mb-3'>
-                    <div className = 'mt-5'>
-                        <p
-                            className ='font-bold text-xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
-                            Profile info   
-                        </p>
+        <div className="w-full max-w-2xl bg-white/90 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 border-b border-gray-200">
+                <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
                     </div>
-                </div> 
-
-                <form className ='w-full flex md:gap-5 flex flex-row justify-between'>
-                    <input readOnly = {!editMode}
-                        className = 'bg-black/18 text-white text-lg p-1.5 pl-3 pr-3 rounded-lg border border-black/10 shadow-sm'
-                        type ='email'
-                        placeholder ='Email here'
-                        value = {email}
-                        onChange = {(e) => setEmail(e.target.value)}
-                    />
-
-                    <input readOnly = {!editMode}
-                        className = 'bg-black/18 text-white text-lg p-1.5 pl-3 pr-3 rounded-md border border-black/10 shadow-sm'
-                        type="text"
-                        placeholder ='Username here'
-                        value = {username}
-                        onChange = {(e) => setUsername(e.target.value)}
-                    />
-                </form>
-
-                <div className = 'flex flex-row justify-between mt-5'>
                     <div>
-                        <button
-                            onClick={editProfile} 
-                            className ='text-lg pt-2 pb-2 pl-4 pr-4 cursor-pointer border border-black/10 hover:border-black/20 hover:shadow-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent rounded-3xl font-bold text-md shadow-lg'>
-                            Edit
-                        </button>
-                    </div>
-
-                    <div className = 'flex flex-row gap-7'>
-                        <button 
-                            onClick = {saveProfileChanges}
-                            className={` ${editMode ? '' : 'hidden'}
-                                text-lg pt-2 pb-2 pl-4 pr-4 pr-3 font-bold cursor-pointer border animate-pulse border-green-600 hover:border-green-600/30 rounded-3xl text-green-600 shadow-lg`}>
-                            Save
-                        </button>
-
-                        <button 
-                            onClick = {cancelProfileChanges}
-                            className={` ${editMode ? '' : 'hidden'}
-                                text-lg pt-2 pb-2 pl-4 pr-4 pr-3 font-bold cursor-pointer border animate-pulse border-black/20 hover:border-black/30 rounded-3xl text-black/50 shadow-lg`}>
-                            Cancel
-                        </button>
-
-                        <button 
-                            onClick={logOutUser}
-                            className = 'text-lg pt-2 pb-2 pl-4 pr-4 cursor-pointer border border-black/10 hover:border-black/20 hover:shadow-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent rounded-3xl font-bold text-md shadow-lg'>
-                            Log out
-                        </button>
-
+                        <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                            Account Settings
+                        </h2>
+                        <p className="text-gray-600">Manage your profile information and preferences</p>
                     </div>
                 </div>
-                
-                <div className = 'flex flex-row items-center justify-center mt-7'>
-                    <button 
+            </div>
+
+            {/* Content */}
+            <div className="p-6 space-y-6">
+                {/* Profile Information */}
+                <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-800">Profile Information</h3>
+                    
+                    <div className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Email Address
+                            </label>
+                            <input 
+                                readOnly={!editMode}
+                                className={`w-full p-3 rounded-xl border transition-all duration-200 ${
+                                    editMode 
+                                        ? 'bg-white border-purple-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200' 
+                                        : 'bg-gray-50 border-gray-200 text-gray-600'
+                                }`}
+                                type="email"
+                                placeholder="Your email address"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Username
+                            </label>
+                            <input 
+                                readOnly={!editMode}
+                                className={`w-full p-3 rounded-xl border transition-all duration-200 ${
+                                    editMode 
+                                        ? 'bg-white border-purple-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200' 
+                                        : 'bg-gray-50 border-gray-200 text-gray-600'
+                                }`}
+                                type="text"
+                                placeholder="Your username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200">
+                    {!editMode ? (
+                        <>
+                            <button
+                                onClick={editProfile}
+                                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                Edit Profile
+                            </button>
+                            
+                            <button
+                                onClick={logOutUser}
+                                className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                </svg>
+                                Log Out
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <button
+                                onClick={saveProfileChanges}
+                                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                Save Changes
+                            </button>
+                            
+                            <button
+                                onClick={cancelProfileChanges}
+                                className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                Cancel
+                            </button>
+                        </>
+                    )}
+                </div>
+
+                {/* Danger Zone */}
+                <div className="mt-8 p-4 bg-red-50 border border-red-200 rounded-xl">
+                    <h4 className="text-lg font-semibold text-red-800 mb-2">Danger Zone</h4>
+                    <p className="text-red-600 text-sm mb-4">
+                        Deleting your account will permanently remove all your data. This action cannot be undone.
+                    </p>
+                    <button
                         onClick={deleteProfile}
-                        className="text-lg pt-2 pb-2 pl-4 pr-4 font-bold cursor-pointer border border-red-600 rounded-3xl text-red-700 shadow-lg">
-                        Delete profile
+                        className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 hover:shadow-lg transition-all duration-200 font-medium"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                        Delete Account
                     </button>
                 </div>
             </div>

@@ -1,30 +1,38 @@
+interface SettingsMenuProps {
+    activeSection: string
+    setActiveSection: (section: string) => void
+}
 
+export default function SettingsMenu({ activeSection, setActiveSection }: SettingsMenuProps) {
+    const menuItems = [
+        { id: 'account', label: 'Account', icon: '👤' },
+        { id: 'support', label: 'Support', icon: '💬' },
+        { id: 'terms', label: 'Terms & Policies', icon: '📋' }
+    ]
 
-export default function settingsMenu() {
     return(
-        <div className="md:w-auto w-full">
-            <div className ='md:w-full mb-4 border-b border-b-black/10'>
-                <p className = 'text-center md:text-start text-lg border-white/20 border-b w-full font-semibold pl-1'>
+        <div className="w-full">
+            <div className="mb-6">
+                <h2 className="text-xl font-semibold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
                     Menu
-                </p>
+                </h2>
             </div>
 
-            <div className="w-full items-center justify-center flex md:flex-col flex-row md:gap-7 gap-0 md:items-start text">
-
-                <button 
-                    className = 'p-2 pl-4 pr-4 rounded-2xl hover:bg-black/20 cursor-pointer'>
-                        Account
-                </button>
-
-                <button
-                    className = 'p-2 pl-4 pr-4 rounded-2xl hover:bg-black/20 cursor-pointer'>
-                    Support
-                </button>
-
-                <button
-                    className = 'p-2 pl-4 pr-4 rounded-2xl hover:bg-black/20 cursor-pointer'>
-                    Terms and Policies
-                </button>
+            <div className="space-y-2">
+                {menuItems.map((item) => (
+                    <button
+                        key={item.id}
+                        onClick={() => setActiveSection(item.id)}
+                        className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 text-left ${
+                            activeSection === item.id
+                                ? 'bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-300/50 text-purple-700 font-semibold'
+                                : 'hover:bg-black/10 text-gray-700 border border-transparent'
+                        }`}
+                    >
+                        <span className="text-lg">{item.icon}</span>
+                        <span>{item.label}</span>
+                    </button>
+                ))}
             </div>
         </div>
     )

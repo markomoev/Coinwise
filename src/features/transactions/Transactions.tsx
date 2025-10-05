@@ -147,17 +147,36 @@ export default function TransactionsPage() {
     }
 
     return (
-        <div className="relative w-full h-screen overflow-hidden">
-            {/* whole content */}
-            <div className={`h-full transition ${showPopup ? "blur-sm" : ""}`}>
+        <div className="w-full h-auto">
+            <div className="w-full flex flex-row gap-20">
+                <SideBar/>
+                
+                <div className="md:mr-10 md:mt-0 mt-10 flex flex-1 flex-col gap-10 w-full h-auto items-center">
+                    {/* Transactions Header */}
+                    <div className="w-[95%] max-w-6xl">
+                        <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg p-6 rounded-2xl">
+                            <div className="flex items-center gap-4">
+                                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
+                                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                                        Transaction History
+                                    </h1>
+                                    <p className="text-gray-600 mt-1">Track and manage all your financial transactions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <div className="w-full h-[calc(100%-4rem)] flex flex-row gap-10 md:pr-7">
-                        <SideBar/>
-
-                    <div className="md:w-[88%] w-full md:mt-8 mt-30 flex justify-center items-center">
+                    {/* Transaction Content */}
+                    <div className="w-[95%] max-w-6xl">
                         <TransactionsList 
                             AddTransaction={() => setShowPopup(true)}
-                            transactions = {transactions} />
+                            transactions={transactions} 
+                        />
                     </div>
                 </div>
             </div>
@@ -168,13 +187,14 @@ export default function TransactionsPage() {
                     {/* Overlay */}
                     <div
                         className="fixed inset-0 z-40 bg-black/50"
-                        onClick={() => setShowPopup(false)} // close on outside click
+                        onClick={() => setShowPopup(false)}
                     />
                     {/* Popup */}
                     <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
                         <div className="pointer-events-auto">
                             <TransactionPopup
-                                closePopup = {() => setShowPopup(false)} />
+                                closePopup={() => setShowPopup(false)} 
+                            />
                         </div>
                     </div>
                 </>

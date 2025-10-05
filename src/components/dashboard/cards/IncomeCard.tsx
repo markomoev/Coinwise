@@ -86,24 +86,47 @@ export default function IncomeCard(){
     }, []);
 
     return(
-        <div className = 'flex flex-col md:w-auto w-[55%] gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
-            <div className = ''>
-                <p className = 'text-lg'>Income:</p>
-            </div>
-           
-           <div className = 'flex flex-row gap-7'> {/* Container for the sum and the last transaction */}
-                <div className = 'h-full'>
-                    <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
-                        {totalIncome}
-                    </p>
-                </div>
-
-                <div className = 'h-full pl-7 pt-1 border border-l-black/10 border-t-transparent border-r-transparent border-b-transparent'>
+        <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 border-b border-gray-200">
+                <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                        </svg>
+                    </div>
                     <div>
-                        <p className = 'text-lg font-semibold text-green-700'>+{lastIncome}</p>
+                        <h3 className="font-semibold text-gray-800">Income</h3>
+                        <p className="text-xs text-gray-600">Total earnings</p>
                     </div>
                 </div>
-           </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-4 space-y-4">
+                <div>
+                    <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                        ${totalIncome.toLocaleString()}
+                    </p>
+                    <p className="text-xs text-gray-500">Total accumulated</p>
+                </div>
+
+                {lastIncome > 0 && (
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+                        <div className="flex items-center gap-2">
+                            <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                                <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 8 8">
+                                    <path d="M4 0l4 4-4 4z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p className="text-sm font-semibold text-green-700">+${lastIncome.toLocaleString()}</p>
+                                <p className="text-xs text-green-600">Latest income</p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

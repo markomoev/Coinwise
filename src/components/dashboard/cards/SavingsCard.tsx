@@ -87,26 +87,61 @@ export default function SavingsCard(){
     }, []);
 
     return(
-        <div className = 'flex flex-col md:w-auto w-[55%] gap-8 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg shadow-stone p-6 rounded-2xl'>
-            <div className = ''>
-                <p className = 'text-lg'>Savings:</p>
-            </div>
-           
-           <div className = 'flex flex-row gap-7'>
-                <div className = 'h-full'>
-                    <p className = 'font-bold text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
-                        {totalSavings}
-                    </p>
-                </div>
-
-                <div className = 'h-full pl-7 pt-1 border border-l-black/10 border-t-transparent border-r-transparent border-b-transparent'>
+        <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 border-b border-gray-200">
+                <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
                     <div>
-                        <p className = 'text-lg font-semibold text-stone-700'>
-                            {lastSavings>=0 ? `+${lastSavings}` : `-${lastSavings}`}
-                        </p>
+                        <h3 className="font-semibold text-gray-800">Savings</h3>
+                        <p className="text-xs text-gray-600">Money saved</p>
                     </div>
                 </div>
-           </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-4 space-y-4">
+                <div>
+                    <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                        ${totalSavings.toLocaleString()}
+                    </p>
+                    <p className="text-xs text-gray-500">Total saved</p>
+                </div>
+
+                {lastSavings !== 0 && (
+                    <div className={`${lastSavings >= 0 ? 'bg-blue-50 border-blue-200' : 'bg-orange-50 border-orange-200'} border rounded-lg p-3`}>
+                        <div className="flex items-center gap-2">
+                            <div className={`w-4 h-4 rounded-full flex items-center justify-center ${
+                                lastSavings >= 0 ? 'bg-blue-500' : 'bg-orange-500'
+                            }`}>
+                                <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 8 8">
+                                    {lastSavings >= 0 ? (
+                                        <path d="M4 0l4 4-4 4z" />
+                                    ) : (
+                                        <path d="M0 4l4-4v8z" />
+                                    )}
+                                </svg>
+                            </div>
+                            <div>
+                                <p className={`text-sm font-semibold ${
+                                    lastSavings >= 0 ? 'text-blue-700' : 'text-orange-700'
+                                }`}>
+                                    {lastSavings >= 0 ? `+$${lastSavings.toLocaleString()}` : `-$${Math.abs(lastSavings).toLocaleString()}`}
+                                </p>
+                                <p className={`text-xs ${
+                                    lastSavings >= 0 ? 'text-blue-600' : 'text-orange-600'
+                                }`}>
+                                    Latest {lastSavings >= 0 ? 'deposit' : 'withdrawal'}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }
