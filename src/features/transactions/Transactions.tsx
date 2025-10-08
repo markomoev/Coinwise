@@ -168,10 +168,12 @@ export default function TransactionsPage() {
                         onClick={() => setShowPopup(false)}
                     />
                     {/* Popup */}
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-                        <TransactionPopup
-                            closePopup={() => setShowPopup(false)} 
-                        />
+                    <div className="fixed inset-x-0 top-0 bottom-0 z-50 flex items-center justify-center p-4 max-h-screen overflow-hidden">
+                        <div className="w-full max-w-lg max-h-[85vh] overflow-y-auto">
+                            <TransactionPopup
+                                closePopup={() => setShowPopup(false)} 
+                            />
+                        </div>
                     </div>
                 </>
             )}
