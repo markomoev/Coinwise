@@ -89,13 +89,8 @@ export default function ExpenseCard(){
             {/* Header */}
             <div className="bg-gradient-to-r from-red-50 to-rose-50 p-4 border-b border-gray-200">
                 <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-r from-red-500 to-rose-500 rounded-lg flex items-center justify-center">
-                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13l-5 5m0 0l-5-5m5 5V6" />
-                        </svg>
-                    </div>
                     <div>
-                        <h3 className="font-semibold text-gray-800">Expenses</h3>
+                        <h3 className="font-semibold text-red-700">Expenses</h3>
                         <p className="text-xs text-gray-600">Total spending</p>
                     </div>
                 </div>
@@ -113,11 +108,6 @@ export default function ExpenseCard(){
                 {lastExpense > 0 && (
                     <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                         <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
-                                <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 8 8">
-                                    <path d="M0 4l4-4v8z" />
-                                </svg>
-                            </div>
                             <div>
                                 <p className="text-sm font-semibold text-red-700">-${lastExpense.toLocaleString()}</p>
                                 <p className="text-xs text-red-600">Latest expense</p>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {supabase} from '../../client';
 
 import HomeIcon from '../../public/sidebar/home.png'
@@ -27,6 +27,14 @@ export default function SideBar() {
     const [open, setOpen] = useState(false);
     const [username, setUsername] = useState('Add Profile');
 
+    // check active page for highlighting the main nav items
+    const location = useLocation()
+
+    // Auto-close sidebar on mobile when navigating
+    useEffect(() => {
+        setOpen(false);
+    }, [location.pathname]);
+
     useEffect(() => {
         const fetchUsername = async () => {
             const { data, error } = await supabase.auth.getSession()
@@ -41,6 +49,28 @@ export default function SideBar() {
 
         fetchUsername();
     }, []);
+
+    // Handle escape key press to close sidebar on mobile
+    useEffect(() => {
+        const handleKeyPress = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && open) {
+                setOpen(false);
+            }
+        };
+
+        if (open) {
+            document.addEventListener('keydown', handleKeyPress);
+            // Prevent body scroll when sidebar is open on mobile
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+            document.body.style.overflow = '';
+        };
+    }, [open]);
 
     return (
         <>
@@ -65,33 +95,38 @@ export default function SideBar() {
                     ${open ? "translate-x-0" : "-translate-x-full"}
                     md:static md:translate-x-0 md:w-fit md:min-h-screen md:max-h-screen
                     md:border-r md:bg-white/90
+                    overscroll-contain
                 `}
             >
                 <div className="w-full flex flex-col p-3 h-full">
                     {/* Website Name */}
                     <Link to="/home" className="flex items-center gap-3 px-3 py-4 mb-6 md:mt-0 mt-10 border-b border-gray-100">
-                        <span className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                        <span className="text-3xl font-bold text-purple-700">
                             Coinwise
                         </span>
                     </Link>
 
                     {/* Main Navigation */}
                     <nav className="flex flex-col gap-2">
-                        {navItems.map((item) => (
-                            <Link
-                                key={item.path}
-                                to={item.path}
-                                className="group flex items-center gap-4 p-3 rounded-lg transition-all duration-200
-                                         hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10"
-                            >
-                                <div className="w-11 h-11 flex items-center justify-center">
-                                    {item.icon && <img src={item.icon} alt={item.alt} className="w-8 h-8 transition-transform duration-200 group-hover:scale-110" />}
+                        {navItems.map((item) => {
+                            const isCurrentPage = location.pathname === item.path;
+
+                            return (
+                                <Link
+                                    key={item.path}
+                                    to={item.path}
+                                    className={`${isCurrentPage ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
+                                             hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10`}
+                                >
+                                <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
+                                    {item.icon && <img src={item.icon} alt={item.alt} className="w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110" />}
                                 </div>
-                                <span className="text-xl text-gray-600 font-medium group-hover:text-gray-800 transition-colors duration-200">
+                                <span className="text-lg md:text-xl text-gray-600 font-medium group-hover:text-gray-800 transition-colors duration-200">
                                     {item.title}
                                 </span>
                             </Link>
-                        ))}
+                        );
+                        })}
                     </nav>
 
                     {/* Spacer to push the user section to bottom */}
@@ -101,26 +136,26 @@ export default function SideBar() {
                     <div className="flex flex-col gap-2 pt-6 mt-2 border-t border-gray-100">
                         <Link 
                             to="/login"
-                            className="group flex items-center gap-4 p-3 rounded-lg transition-all duration-200
-                                     hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10"
+                            className={`${location.pathname === '/login' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
+                                     hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10`}
                         >
-                            <div className="w-11 h-11 flex items-center justify-center">
-                                <img src={UserIcon} alt="User Icon" className="w-8 h-8 opacity-90 bg-clip-text transition-transform duration-200 group-hover:scale-110" />
+                            <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
+                                <img src={UserIcon} alt="User Icon" className="w-6 h-6 md:w-8 md:h-8 opacity-90 bg-clip-text transition-transform duration-200 group-hover:scale-110" />
                             </div>
-                            <span className="text-xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent font-medium">
+                            <span className="text-lg md:text-xl text-purple-700 font-medium">
                                 {username}
                             </span>
                         </Link>
                         
                         <Link 
                             to="/settings"
-                            className="group flex items-center gap-4 p-3 rounded-lg transition-all duration-200
-                                     hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10"
+                            className={`${location.pathname === '/settings' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
+                                     hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10`}
                         >
-                            <div className="w-11 h-11 flex items-center justify-center">
-                                <img src={SettingsIcon} alt="Settings Icon" className="w-8 h-8 transition-transform duration-200 group-hover:scale-110" />
+                            <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
+                                <img src={SettingsIcon} alt="Settings Icon" className="w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110" />
                             </div>
-                            <span className="text-xl text-gray-600 font-medium group-hover:text-gray-800">
+                            <span className="text-lg md:text-xl text-gray-600 font-medium group-hover:text-gray-800">
                                 Settings
                             </span>
                         </Link>

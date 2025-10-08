@@ -107,105 +107,158 @@ export default function FundsPopup({closePopup}: Props) {
     }
 
     return(
-        <div className = 'bg-white border border-black/10 w-full h-auto rounded-2xl flex flex-col shadow-md pb-3'>
-            <div className = 'pl-5 pt-2 w-full flex flex-row justify-between'>
-                <p className = 'font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent text-xl'>
-                    Add Funds
-                </p>
+        <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-2xl rounded-2xl overflow-hidden max-w-lg w-full mx-4">
+            {/* Header */}
+            <div className="bg-purple-700/5 p-6 border-b border-gray-200">
+                <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 className="text-xl font-bold text-gray-800">Add Funds</h2>
+                        <p className="text-sm text-gray-600">Add money to your account balance</p>
+                    </div>
+                </div>
             </div>
 
-            <div className = 'mt-10 w-full flex flex-row gap-10 justify-between pl-5 pr-5'>
-                
+            {/* Form Content */}
+            <div className="p-6 space-y-6">
+                {/* Transaction Name */}
                 <div>
-                    <input required
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Transaction Name
+                    </label>
+                    <input 
                         type="text" 
-                        placeholder = 'Name' 
+                        placeholder="e.g., Initial deposit, Gift money, etc."
+                        className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
                         value={name}
-                        onChange = {(e) => setName(e.target.value)}
-                        className="bg-gray-600/15 text-black/70 pl-2 rounded-md"
-                        />
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </div>
-            
-                <div className = 'flex flex-row'>
-                {/* Different types of funds */}
-                    <p className = ''>Type of Funds:</p>
-                    
-                    {/* Total balance funds */}
-                    <input required
-                        id = 'total'
-                        name='funds-type'
-                        type="radio" 
-                        placeholder = 'Name'
-                        checked={type === 'total'}
-                        onChange={(e) => setType(e.target.value)}
-                        value ='total'
-                        className = 'ml-3 cursor-pointer'
-                        />
 
-                    <label 
-                            htmlFor="total"
-                            className= 'ml-1 font-semibold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent' >
-                        Total Balance
+                {/* Fund Type */}
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                        Type of Funds
                     </label>
+                    <div className="grid grid-cols-2 gap-3">
+                        <label className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-200 ${
+                            type === 'total' 
+                                ? 'border-purple-300 bg-purple-50 text-purple-700' 
+                                : 'border-gray-300 hover:border-gray-400'
+                        }`}>
+                            <input 
+                                id="total"
+                                name="funds-type"
+                                type="radio" 
+                                checked={type === 'total'}
+                                onChange={(e) => setType(e.target.value)}
+                                value="total"
+                                className="w-4 h-4 text-purple-600 focus:ring-purple-500"
+                            />
+                            <div className="flex items-center gap-2">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                <span className="font-medium">Total Balance</span>
+                            </div>
+                        </label>
 
-                    {/* Savings transaction */}
-                    <input required
-                        id = 'savings'
-                        type="radio" 
-                        name='funds-type'
-                        placeholder = 'Name'
-                        checked={type === 'savings'}
-                        onChange={(e) => setType(e.target.value)}
-                        value ='savings'
-                        className="ml-3 cursor-pointer"
-                        />
-
-                    <label 
-                            htmlFor="savings"
-                            className= 'ml-1 font-semibold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent' >
-                        Savings
-                    </label>
+                        <label className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-200 ${
+                            type === 'savings' 
+                                ? 'border-green-300 bg-green-50 text-green-700' 
+                                : 'border-gray-300 hover:border-gray-400'
+                        }`}>
+                            <input 
+                                id="savings"
+                                name="funds-type"
+                                type="radio" 
+                                checked={type === 'savings'}
+                                onChange={(e) => setType(e.target.value)}
+                                value="savings"
+                                className="w-4 h-4 text-green-600 focus:ring-green-500"
+                            />
+                            <div className="flex items-center gap-2">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                <span className="font-medium">Savings</span>
+                            </div>
+                        </label>
+                    </div>
                 </div>
-            </div>
 
-            <div className = 'mt-10 w-full flex flex-row justify-between pl-5 pr-5'>
-                <input required
-                    type="number" 
-                    placeholder = 'Amount'
-                    value = {amount}
-                    onChange = {(e) => setAmount(Number(e.target.value))}
-                    className="bg-gray-600/15 text-black/70 pl-2 rounded-md" />
+                {/* Amount and Date */}
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Amount ($)
+                        </label>
+                        <input 
+                            type="number" 
+                            placeholder="0.00"
+                            min="0"
+                            step="0.01"
+                            value={amount}
+                            onChange={(e) => setAmount(Number(e.target.value))}
+                            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
+                        />
+                    </div>
 
-                <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="bg-gray-600/15 text-black/70 pl-2 rounded-md"/>
-            </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Date
+                        </label>
+                        <input 
+                            type="date"
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
+                        />
+                    </div>
+                </div>
 
-            <div className = 'mt-10 w-full flex flex-row justify-between pl-5 pr-5'>
-                <textarea 
-                    name="note" 
-                    id="note"
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                    placeholder='Add a note...'
-                    className = 'w-full bg-gray-600/15 pl-2 rounded-md pt-1'>
-                </textarea>
-            </div>
+                {/* Note */}
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Notes (Optional)
+                    </label>
+                    <textarea 
+                        name="note" 
+                        placeholder="Add any additional details about this transaction..."
+                        rows={3}
+                        value={note}
+                        onChange={(e) => setNote(e.target.value)}
+                        className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200 resize-none"
+                    />
+                </div>
 
-            <div className = 'mt-10 w-full flex flex-row justify-between pl-5 pr-5'>
-                <button
-                    onClick={addFunds}
-                    className = 'text-lg font-bold flex items-center justify-center border-black/10 border hover:shadow-lg rounded-xl pb-1 pr-3 pl-3 pt-1 cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
-                    Add
-                </button>
+                {/* Action Buttons */}
+                <div className="flex gap-3 pt-4">
+                    <button
+                        onClick={addFunds}
+                        disabled={!name || !type || !amount}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-purple-600 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        Add Funds
+                    </button>
 
-                <button 
-                    onClick={closePopup}
-                    className = 'text-lg font-bold flex items-center justify-center border-black/10 border hover:shadow-lg rounded-xl pb-1 pr-3 pl-3 pt-1 cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>
-                    Close
-                </button>
+                    <button 
+                        onClick={closePopup}
+                        className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        Cancel
+                    </button>
+                </div>
             </div>
         </div>
     )

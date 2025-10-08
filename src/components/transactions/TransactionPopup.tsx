@@ -94,9 +94,9 @@ export default function TransactionPopup({closePopup}: Props) {
     return(
         <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-2xl rounded-2xl overflow-hidden max-w-lg w-full mx-4">
             {/* Header */}
-            <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 border-b border-gray-200">
+            <div className="bg-purple-700/5 p-6 border-b border-gray-200">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
@@ -118,7 +118,7 @@ export default function TransactionPopup({closePopup}: Props) {
                     <input 
                         type="text" 
                         placeholder="e.g., Grocery shopping, Salary, etc."
-                        className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-500 transition-all duration-200"
+                        className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -189,7 +189,7 @@ export default function TransactionPopup({closePopup}: Props) {
                             step="0.01"
                             value={amount}
                             onChange={(e) => setAmount(Number(e.target.value))}
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-500 transition-all duration-200"
+                            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
                         />
                     </div>
 
@@ -201,7 +201,7 @@ export default function TransactionPopup({closePopup}: Props) {
                             type="date"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-500 transition-all duration-200"
+                            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
                         />
                     </div>
                 </div>
@@ -217,7 +217,7 @@ export default function TransactionPopup({closePopup}: Props) {
                         rows={3}
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
-                        className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-500 transition-all duration-200 resize-none"
+                        className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200 resize-none"
                     />
                 </div>
 
@@ -226,7 +226,7 @@ export default function TransactionPopup({closePopup}: Props) {
                     <button
                         onClick={addTransaction}
                         disabled={!name || !type || !amount}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-purple-600 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
