@@ -33,26 +33,26 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
     return(
         <div className='max-w-6xl mx-auto'>
             {/* Section Header */}
-            <div className='text-center mb-12'>
-                <h2 className='text-3xl sm:text-4xl font-bold text-gray-800 mb-4'>
+            <div className='text-center mb-8 sm:mb-12'>
+                <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-2'>
                     Why Choose <span className='text-purple-700 drop-shadow-lg '>Coinwise?</span>
                 </h2>
-                <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
+                <p className='text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-2'>
                     Experience the future of personal finance management with our cutting-edge features
                 </p>
             </div>
 
             {/* Info Cards Grid */}
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8'>
                 {/* Easy to Use Card */}
-                <div className='bg-white/80 hover:border-purple-400 backdrop-blur-lg rounded-2xl border border-gray-200 p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
-                    <div className='flex items-start space-x-4'>
+                <div className='bg-white/80 hover:border-purple-400 backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
+                    <div className='flex items-start space-x-3 sm:space-x-4'>
                         <div className='w-12 h-12 bg-teal-500 rounded-xl flex items-center justify-center flex-shrink-0'>
                             <LightningIcon className='w-6 h-6 text-white' />
                         </div>
                         <div>
-                            <h3 className='text-2xl font-bold text-gray-800 mb-3'>Lightning Fast</h3>
-                            <p className='text-gray-600 leading-relaxed'>
+                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>Lightning Fast</h3>
+                            <p className='text-sm sm:text-base text-gray-600 leading-relaxed'>
                                 {infoTexts["Easy Use"]}
                             </p>
                         </div>
@@ -60,14 +60,14 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 </div>
 
                 {/* Secure & Private Card */}
-                <div className='bg-white/80 hover:border-purple-400 backdrop-blur-lg rounded-2xl border border-gray-200 p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
-                    <div className='flex items-start space-x-4'>
+                <div className='bg-white/80 hover:border-purple-400 backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
+                    <div className='flex items-start space-x-3 sm:space-x-4'>
                         <div className='w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0'>
                             <SecurityIcon className='w-6 h-6 text-white' />
                         </div>
                         <div>
-                            <h3 className='text-2xl font-bold text-gray-800 mb-3'>Secure & Private</h3>
-                            <p className='text-gray-600 leading-relaxed'>
+                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>Secure & Private</h3>
+                            <p className='text-sm sm:text-base text-gray-600 leading-relaxed'>
                                 {infoTexts["Security"]}
                             </p>
                         </div>
@@ -75,14 +75,14 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 </div>
 
                 {/* Smart Insights Card */}
-                <div className='bg-white/80 hover:border-purple-400 backdrop-blur-lg rounded-2xl border border-gray-200 p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
-                    <div className='flex items-start space-x-4'>
+                <div className='bg-white/80 hover:border-purple-400 backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
+                    <div className='flex items-start space-x-3 sm:space-x-4'>
                         <div className='w-12 h-12 bg-pink-600 rounded-xl flex items-center justify-center flex-shrink-0'>
                             <BulbIcon className='w-6 h-6 text-white' />
                         </div>
                         <div>
-                            <h3 className='text-2xl font-bold text-gray-800 mb-3'>Smart Insights</h3>
-                            <p className='text-gray-600 leading-relaxed'>
+                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>Smart Insights</h3>
+                            <p className='text-sm sm:text-base text-gray-600 leading-relaxed'>
                                 {infoTexts["Smart Insights"]}
                             </p>
                         </div>
@@ -90,14 +90,14 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 </div>
 
                 {/* Real-time Sync Card */}
-                <div className='bg-white/80 hover:border-purple-400 backdrop-blur-lg rounded-2xl border border-gray-200 p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
-                    <div className='flex items-start space-x-4'>
+                <div className='bg-white/80 hover:border-purple-400 backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
+                    <div className='flex items-start space-x-3 sm:space-x-4'>
                         <div className='w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center flex-shrink-0'>
                             <ArrowsIcon className='w-6 h-6 text-white' />
                         </div>
                         <div>
-                            <h3 className='text-2xl font-bold text-gray-800 mb-3'>Real-time Sync</h3>
-                            <p className='text-gray-600 leading-relaxed'>
+                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>Real-time Sync</h3>
+                            <p className='text-sm sm:text-base text-gray-600 leading-relaxed'>
                                 {infoTexts["Real-time Sync"]}
                             </p>
                         </div>
@@ -106,16 +106,16 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
             </div>
 
             {/* Call to Action */}
-            <div className='text-center mt-16'>
-                <div className='bg-purple-400/5 backdrop-blur-lg rounded-2xl border border-gray-200 p-8'>
-                    <h3 className='text-2xl font-bold text-gray-800 mb-4'>Ready to Take Control of Your Finances?</h3>
-                    <p className='text-gray-600 mb-6 max-w-2xl mx-auto'>
+            <div className='text-center mt-12 sm:mt-16'>
+                <div className='bg-purple-400/5 backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8'>
+                    <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 px-2'>Ready to Take Control of Your Finances?</h3>
+                    <p className='text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 max-w-2xl mx-auto px-2'>
                         Join thousands of users who have already transformed their financial lives with Coinwise. 
                         Start your journey to financial freedom today.
                     </p>
                     <Link 
                         to={isAuthenticated ? "/dashboard" : "/login"}
-                        className='px-8 py-3 bg-purple-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-800 transition-all duration-300 transform hover:scale-105 shadow-lg'>
+                        className='inline-block px-6 sm:px-8 py-3 bg-purple-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-800 transition-all duration-300 transform hover:scale-105 shadow-lg'>
                         Start Tracking Now
                     </Link>
                 </div>
