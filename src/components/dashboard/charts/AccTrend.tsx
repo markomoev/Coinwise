@@ -28,10 +28,6 @@ export default function AccTrend() {
                 if(user){
                     // fetch the trend data
                     const trendData: any = await getAccTrendData(user.id);
-                        const mockData:any = {
-                        labels: ['Oct 7', 'Oct 8', 'Oct 9', 'Oct 10', 'Oct 11'],
-                        values: [3200, 3350, 3540, 3650, 3800]
-                    };
 
                     setChartData(trendData);
                 }
