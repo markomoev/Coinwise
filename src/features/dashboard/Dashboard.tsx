@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../client";
 import { Link } from "react-router-dom";
 import AccTrend from "../../components/dashboard/charts/AccTrend";
+import IncVSExp from "../../components/dashboard/charts/IncVSExp";
 
 export default function DashboardPage() {
     const [showFundsPopup, setShowFundsPopup] = useState(false);
@@ -155,7 +156,7 @@ export default function DashboardPage() {
                             </div>
                             {/* Placeholder for second chart */}
                             <div>
-                                <AccTrend/>
+                                <IncVSExp/>
                             </div>
                             {/* Placeholder for third chart */}
                             <div>
