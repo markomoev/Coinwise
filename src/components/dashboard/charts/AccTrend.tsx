@@ -19,25 +19,30 @@ import { supabase } from '../../../client';
 export default function AccTrend() {
     const [chartData, setChartData] = useState({ labels: [], values: [] });
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try{
-                // get the current user
-                const { data: { user } } = await supabase.auth.getUser();
-                
-                if(user){
-                    // fetch the trend data
-                    const trendData: any = await getAccTrendData(user.id);
+    // auth for user
+    const fetchData = async () => {
+            // get the current user
+            const { data: { user }, error: userError } = await supabase.auth.getUser();
 
-                    setChartData(trendData);
-                }
+            if (user) {
+                // fetch the trend data
+                const trendData: any = await getAccTrendData(user.id);
+
+                setChartData(trendData);
             }
-            catch(error){
-                console.error('Error fetching user or trend data:', error);
+            if(userError){
+                console.error('Error fetching user:', userError);
             }
-        }
-        fetchData();
-    }, []);
+    }
+
+    // Auto-refresh every 1 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchData(); 
+        }, 1000); // 1 second
+
+        return () => clearInterval(interval);
+    }, []);  
 
     const data = {
         labels: chartData.labels,

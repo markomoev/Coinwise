@@ -28,7 +28,7 @@ import { supabase } from '../../../client';
 export default function IncomeVSExpenses() {
     const [chartData, setChartData] = useState({ labels: [], values: [] });
 
-    useEffect(() => {
+
         const fetchData = async () => {
             try{
                 // get the current user
@@ -45,8 +45,15 @@ export default function IncomeVSExpenses() {
                 console.error('Error fetching user or trend data:', error);
             }
         }
-        fetchData();
-    }, []);
+
+    // Auto-refresh every 1 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchData(); 
+        }, 1000); // 1 second
+
+        return () => clearInterval(interval);
+    }, []);  
 
     // chart info
     const data = {

@@ -11,9 +11,9 @@ export default async function getAccTrendData(userId: string) {
     // Fetch transactions for calculating trend
     const { data: transactions, error: transactionsError } = await supabase
         .from('Transactions')
-        .select('created_at, amount, type')
+        .select('date, amount, type')
         .eq('user_id', userId)
-        .order('created_at', { ascending: true });
+        .order('date', { ascending: true });
 
     if (transactionsError || balancesError) {
         console.error('Error fetching data:', { transactionsError, balancesError });
@@ -39,9 +39,15 @@ export default async function getAccTrendData(userId: string) {
     
     // starting and running balance
     let runningBalance = currentBalance - totalTransactionAmount;
-    const balanceHistory: { date: string, balance: number }[] = [];
+
+    //group balances by date
+    const dailyBalances = new Map<string, number>();
 
     transactions.forEach(transaction => {
+        // get the date in a format
+        const dateKey = new Date(transaction.date).toISOString().split('T')[0];
+
+
         // update running balance based on type
         if(transaction.type === 'Income' || transaction.type === 'Savings'){
             runningBalance += Number(transaction.amount);
@@ -49,19 +55,16 @@ export default async function getAccTrendData(userId: string) {
             runningBalance -= Number(transaction.amount);
         }
 
-        // Store the balance at this point in time
-        balanceHistory.push({
-            date: transaction.created_at,
-            balance: runningBalance
-        });
+        // set or update the daily balance
+        dailyBalances.set(dateKey, runningBalance);
     });
 
     // Convert to chart format
-    const labels = balanceHistory.map(item => 
-        new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+    const labels = Array.from(dailyBalances.keys()).map(date => 
+        new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
     );
-    
-    const values = balanceHistory.map(item => item.balance);
+
+    const values = Array.from(dailyBalances.values());
 
     return { labels, values };
 }
