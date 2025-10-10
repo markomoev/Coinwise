@@ -11,6 +11,7 @@ import TransferPopup from "../../components/dashboard/TransferPopup";
 import { useState, useEffect } from "react";
 import { supabase } from "../../client";
 import { Link } from "react-router-dom";
+import AccTrend from "../../components/dashboard/charts/AccTrend";
 
 export default function DashboardPage() {
     const [showFundsPopup, setShowFundsPopup] = useState(false);
@@ -127,13 +128,13 @@ export default function DashboardPage() {
 
     return(
         <div className="w-full min-h-screen">
-            <div className='w-full flex flex-row'>
+            <div className='w-full flex flex-row h-screen'>
                     
                     <SideBar/>
 
-                <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:pr-10">
+                <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:pr-10 pb-6 overflow-y-auto">
                     {/* Financial Cards Section */}
-                    <div className="w-full space-y-6">
+                    <div className="w-full space-y-6 flex-1">
                         {/* Total Balance Card */}
                         <TotalCard
                             showTransferPopup={() => setShowTransferPopup(true)}
@@ -146,18 +147,20 @@ export default function DashboardPage() {
                             <ExpenseCard/>
                             <SavingsCard/>
                         </div>
-                    </div>
 
-                    {/* Future Charts Section */}
-                    <div className="w-full mt-6">
-                        <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg p-6 md:p-8 rounded-2xl text-center">
-                            <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-purple-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg className="w-6 h-6 md:w-8 md:h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 00-2-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                </svg>
+                        {/* Charts Section */}
+                        <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 flex-1'>
+                            <div>
+                                <AccTrend/>
                             </div>
-                            <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Analytics Coming Soon</h3>
-                            <p className="text-sm md:text-base text-gray-600">Interactive charts and detailed financial analytics will be available here</p>
+                            {/* Placeholder for second chart */}
+                            <div>
+                                <AccTrend/>
+                            </div>
+                            {/* Placeholder for third chart */}
+                            <div>
+                                <AccTrend/>
+                            </div>
                         </div>
                     </div>
                 </div>
