@@ -79,8 +79,7 @@ export default function IncomeVSExpenses() {
 
     const options = {
         responsive: true,
-        maintainAspectRatio: true,
-        aspectRatio: 2,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: false
@@ -121,7 +120,7 @@ export default function IncomeVSExpenses() {
 
 
     return (
-        <div className="bg-white border border-gray-200 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div className="bg-white border border-gray-200 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col">
             {/* Header */}
             <div className="flex items-center gap-3 mb-4">
                 <div>
@@ -131,7 +130,7 @@ export default function IncomeVSExpenses() {
             </div>
 
             {/* Chart Container */}
-            <div className="w-full">
+            <div className="w-full flex-1">
                 <Bar data={data} options={options} />
             </div>
         </div>

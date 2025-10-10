@@ -13,7 +13,7 @@ import { supabase } from "../../client";
 import { Link } from "react-router-dom";
 import AccTrend from "../../components/dashboard/charts/AccTrend";
 import IncVSExp from "../../components/dashboard/charts/IncVSExp";
-
+import ChartBreak from "../../components/dashboard/charts/ChartBreak";
 export default function DashboardPage() {
     const [showFundsPopup, setShowFundsPopup] = useState(false);
     const [showTransferPopup, setShowTransferPopup] = useState(false);
@@ -160,7 +160,7 @@ export default function DashboardPage() {
                             </div>
                             {/* Placeholder for third chart */}
                             <div>
-                                <AccTrend/>
+                                <ChartBreak/>
                             </div>
                         </div>
                     </div>
@@ -168,41 +168,39 @@ export default function DashboardPage() {
 
             </div>
 
-            {showFundsPopup &&
+            {showFundsPopup && (
                 <>
-                {/* overlay */}
+                    {/* overlay */}
                     <div
                         className="fixed inset-0 z-40 bg-black/50"
-                        onClick={() => setShowFundsPopup(false)} // close on outside click
+                        onClick={() => setShowFundsPopup(false)}
                     />
-                    
-                {/* popup */}
-                <div className="fixed inset-x-0 top-0 bottom-0 z-50 flex items-center justify-center p-4 max-h-screen overflow-hidden">
-                    <div className="w-full max-w-lg max-h-[85vh] overflow-y-auto">
-                        <FundsPopup
-                            closePopup = {() => setShowFundsPopup(false)}/>
-                    </div>
-                </div>
-                </>
-            }
 
-            {showTransferPopup &&
+                    {/* popup */}
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        <div className="w-full max-w-md sm:max-w-lg">
+                            <FundsPopup closePopup={() => setShowFundsPopup(false)} />
+                        </div>
+                    </div>
+                </>
+            )}
+
+            {showTransferPopup && (
                 <>
-                {/* overlay */}
+                    {/* overlay */}
                     <div
                         className="fixed inset-0 z-40 bg-black/50"
-                        onClick={() => setShowTransferPopup(false)} // close on outside click
+                        onClick={() => setShowTransferPopup(false)}
                     />
-                    
-                {/* popup */}
-                <div className="fixed inset-x-0 top-0 bottom-0 z-50 flex items-center justify-center p-4 max-h-screen overflow-hidden">
-                    <div className="w-full max-w-lg max-h-[85vh] overflow-y-auto">
-                        <TransferPopup
-                            closeTransferPopup = {() => setShowTransferPopup(false)}/>
+
+                    {/* popup */}
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        <div className="w-full max-w-md sm:max-w-lg">
+                            <TransferPopup closeTransferPopup={() => setShowTransferPopup(false)} />
+                        </div>
                     </div>
-                </div>
                 </>
-            }
+            )}
 
         </div>
     )

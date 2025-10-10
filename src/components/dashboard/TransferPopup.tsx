@@ -99,33 +99,33 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
         }
 
     return(
-        <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-2xl rounded-2xl overflow-hidden max-w-lg w-full mx-4">
+        <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-2xl rounded-2xl w-full mx-2 sm:mx-4">
             {/* Header */}
-            <div className="bg-purple-700/5 p-6 border-b border-gray-200">
+            <div className="bg-purple-700/5 p-4 sm:p-6 border-b border-gray-200">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center">
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 bg-purple-600 rounded-lg flex items-center justify-center">
+                        <svg className="w-5 h-5 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                         </svg>
                     </div>
                     <div>
-                        <h2 className="text-xl font-bold text-gray-800">Transfer Money</h2>
-                        <p className="text-sm text-gray-600">Manage your savings account transactions</p>
+                        <h2 className="text-lg sm:text-xl font-bold text-gray-800">Transfer Money</h2>
+                        <p className="text-xs sm:text-sm text-gray-600">Manage your savings account transactions</p>
                     </div>
                 </div>
             </div>
 
             {/* Form Content */}
-            <div className="p-6 space-y-6">
+            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                 {/* Transaction Name */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                         Transaction Name
                     </label>
                     <input 
                         type="text" 
                         placeholder="e.g., Savings transfer, Emergency fund, etc."
-                        className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
+                        className="w-full p-3 sm:p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -133,10 +133,10 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
 
                 {/* Savings Operation */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-3">
                         Savings Operation
                     </label>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
                         <label className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-200 ${
                             type === 'savings Deposit' 
                                 ? 'border-green-300 bg-green-50 text-green-700' 
@@ -155,7 +155,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
                                 </svg>
-                                <span className="font-medium">Deposit</span>
+                                <span className="text-sm font-medium">Deposit</span>
                             </div>
                         </label>
 
@@ -177,7 +177,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13l-5 5m0 0l-5-5m5 5V6" />
                                 </svg>
-                                <span className="font-medium">Withdrawal</span>
+                                <span className="text-sm font-medium">Withdrawal</span>
                             </div>
                         </label>
                     </div>
@@ -186,7 +186,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                 {/* Amount and Date */}
                 <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                             Amount ($)
                         </label>
                         <input 
@@ -196,26 +196,26 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                             step="0.01"
                             value={amount}
                             onChange={(e) => setAmount(Number(e.target.value))}
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
+                            className="w-full p-3 sm:p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                             Date
                         </label>
                         <input 
                             type="date"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
+                            className="w-full p-3 sm:p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
                         />
                     </div>
                 </div>
 
                 {/* Note */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                         Notes (Optional)
                     </label>
                     <textarea 
@@ -224,16 +224,16 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                         rows={3}
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
-                        className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200 resize-none"
+                        className="w-full p-3 sm:p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200 resize-none"
                     />
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3 pt-4">
+                <div className="flex gap-2 sm:gap-3 pt-2 sm:pt-4">
                     <button
                         onClick={transferMon}
                         disabled={!name || !type || !amount}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-purple-600 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-purple-600 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm sm:text-base"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -243,7 +243,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
 
                     <button 
                         onClick={closeTransferPopup}
-                        className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium"
+                        className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium text-sm sm:text-base"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
