@@ -58,7 +58,7 @@ export default function SignUpPage(){
     }
 
     return(
-        <div className='w-full h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50'>
+        <div className='w-full h-screen'>
             <div className='w-full flex flex-row gap-0 h-full'>
                 <SideBar/>
 
@@ -75,7 +75,7 @@ export default function SignUpPage(){
                                         {/* Heading for Signup */}
                                         <div className="text-center mb-8">
                                             <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                                                Join <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-700'>Coinwise</span>
+                                                Join <span className='text-purple-700'>Coinwise</span>
                                             </h1>
                                             <p className="text-gray-600">Create your account and start tracking</p>
                                         </div>
@@ -92,7 +92,7 @@ export default function SignUpPage(){
                                                     placeholder='Choose a username'
                                                     value={username}
                                                     onChange={(e) => setUsername(e.target.value)}
-                                                    className="w-full bg-white/50 border border-gray-300 text-gray-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
+                                                    className="w-full bg-white/50 border border-gray-300 text-gray-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200 placeholder-gray-500"
                                                 />
                                             </div>
                                             
@@ -107,7 +107,7 @@ export default function SignUpPage(){
                                                     placeholder='Enter your email'
                                                     value={email}
                                                     onChange={(e) => setEmail(e.target.value)} 
-                                                    className="w-full bg-white/50 border border-gray-300 text-gray-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
+                                                    className="w-full bg-white/50 border border-gray-300 text-gray-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200 placeholder-gray-500"
                                                 />
                                             </div>
                                             
@@ -122,13 +122,13 @@ export default function SignUpPage(){
                                                     placeholder='Create a password'
                                                     value={password}
                                                     onChange={(e) => setPassword(e.target.value)}
-                                                    className="w-full bg-white/50 border border-gray-300 text-gray-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-500"
+                                                    className="w-full bg-white/50 border border-gray-300 text-gray-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200 placeholder-gray-500"
                                                 />
                                                 <p className="text-xs text-gray-500 mt-1">Must contain at least one uppercase letter and number</p>
                                             </div>
 
                                             {/* Signup Button */}
-                                            <button className='w-full bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg'>
+                                            <button className='w-full bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg'>
                                                 Create Account
                                             </button>
                                         </div>
@@ -140,14 +140,14 @@ export default function SignUpPage(){
                             <div className="text-center lg:text-left">
                                 <div className="mb-8">
                                     <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
-                                        Already have an <span className='text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-700'>account?</span>
+                                        Already have an <span className='text-purple-700'>account?</span>
                                     </h2>
                                     <p className="text-lg text-gray-600 leading-relaxed mb-6">
                                         Welcome back! Sign in to continue managing your finances and tracking your progress toward your goals.
                                     </p>
                                     <div className="space-y-4 text-left">
                                         <div className="flex items-center space-x-3">
-                                            <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                                                 <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                                 </svg>
@@ -155,7 +155,7 @@ export default function SignUpPage(){
                                             <span className="text-gray-700">Access your saved data</span>
                                         </div>
                                         <div className="flex items-center space-x-3">
-                                            <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                                                 <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                                 </svg>
@@ -163,7 +163,7 @@ export default function SignUpPage(){
                                             <span className="text-gray-700">Continue tracking expenses</span>
                                         </div>
                                         <div className="flex items-center space-x-3">
-                                            <div className="w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                                                 <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                                 </svg>
@@ -173,9 +173,9 @@ export default function SignUpPage(){
                                     </div>
                                 </div>
                                 
-                                <div className="bg-gradient-to-r from-blue-100/50 to-purple-100/50 backdrop-blur-lg rounded-2xl border border-gray-200 p-6">
+                                <div className="bg-purple-50 backdrop-blur-lg rounded-2xl border border-gray-200 p-6">
                                     <p className="text-gray-700 mb-4">Already have an account?</p>
-                                    <Link to={'/login'} className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                    <Link to={'/login'} className="inline-flex items-center px-6 py-3 bg-purple-700 hover:bg-purple-800 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
                                         Sign In
                                         <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>

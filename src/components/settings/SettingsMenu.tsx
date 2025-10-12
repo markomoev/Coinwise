@@ -5,9 +5,9 @@ interface SettingsMenuProps {
 
 export default function SettingsMenu({ activeSection, setActiveSection }: SettingsMenuProps) {
     const menuItems = [
-        { id: 'account', label: 'Account', icon: '👤' },
-        { id: 'support', label: 'Support', icon: '💬' },
-        { id: 'terms', label: 'Terms & Policies', icon: '📋' }
+        { id: 'account', label: 'Account'},
+        { id: 'support', label: 'Support'},
+        { id: 'terms', label: 'Terms & Policies'}
     ]
 
     return(
@@ -29,7 +29,6 @@ export default function SettingsMenu({ activeSection, setActiveSection }: Settin
                                 : 'hover:bg-black/10 text-gray-700 border border-transparent'
                         }`}
                     >
-                        <span className="text-lg">{item.icon}</span>
                         <span>{item.label}</span>
                     </button>
                 ))}

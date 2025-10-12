@@ -4,7 +4,6 @@ import LogSignPage from "./features/auth/Login";
 import SignUpPage from "./features/auth/Signup";
 import SettingsPage from "./features/settings/Settings";
 import DashboardPage from "./features/dashboard/Dashboard";
-import StatsPage from "./features/statistics/Statistics";
 import TransactionsPage from "./features/transactions/Transactions";
 
 export default function App() {
@@ -17,7 +16,6 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/statistics" element={<StatsPage />} />
           <Route path="/transactions" element={<TransactionsPage />} />
           <Route path="/login" element={<LogSignPage />} />
           <Route path="/signup" element={<SignUpPage />} />

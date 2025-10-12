@@ -56,7 +56,7 @@ export default function DashboardPage() {
             <div className="w-full min-h-screen relative">
                 <div className='w-full flex flex-row'>
                     <SideBar/>
-                    <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:pr-10">
+                    <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:pr-10 relative">
                         {/* Blurred cards in background */}
                         <div className="blur-sm opacity-30 pointer-events-none space-y-6">
                             <div className="w-full bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-4 md:p-6 rounded-2xl">
@@ -98,23 +98,21 @@ export default function DashboardPage() {
                         </div>
                         
                         {/* Auth overlay bubble */}
-                        <div className="absolute inset-0 flex items-center justify-center z-10 p-4">
+                        <div className="absolute inset-0 z-10 flex items-center justify-center p-4">
                             <div className="bg-white/95 border border-black/20 backdrop-blur-2xl shadow-2xl p-6 md:p-12 rounded-3xl text-center max-w-md w-full">
                                 <div className="mb-4">
-                                    <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <div className="w-12 h-12 md:w-16 md:h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                                         <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                         </svg>
                                     </div>
                                 </div>
-                                <h2 className="text-xl md:text-2xl font-bold mb-3 bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                                    Authentication Required
-                                </h2>
+                                <h2 className="text-xl md:text-2xl font-bold mb-3 text-purple-700">Authentication Required</h2>
                                 <p className="text-gray-600 mb-6 leading-relaxed text-sm md:text-base">
                                     Please log in to access your financial dashboard and view your balance, transactions, and savings.
                                 </p>
                                 <div className="flex flex-col gap-3">
-                                    <Link to="/login" className="cursor-pointer bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold py-3 px-6 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                                    <Link to="/login" className="cursor-pointer bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-6 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                                         Go to Login
                                     </Link>
                                     <p className="text-xs md:text-sm text-gray-500">Use the sidebar to navigate</p>

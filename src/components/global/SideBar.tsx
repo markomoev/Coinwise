@@ -7,7 +7,6 @@ import DashIcon from '../../public/sidebar/dashboard.png'
 import PlusIcon from '../../public/sidebar/plus.png'
 import UserIcon from '../../public/sidebar/user.png'
 import SettingsIcon from '../../public/sidebar/settings.png'
-import StatsIcon from '../../public/sidebar/stats.png'
 
 type NavItem = {
     title: string;
@@ -20,7 +19,6 @@ const navItems: NavItem[] = [
     { title: 'Home', path: '/home', icon: HomeIcon, alt: 'Home Icon' },
     { title: 'Dashboard', path: '/dashboard', icon: DashIcon, alt: 'Dashboard Icon' },
     { title: 'Transactions', path: '/transactions', icon: PlusIcon, alt: 'Plus Icon' },
-    { title: 'Statistics', path: '/statistics', icon: StatsIcon , alt: 'Statistics Icon' }
 ];
 
 export default function SideBar() {
@@ -91,7 +89,7 @@ export default function SideBar() {
                     fixed top-0 left-0 z-30 transition-all duration-300
                     bg-gradient-to-br from-white/95 to-gray-50/95 backdrop-blur-xl
                     border-r border-black/5 shadow-lg
-                    text-lg font-normal w-64 h-full max-h-screen overflow-y-auto
+                    text-lg font-normal w-64 min-h-screen overflow-y-auto
                     ${open ? "translate-x-0" : "-translate-x-full"}
                     md:static md:translate-x-0 md:w-fit md:min-h-screen md:max-h-screen
                     md:border-r md:bg-white/90
@@ -129,11 +127,8 @@ export default function SideBar() {
                         })}
                     </nav>
 
-                    {/* Spacer to push the user section to bottom */}
-                    <div className="flex-grow min-h-[2rem]"></div>
-
                     {/* User Section */}
-                    <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-gray-100 flex-shrink-0 pb-4">
+                    <div className="flex flex-col gap-2 pt-4 mt-auto border-t border-gray-100 flex-shrink-0 pb-4">
                         <Link 
                             to="/login"
                             className={`${location.pathname === '/login' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200

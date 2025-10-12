@@ -122,14 +122,14 @@ export default function TransactionsPage() {
                                         </svg>
                                     </div>
                                 </div>
-                                <h2 className="text-xl md:text-2xl font-bold mb-3 text-purple-600">
+                                <h2 className="text-xl md:text-2xl font-bold mb-3 text-purple-700">
                                     Authentication Required
                                 </h2>
                                 <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">
                                     Please log in to view and manage your transaction history.
                                 </p>
                                 <div className="flex flex-col gap-3">
-                                    <Link to="/login" className="cursor-pointer bg-purple-600 text-white font-semibold py-3 px-6 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                                    <Link to="/login" className="cursor-pointer bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-6 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                                         Go to Login
                                     </Link>
                                     <p className="text-xs md:text-sm text-gray-500">Use the sidebar to navigate</p>
