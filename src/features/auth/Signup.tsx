@@ -58,13 +58,13 @@ export default function SignUpPage(){
     }
 
     return(
-        <div className='w-full h-screen'>
-            <div className='w-full flex flex-row gap-0 h-full'>
+        <div className='w-full min-h-screen'>
+            <div className='w-full flex flex-row gap-0 min-h-screen'>
                 <SideBar/>
 
-                <div className='flex-1 flex justify-center items-center'>
-                    <div className='w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
-                        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen py-12'>
+                <div className='flex-1 flex justify-center items-start lg:items-center overflow-y-auto'>
+                    <div className='w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-0'>
+                        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start lg:items-center lg:min-h-screen'>
                             {/* Signup Form Section */}
                             <div className='flex justify-center'>
                                 <form 
