@@ -41,7 +41,7 @@ export default function DashboardPage() {
             <div className="w-full min-h-screen">
                 <div className='w-full flex flex-row'>
                     <SideBar/>
-                    <div className="flex flex-1 flex-col items-center justify-center px-4 pt-20 md:pt-10">
+                    <div className="flex flex-1 flex-col items-center justify-center px-4 md:px-10 pt-20 md:pt-10 md:pl-64">
                         <div className="bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-6 md:p-8 rounded-2xl">
                             <p className="text-lg">Loading...</p>
                         </div>
@@ -56,7 +56,7 @@ export default function DashboardPage() {
             <div className="w-full min-h-screen relative">
                 <div className='w-full flex flex-row'>
                     <SideBar/>
-                    <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:pr-10 relative">
+                    <div className="flex flex-1 flex-col px-4 md:px-10 pt-20 md:pt-10 md:pr-10 md:pl-64 relative">
                         {/* Blurred cards in background */}
                         <div className="blur-sm opacity-30 pointer-events-none space-y-6">
                             <div className="w-full bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-4 md:p-6 rounded-2xl">
@@ -98,7 +98,7 @@ export default function DashboardPage() {
                         </div>
                         
                         {/* Auth overlay bubble */}
-                        <div className="absolute inset-0 z-10 flex items-center justify-center p-4">
+                        <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-40 flex items-center justify-center p-4">
                             <div className="bg-white/95 border border-black/20 backdrop-blur-2xl shadow-2xl p-6 md:p-12 rounded-3xl text-center max-w-md w-full">
                                 <div className="mb-4">
                                     <div className="w-12 h-12 md:w-16 md:h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -131,7 +131,7 @@ export default function DashboardPage() {
                     
                     <SideBar/>
 
-                <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:pr-10 pb-6 overflow-y-auto">
+                <div className="flex flex-1 flex-col px-4 md:px-10 pt-20 md:pt-10 pb-6 overflow-y-auto md:pl-64">
                     {/* Financial Cards Section */}
                     <div className="w-full space-y-6 flex-1">
                         {/* Total Balance Card */}
@@ -170,12 +170,12 @@ export default function DashboardPage() {
                 <>
                     {/* overlay */}
                     <div
-                        className="fixed inset-0 z-40 bg-black/50"
+                        className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-40 bg-black/50"
                         onClick={() => setShowFundsPopup(false)}
                     />
 
                     {/* popup */}
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center p-4">
                         <div className="w-full max-w-md sm:max-w-lg">
                             <FundsPopup closePopup={() => setShowFundsPopup(false)} />
                         </div>
@@ -187,12 +187,12 @@ export default function DashboardPage() {
                 <>
                     {/* overlay */}
                     <div
-                        className="fixed inset-0 z-40 bg-black/50"
+                        className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-40 bg-black/50"
                         onClick={() => setShowTransferPopup(false)}
                     />
 
                     {/* popup */}
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center p-4">
                         <div className="w-full max-w-md sm:max-w-lg">
                             <TransferPopup closeTransferPopup={() => setShowTransferPopup(false)} />
                         </div>

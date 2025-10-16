@@ -32,7 +32,7 @@ export default function HomePage(){
         <div className='w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50'>
             <div className='w-full flex flex-row gap-0 min-h-screen'>
                 <SideBar/>
-                <div className='flex-1 flex flex-col overflow-y-auto'>
+                <div className='flex-1 flex flex-col overflow-y-auto md:pl-64'>
                     {/* Hero Section */}
                     <div className='flex flex-col items-center justify-center min-h-screen px-4 pt-20 md:pt-8 sm:px-6 lg:px-8'>
                         <div className='text-center max-w-4xl mx-auto'>

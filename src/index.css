@@ -12,6 +12,12 @@
   }
 }
 
+/* Alert pop-in animation: opacity only (avoid transform to keep centering stable) */
+@keyframes alert-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 body {
   min-height: 100vh;
   background: 
@@ -53,31 +59,9 @@ body::before {
 
   color: black;
   height: 100%;
-  
-
+ 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* Brand color tokens (defaults reflect current scheme). 
-     Replace these with your new palette values to update the app colors. */
-  --brand-primary: #2563eb;         /* blue-600 */
-  --brand-secondary: #7e22ce;       /* purple-700 */
-  --brand-primary-hover: #1d4ed8;   /* blue-700 */
-  --brand-secondary-hover: #6b21a8; /* purple-800 */
-  --brand-accent: #10b981;          /* emerald-500 (used in small badges) */
-
-  /* Background gradient stops for auth pages */
-  --bg-start: #f8fafc;              /* slate-50 */
-  --bg-middle: #eff6ff;             /* blue-50 */
-  --bg-end: #faf5ff;                /* purple-50 */
-
-  /* Soft tinted backgrounds (50% alpha equivalents) */
-  --bg-tint-primary: rgba(219, 234, 254, 0.5);   /* blue-100 @ 50% */
-  --bg-tint-secondary: rgba(243, 232, 255, 0.5); /* purple-100 @ 50% */
-
-  /* Form focus states */
-  --focus-ring: #2563eb;            /* blue-600 */
-  --focus-border: #c084fc;          /* purple-400 */
 }

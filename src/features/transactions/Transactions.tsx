@@ -88,7 +88,7 @@ export default function TransactionsPage() {
             <div className="w-full h-screen">
                 <div className="w-full flex flex-row h-full">
                     <SideBar/>
-                    <div className="flex flex-1 items-center justify-center px-4 pt-20 md:pt-10">
+                    <div className="flex flex-1 items-center justify-center px-4 md:px-10 pt-20 md:pt-10 md:pl-64">
                         <div className="bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-6 md:p-8 rounded-2xl">
                             <p className="text-lg">Loading...</p>
                         </div>
@@ -103,7 +103,7 @@ export default function TransactionsPage() {
             <div className="w-full h-screen">
                 <div className="w-full flex flex-row h-full">
                     <SideBar/>
-                    <div className="flex flex-1 items-center justify-center px-4 pt-20 md:pt-10 relative">
+                    <div className="flex flex-1 items-center justify-center px-4 md:px-10 pt-20 md:pt-10 relative md:pl-64">
                         {/* Blurred transaction list background */}
                         <div className="absolute inset-0 blur-sm opacity-30 pointer-events-none">
                             <TransactionsList 
@@ -113,8 +113,8 @@ export default function TransactionsPage() {
                         </div>
                         
                         {/* Auth overlay bubble */}
-                        <div className="relative z-10 w-full max-w-md">
-                            <div className="bg-white/95 border border-black/20 backdrop-blur-2xl shadow-2xl p-6 md:p-12 rounded-3xl text-center">
+                        <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-40 flex items-center justify-center p-4">
+                            <div className="bg-white/95 border border-black/20 backdrop-blur-2xl shadow-2xl p-6 md:p-12 rounded-3xl text-center max-w-md w-full">
                                 <div className="mb-4">
                                     <div className="w-12 h-12 md:w-16 md:h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                                             <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,7 +147,7 @@ export default function TransactionsPage() {
             <div className="w-full flex flex-row h-full">
                 <SideBar/>
                 
-                <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:pr-10 pb-4 h-full">
+                <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:pr-10 pb-4 h-full md:pl-64">
 
                     {/* Transaction Content */}
                     <div className="w-full flex-1 min-h-0">
@@ -168,7 +168,7 @@ export default function TransactionsPage() {
                         onClick={() => setShowPopup(false)}
                     />
                     {/* Popup */}
-                    <div className="fixed inset-x-0 top-0 bottom-0 z-50 flex items-center justify-center p-4 max-h-screen overflow-hidden">
+                    <div className="fixed inset-x-0 top-0 bottom-0 md:left-64 md:right-0 z-50 flex items-center justify-center p-4 max-h-screen overflow-hidden">
                         <div className="w-full max-w-lg max-h-[85vh] overflow-y-auto">
                             <TransactionPopup
                                 closePopup={() => setShowPopup(false)} 

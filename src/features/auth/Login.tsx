@@ -3,8 +3,12 @@ import { useState } from "react"
 import { supabase } from "../../client"
 
 import SideBar from "../../components/global/SideBar"
+import Alert from "../../components/global/Alert"
 
 export default function LogSignPage(){
+    // alert for errors
+    const [alertMessage, setAlertMessage] = useState(false);
+    const [alertMessageText, setAlertMessageText] = useState('');
 
     const navigate = useNavigate();
 
@@ -15,20 +19,26 @@ export default function LogSignPage(){
     const handleLogIn = async (e:any) => {
         e.preventDefault();
 
+        // sign in with supabase
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
         })
 
-        
         if(error){
-            alert('Error in fetching data!');
+            setAlertMessage(true);
+            setAlertMessageText('Incorrect email or password');
+            console.error('Login error:', error.message);
             return;
         }
 
+        // check if user profile exists and is not deleted
         const { data: userData, error: getUserError} = await supabase.auth.getUser();
         if(getUserError){
-            alert('Erorr in fetching data')
+            setAlertMessage(true);
+            setAlertMessageText('Error in fetching user data');
+            console.error('Get user error:', getUserError.message);
+            await supabase.auth.signOut();
             return;
         }
         const user:any = userData.user;
@@ -40,10 +50,14 @@ export default function LogSignPage(){
             .single();
 
         if (profileError) {
-            alert('Error fetching profile: ' + profileError.message);
+            setAlertMessage(true);
+            setAlertMessageText('Error in fetching user data');
+            console.error('Profile fetch error:', profileError.message);
+            await supabase.auth.signOut();
             return;
         }if (profile?.is_deleted) {
-            alert('This account has been deleted');
+            setAlertMessage(true);
+            setAlertMessageText('Profile is deleted or does not exist');
             await supabase.auth.signOut();
             return;
         }
@@ -63,6 +77,13 @@ export default function LogSignPage(){
         <div className='w-full min-h-screen'>
             <div className='w-full flex flex-row gap-0 min-h-screen'>
                 <SideBar/>
+                {/* Alert Message */}
+                <div className = {`${alertMessage ? 'block' : 'hidden'}`}>
+                    {alertMessage && 
+                        <Alert 
+                            closeAlert={() => setAlertMessage(false)}
+                            alertMessageText={alertMessageText} />}
+                </div>
 
                 <div className='flex-1 flex justify-center items-start lg:items-center overflow-y-auto'>
                     <div className='w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-0'>

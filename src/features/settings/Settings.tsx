@@ -46,14 +46,13 @@ export default function SettingsPage(){
     }
 
     return(
-        <div className="w-full h-auto">
-            <div className="w-full flex flex-row gap-20">
+        <div className="w-full min-h-screen">
+            <div className="w-full flex flex-row">
                 <SideBar/>
-                
-                <div className="md:mr-10 md:mt-0 mt-10 flex flex-1 flex-col gap-10 w-full h-auto items-center justify-center">
+                <div className="flex flex-1 flex-col gap-10 w-full h-auto items-center justify-center md:pl-64 px-4 md:px-10 py-10">
 
                     {/* Settings Content */}
-                    <div className="w-[95%] max-w-6xl flex md:flex-row flex-col gap-6">
+                    <div className="w-full max-w-6xl flex md:flex-row flex-col gap-6">
                         {/* Settings Menu */}
                         <div className="md:w-1/4 w-full">
                             <div className="bg-white/90 border border-black/10 backdrop-blur-xl shadow-lg p-6 rounded-2xl">

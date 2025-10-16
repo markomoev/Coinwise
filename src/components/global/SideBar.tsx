@@ -89,14 +89,14 @@ export default function SideBar() {
                     fixed top-0 left-0 z-30 transition-all duration-300
                     bg-gradient-to-br from-white/95 to-gray-50/95 backdrop-blur-xl
                     border-r border-black/5 shadow-lg
-                    text-lg font-normal w-64 min-h-screen overflow-y-auto
+                    text-lg font-normal w-64 h-screen overflow-y-auto
                     ${open ? "translate-x-0" : "-translate-x-full"}
-                    md:static md:translate-x-0 md:w-fit md:min-h-screen md:max-h-screen
+                    md:translate-x-0 md:w-64 md:h-screen
                     md:border-r md:bg-white/90
                     overscroll-contain
                 `}
             >
-                <div className="w-full flex flex-col p-3 min-h-full pb-safe">
+                <div className="w-full flex flex-col p-3 min-h-full pb-safe items-starts">
                     {/* Website Name */}
                     <Link to="/home" className="flex items-center gap-3 px-3 py-4 mb-4 md:mb-6 md:mt-0 mt-10 border-b border-gray-100">
                         <span className="text-3xl font-bold text-purple-700">
