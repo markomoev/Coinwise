@@ -62,7 +62,7 @@ export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
     return(
         <div className="w-full bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden">
             {/* Header Section */}
-            <div className="bg-linear-to-r from-purple-700/15 to-purple-700/10 p-6 border-b border-gray-200">
+            <div className="bg-purple-700/5 p-6 border-b border-gray-200">
                 <div className="flex items-center gap-3">
                     <div>
                         <h2 className="text-xl font-semibold text-gray-800">Total Balance</h2>

@@ -56,7 +56,7 @@ export default function DashboardPage() {
             <div className="w-full min-h-screen relative">
                 <div className='w-full flex flex-row'>
                     <SideBar/>
-                    <div className="flex flex-1 flex-col px-4 md:px-10 pt-20 md:pt-10 md:pr-10 md:pl-64 relative">
+                    <div className="flex flex-1 flex-col px-4 md:px-10 pt-20 md:pt-10 md:pr-10 md:ml-64 relative">
                         {/* Blurred cards in background */}
                         <div className="blur-sm opacity-30 pointer-events-none space-y-6">
                             <div className="w-full bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-4 md:p-6 rounded-2xl">
@@ -131,9 +131,9 @@ export default function DashboardPage() {
                     
                     <SideBar/>
 
-                <div className="flex flex-1 flex-col px-4 md:px-10 pt-20 md:pt-10 pb-6 overflow-y-auto md:pl-64">
+                <div className="flex flex-1 flex-col overflow-y-auto md:ml-64">
                     {/* Financial Cards Section */}
-                    <div className="w-full space-y-6 flex-1">
+                    <div className="w-full px-4 md:px-10 pt-20 md:pt-10 pb-6 space-y-6">
                         {/* Total Balance Card */}
                         <TotalCard
                             showTransferPopup={() => setShowTransferPopup(true)}

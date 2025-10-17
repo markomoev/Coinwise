@@ -1,9 +1,15 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { supabase } from "../../client"
+
 import SideBar from "../../components/global/SideBar"
+import Alert from "../../components/global/Alert"
 
 export default function SignUpPage(){
+    // alert for errors
+    const [alertMessage, setAlertMessage] = useState(false);
+    const [alertMessageText, setAlertMessageText] = useState('');
+
 
     const navigate = useNavigate();
 
@@ -39,12 +45,19 @@ export default function SignUpPage(){
             })
 
             if(insertError){
-                alert('Error in inserting the data!')
+            setAlertMessage(true);
+            setAlertMessageText('Error in inserting data');
+            console.error('Insert error:', insertError.message);
+            return;
             }
 
             if(error){
-                alert('Error in fetching data!');
+            setAlertMessage(true);
+            setAlertMessageText('Error in signing up');
+            console.error('Sign up error:', error.message);
+            return;            
             }
+
             if(data){
                 navigate('/home');
             }
@@ -62,6 +75,13 @@ export default function SignUpPage(){
             <div className='w-full flex flex-row gap-0 min-h-screen'>
                 <SideBar/>
 
+                {/* Alert Message */}
+                <div className = {`${alertMessage ? 'block' : 'hidden'}`}>
+                    {alertMessage && 
+                        <Alert 
+                            closeAlert={() => setAlertMessage(false)}
+                            alertMessageText={alertMessageText} />}
+                </div>
                 <div className='flex-1 flex justify-center items-start lg:items-center overflow-y-auto'>
                     <div className='w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-0'>
                         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start lg:items-center lg:min-h-screen'>

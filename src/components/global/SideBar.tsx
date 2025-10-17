@@ -25,6 +25,9 @@ export default function SideBar() {
     const [open, setOpen] = useState(false);
     const [username, setUsername] = useState('Add Profile');
 
+    // for logged in or not logged in user
+    const [isActive, setIsActive] = useState(false);
+
     // check active page for highlighting the main nav items
     const location = useLocation()
 
@@ -39,6 +42,8 @@ export default function SideBar() {
 
             if(data?.session?.user?.user_metadata?.username){
                 setUsername(data.session?.user.user_metadata.username);
+                // if user is logged in, don't let them access login page
+                setIsActive(true);   
             }
             if(error){
                 console.error('Error fetching username:', error);
@@ -131,7 +136,7 @@ export default function SideBar() {
                     <div className="flex flex-col gap-2 pt-4 mt-auto border-t border-gray-100 flex-shrink-0 pb-4">
                         <Link 
                             to="/login"
-                            className={`${location.pathname === '/login' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
+                            className={`${isActive ? 'pointer-events-none' : ''} ${location.pathname === '/login' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
                                      hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10`}
                         >
                             <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
@@ -144,7 +149,7 @@ export default function SideBar() {
                         
                         <Link 
                             to="/settings"
-                            className={`${location.pathname === '/settings' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
+                            className={`${!isActive ? 'pointer-events-none' : ''} ${location.pathname === '/settings' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
                                      hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10`}
                         >
                             <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">

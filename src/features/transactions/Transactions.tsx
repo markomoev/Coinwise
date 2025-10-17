@@ -88,7 +88,7 @@ export default function TransactionsPage() {
             <div className="w-full h-screen">
                 <div className="w-full flex flex-row h-full">
                     <SideBar/>
-                    <div className="flex flex-1 items-center justify-center px-4 md:px-10 pt-20 md:pt-10 md:pl-64">
+                    <div className="flex flex-1 items-center justify-center px-4 md:px-10 pt-20 md:pt-10 md:ml-64">
                         <div className="bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-6 md:p-8 rounded-2xl">
                             <p className="text-lg">Loading...</p>
                         </div>
@@ -103,7 +103,7 @@ export default function TransactionsPage() {
             <div className="w-full h-screen">
                 <div className="w-full flex flex-row h-full">
                     <SideBar/>
-                    <div className="flex flex-1 items-center justify-center px-4 md:px-10 pt-20 md:pt-10 relative md:pl-64">
+                    <div className="flex flex-1 items-center justify-center px-4 md:px-10 pt-20 md:pt-10 relative md:ml-64">
                         {/* Blurred transaction list background */}
                         <div className="absolute inset-0 blur-sm opacity-30 pointer-events-none">
                             <TransactionsList 
@@ -147,7 +147,7 @@ export default function TransactionsPage() {
             <div className="w-full flex flex-row h-full">
                 <SideBar/>
                 
-                <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:pr-10 pb-4 h-full md:pl-64">
+                <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:px-10 pb-4 h-full md:ml-64">
 
                     {/* Transaction Content */}
                     <div className="w-full flex-1 min-h-0">
