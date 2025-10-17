@@ -1,17 +1,18 @@
-# Coinwise (Alpha)
+# Coinwise — Alpha 1.0
 
-Coinwise is a modern, lightweight personal finance tracker built with React, TypeScript, Vite, Tailwind CSS, Chart.js, and Supabase. This alpha release focuses on the core experience: viewing balances, adding transactions, and basic insights.
+Coinwise is a modern, lightweight personal finance tracker built with React, TypeScript, Vite, Tailwind CSS, Chart.js, and Supabase.
 
-Status: Alpha — features and UI are still evolving. Expect frequent changes and occasional breaking updates.
+Status: Alpha 1.0 — active development; features and UI are evolving. Expect frequent changes and occasional breaking updates.
 
-## Highlights
+## What’s new in Alpha 1.0
 
-- Auth with Supabase (email/password)
-- Dashboard with total, income, expenses, savings cards
-- Add transactions (income, expense) and savings operations (deposit/withdraw)
-- Quick transfer between main and savings
-- Basic charts (account trend, income vs expense)
-- Responsive layout with a sidebar navigation
+- Authentication with Supabase (email/password)
+- Dashboard overview with cards: Total, Income, Expenses, Savings
+- Add transactions (income/expense) and savings operations (deposit/withdraw)
+- Quick transfer between main account and savings
+- Charts: Account Trend, Income vs Expense, and breakdown visuals
+- Responsive UI with a sidebar, mobile overlay, and route-aware highlighting
+- Basic account settings
 
 ## Tech Stack
 
@@ -29,7 +30,7 @@ Prerequisites:
 
 1) Clone and install
 
-```
+```powershell
 git clone <your-fork-or-repo-url>
 cd Coinwise
 npm install
@@ -37,14 +38,18 @@ npm install
 
 2) Configure environment
 
-Currently, Supabase URL and anon key are referenced in `src/client.ts`. For alpha, they may be inlined. For your own project, set environment variables and load them in `client.ts` (recommended):
+For Alpha, `src/client.ts` may include inlined Supabase credentials. For your own deployments, use environment variables via Vite.
 
-- VITE_SUPABASE_URL
-- VITE_SUPABASE_ANON_KEY
+Create a `.env.local` file at the project root (not committed):
 
-Example `src/client.ts` usage (recommended approach):
-
+```dotenv
+VITE_SUPABASE_URL=your-supabase-url
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
+
+Then in `src/client.ts` reference them (recommended):
+
+```ts
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string
@@ -54,17 +59,17 @@ export const supabase = createClient(supabaseUrl, supabaseKey)
 
 3) Run locally
 
-```
+```powershell
 npm run dev
 ```
 
-App runs with Vite (hot reload). Open the printed URL (usually http://localhost:5173).
+Vite will print a local URL (usually http://localhost:5173).
 
 ## Scripts
 
 - dev: start Vite dev server
 - build: type-check then build for production
-- preview: locally preview the production build
+- preview: preview the production build locally
 - lint: run ESLint
 
 ## Routing
@@ -72,7 +77,7 @@ App runs with Vite (hot reload). Open the printed URL (usually http://localhost:
 - /home — Landing page
 - /login — Sign in
 - /signup — Create account
-- /dashboard — Main overview + charts
+- /dashboard — Overview + charts
 - /transactions — Transactions list + add popup
 - /settings — Account settings
 
@@ -83,26 +88,38 @@ Tables used (names may evolve):
 - Balances: { user_id, total, income, expenses }
 - Transactions: { user_id, name, amount, type, date, note, created_at }
 
-Minimal seed/checks are performed at runtime. Some flows upsert Balances per user.
+Minimal seed/checks may occur at runtime (e.g., upserting balances per user).
 
 ## Deployment
 
-Vercel recommended for hosting:
-- Vite build output in `dist/`
+Vercel is recommended:
+- Build output in `dist/`
 - Set env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY)
-- Optional: configure SPA fallback (Vercel handles React Router by default)
+- SPA routing: Vercel handles React Router fallback by default
 
-## Known Limitations (Alpha)
+## Security Notes
 
-- Some UI is still being standardized (colors/gradients) during alpha.
-- No comprehensive input validation yet.
-- Errors are displayed via alerts in some places.
-- Real-time updates are simulated via polling in Transactions.
-- Supabase keys may be inlined in `src/client.ts` — replace with env vars for production.
+- Do not expose service (admin) keys in the client. Only use the public anon key in browser apps.
+- Prefer environment variables over inlined keys for production.
 
-## Contributing (Alpha)
+## Known Issues (Alpha)
 
-Open an issue or PR with clear reproduction steps. Keep changes small and focused. For new features, please include a brief proposal.
+- Some UI is still being standardized (colors/gradients).
+- Limited input validation.
+- Errors may be surfaced via simple alerts.
+- Real-time updates are limited; some lists rely on re-fetch/polling.
+- Inlined Supabase keys in `src/client.ts` (alpha convenience) — replace with env vars for production.
+
+## Roadmap (Next)
+
+- Transaction editing and categorization
+- More robust validation and error handling
+- Improved charts and filtering
+- Tests and accessibility improvements
+
+## Contributing
+
+Open an issue or PR with clear reproduction steps. Keep changes small and focused. For new features, include a brief proposal.
 
 ## License
 
