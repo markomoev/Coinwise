@@ -170,13 +170,13 @@ export default function DashboardPage() {
                 <>
                     {/* overlay */}
                     <div
-                        className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-40 bg-black/50"
+                        className="fixed inset-0 z-40 md:bg-black/50"
                         onClick={() => setShowFundsPopup(false)}
                     />
 
                     {/* popup */}
-                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center p-4">
-                        <div className="w-full max-w-md sm:max-w-lg">
+                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center md:p-4 p-0">
+                        <div className="w-full max-w-md sm:max-w-lg flex items-center justify-center">
                             <FundsPopup closePopup={() => setShowFundsPopup(false)} />
                         </div>
                     </div>
@@ -187,13 +187,13 @@ export default function DashboardPage() {
                 <>
                     {/* overlay */}
                     <div
-                        className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-40 bg-black/50"
+                        className="fixed inset-0 z-40 md:bg-black/50"
                         onClick={() => setShowTransferPopup(false)}
                     />
 
                     {/* popup */}
-                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center p-4">
-                        <div className="w-full max-w-md sm:max-w-lg">
+                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center md:p-4 p-0">
+                        <div className="w-full max-w-md sm:max-w-lg flex items-center justify-center">
                             <TransferPopup closeTransferPopup={() => setShowTransferPopup(false)} />
                         </div>
                     </div>

@@ -73,6 +73,8 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                     newSavings += Number(amount);
                 break;
 
+                // Support both correct and legacy spellings
+                case "Savings Withdrawal":
                 case "Savings Withdrawl":
                     newSavings -= Number(amount);
                 break;
@@ -160,17 +162,17 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                         </label>
 
                         <label className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-200 ${
-                            type === 'savings Withdrawl' 
+                            type === 'savings Withdrawal' 
                                 ? 'border-red-300 bg-red-50 text-red-700' 
                                 : 'border-gray-300 hover:border-gray-400'
                         }`}>
                             <input 
-                                id="withdrawl"
+                                id="withdrawal"
                                 name="savings-operations"
                                 type="radio" 
-                                checked={type === 'savings Withdrawl'}
+                                checked={type === 'savings Withdrawal'}
                                 onChange={(e) => setType(e.target.value)}
-                                value="savings Withdrawl"
+                                value="savings Withdrawal"
                                 className="w-4 h-4 text-red-600 focus:ring-red-500"
                             />
                             <div className="flex items-center gap-2">

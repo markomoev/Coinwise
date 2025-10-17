@@ -164,12 +164,12 @@ export default function TransactionsPage() {
                 <>
                     {/* Overlay */}
                     <div
-                        className="fixed inset-0 z-40 bg-black/50"
+                        className="fixed inset-0 z-40 md:bg-black/50"
                         onClick={() => setShowPopup(false)}
                     />
                     {/* Popup */}
-                    <div className="fixed inset-x-0 top-0 bottom-0 md:left-64 md:right-0 z-50 flex items-center justify-center p-4 max-h-screen overflow-hidden">
-                        <div className="w-full max-w-lg max-h-[85vh] overflow-y-auto">
+                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center md:p-4 p-0">
+                        <div className="w-full max-w-md sm:max-w-lg flex items-center justify-center">
                             <TransactionPopup
                                 closePopup={() => setShowPopup(false)} 
                             />

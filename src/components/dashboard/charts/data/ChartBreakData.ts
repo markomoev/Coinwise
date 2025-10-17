@@ -43,7 +43,7 @@ export default async function ChartBreakData(userId: string) {
     transactions.forEach(transaction => {
         if(transaction.type === 'Savings Deposit' || transaction.type === 'Savings'){
             totalSavingsAmount += Number(transaction.amount);
-        } else if(transaction.type === 'Savings Withdrawl'){
+        } else if(transaction.type === 'Savings Withdrawal' || transaction.type === 'Savings Withdrawl'){
             totalSavingsAmount -= Number(transaction.amount);
         }
     });
@@ -62,7 +62,7 @@ export default async function ChartBreakData(userId: string) {
         // update running balance based on type
         if(transaction.type === 'Savings Deposit' || transaction.type === 'Savings'){
             runningSavingsAmount += Number(transaction.amount);
-        } else if(transaction.type === 'Savings Withdrawl'){
+        } else if(transaction.type === 'Savings Withdrawal' || transaction.type === 'Savings Withdrawl'){
             runningSavingsAmount -= Number(transaction.amount);
         }
 

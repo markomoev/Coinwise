@@ -85,7 +85,7 @@ export default function LogSignPage(){
                             alertMessageText={alertMessageText} />}
                 </div>
 
-                <div className='flex-1 flex justify-center items-start lg:items-center overflow-y-auto'>
+                <div className='flex-1 flex justify-center items-start lg:items-center overflow-y-auto md:mt-0 mt-10'>
                     <div className='w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-0'>
                         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-start lg:items-center lg:min-h-screen'>
                             {/* Login Form Section */}

@@ -49,7 +49,7 @@ export default function SettingsPage(){
         <div className="w-full min-h-screen">
             <div className="w-full flex flex-row">
                 <SideBar/>
-                <div className="flex flex-1 flex-col gap-10 w-full h-auto items-center justify-center md:pl-64 px-4 md:px-10 py-10">
+                <div className="flex flex-1 flex-col gap-10 w-full h-auto items-center justify-center md:pl-64 px-4 md:px-10 py-10 md:mt-0 mt-10">
 
                     {/* Settings Content */}
                     <div className="w-full max-w-6xl flex md:flex-row flex-col gap-6">
