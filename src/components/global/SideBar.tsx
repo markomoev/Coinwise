@@ -133,7 +133,7 @@ export default function SideBar() {
                     </nav>
 
                     {/* User Section */}
-                    <div className="flex flex-col gap-2 pt-4 mt-70 md:mt-auto border-t border-gray-100 flex-shrink-0 pb-4">
+                    <div className="flex flex-col gap-2 pt-4 mt-50 md:mt-auto border-t border-gray-100 flex-shrink-0 pb-4">
                         <Link 
                             to="/login"
                             className={`${isActive ? 'pointer-events-none' : ''} ${location.pathname === '/login' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
