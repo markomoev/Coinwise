@@ -1,6 +1,7 @@
 import {supabase} from '../../client'
 
 import { useState } from 'react';
+import type { FormEvent } from 'react';
 
 type Props = {
     closePopup: () => void;
@@ -17,13 +18,23 @@ export default function TransactionPopup({closePopup}: Props) {
     const typeToSave = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
 
 
-    const addTransaction = async () => {
+    const addTransaction = async (e: FormEvent<HTMLFormElement>) => {
+        const form = e.currentTarget as HTMLFormElement | null;
+        if (form && !form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        e.preventDefault();
         // check for account
         const { data: { session } } = await supabase.auth.getSession();
 
         if(!session){alert('You need to be logged in to add a transaction!'); return;}
         else{
             // add transaction logic
+            if (!date) {
+                console.warn('TransactionPopup: date missing despite form validation');
+                return;
+            }
             const { data: { user } } = await supabase.auth.getUser()
             const currentUser = user?.id;
 
@@ -109,7 +120,7 @@ export default function TransactionPopup({closePopup}: Props) {
             </div>
 
             {/* Form Content */}
-            <div className="p-6 space-y-6">
+            <form id="transaction-form" onSubmit={(e) => addTransaction(e)} className="p-6 space-y-6">
                 {/* Transaction Name */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -194,10 +205,11 @@ export default function TransactionPopup({closePopup}: Props) {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="transaction-date" className="block text-sm font-medium text-gray-700 mb-2">
                             Date
                         </label>
-                        <input 
+                        <input required
+                            id="transaction-date"
                             type="date"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
@@ -224,8 +236,9 @@ export default function TransactionPopup({closePopup}: Props) {
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-4">
                     <button
-                        onClick={addTransaction}
-                        disabled={!name || !type || !amount}
+                        type="submit"
+                        form="transaction-form"
+                        disabled={!name || !type || !amount || !date}
                         className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-purple-600 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -236,6 +249,7 @@ export default function TransactionPopup({closePopup}: Props) {
 
                     <button 
                         onClick={closePopup}
+                        type="button"
                         className="flex items-center justify-center gap-2 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,7 +258,7 @@ export default function TransactionPopup({closePopup}: Props) {
                         Cancel
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

@@ -6,7 +6,7 @@ export default async function ChartBreakData(userId: string) {
         .from('Balances')
         .select('savings')
         .eq('user_id', userId)
-        .single();
+        .maybeSingle();
 
         if(balancesError) {
             console.error('Error fetching balances:', balancesError);

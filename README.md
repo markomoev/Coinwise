@@ -117,6 +117,33 @@ Vercel is recommended:
 - Improved charts and filtering
 - Tests and accessibility improvements
 
+## Release: Alpha v0.1.1 — Bug fixes
+
+This is a small maintenance release addressing several user-reported issues discovered during early alpha testing.
+
+What's fixed
+- Funds popup: the Add Funds flow now uses a single form submit handler with native validation (checkValidity / reportValidity). This prevents silent failures when required fields (like Date) are empty and ensures the Supabase insert runs when the user clicks Add.
+- Transaction popup: improved form handling so date is required and native validation is used; prevents invalid dates from reaching the chart-data pipeline.
+- Transfer popup: cleaned up malformed JSX and replaced it with a single, validated form submit flow (mirrors Transaction popup behavior).
+
+How to test the bug fixes locally
+1. Start the dev server:
+
+```powershell
+npm run dev
+```
+
+2. Open the app and test these scenarios:
+- Add Funds: open the Add Funds popup, leave the Date empty and click Add — browser validation should show the required hint and the insert should not run. Fill all required fields and click Add — the popup should close and the balances/transactions should be updated.
+- Add Transaction: open Add Transaction, leave Date empty and try submitting — native validation prevents submission. Fill the date and submit; confirm the transaction is added.
+- Transfer Money: open Transfer popup, ensure required fields block submission; fill and submit to confirm transfer insertion and balances update.
+
+Known remaining issues
+- Empty Supabase tables may still cause errors when code assumes a single-row result; code paths now use `maybeSingle()` in several places but an audit across the repo is recommended.
+- Some debug logging remains in chart components; these can be removed or changed to gated debug flags later.
+
+If you find anything else, open an issue with steps to reproduce and console logs/screenshots where helpful.
+
 ## Contributing
 
 Open an issue or PR with clear reproduction steps. Keep changes small and focused. For new features, include a brief proposal.

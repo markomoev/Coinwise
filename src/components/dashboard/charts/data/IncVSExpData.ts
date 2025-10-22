@@ -7,7 +7,7 @@ const { data: balances, error: balancesError } = await supabase
     .from('Balances')
     .select('income, expenses')
     .eq('user_id', userId)
-    .single();
+    .maybeSingle();
 
 if(balancesError){
     console.error('Error fetching balances:', balancesError);

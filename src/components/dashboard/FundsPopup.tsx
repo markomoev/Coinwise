@@ -1,6 +1,7 @@
-import {supabase} from '../../client'
+import {supabase}from '../../client'
 
 import { useState } from 'react';
+import type { FormEvent } from 'react';
 
 type Props = {
     closePopup: () => void;
@@ -19,7 +20,14 @@ export default function FundsPopup({closePopup}: Props) {
     const typeToSave = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
 
 
-    const addFunds = async () => {
+    const addFunds = async (e: FormEvent<HTMLFormElement>) => {
+        const form = e.currentTarget as HTMLFormElement | null;
+        if (form && !form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        e.preventDefault();
+
         // check for account
         const { data: { session } } = await supabase.auth.getSession();
 
@@ -124,7 +132,7 @@ export default function FundsPopup({closePopup}: Props) {
             </div>
 
             {/* Form Content */}
-            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+            <form id="funds-form" onSubmit={(e) => addFunds(e)} className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                 {/* Transaction Name */}
                 <div>
                     <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
@@ -204,6 +212,7 @@ export default function FundsPopup({closePopup}: Props) {
                             step="0.01"
                             value={amount}
                             onChange={(e) => setAmount(Number(e.target.value))}
+                            required
                             className="w-full p-3 sm:p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
                         />
                     </div>
@@ -212,7 +221,7 @@ export default function FundsPopup({closePopup}: Props) {
                         <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                             Date
                         </label>
-                        <input 
+                        <input required
                             type="date"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
@@ -239,8 +248,9 @@ export default function FundsPopup({closePopup}: Props) {
                 {/* Action Buttons */}
                 <div className="flex gap-2 sm:gap-3 pt-2 sm:pt-4">
                     <button
-                        onClick={addFunds}
-                        disabled={!name || !type || !amount}
+                        type="submit"
+                        form="funds-form"
+                        disabled={!name || !type || !amount || !date}
                         className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-purple-600 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm sm:text-base"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -250,7 +260,7 @@ export default function FundsPopup({closePopup}: Props) {
                     </button>
 
                     <button 
-                        onClick={closePopup}
+                        onClick={closePopup}                 
                         className="flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium text-sm sm:text-base"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -259,7 +269,7 @@ export default function FundsPopup({closePopup}: Props) {
                         Cancel
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

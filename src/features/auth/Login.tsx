@@ -47,7 +47,7 @@ export default function LogSignPage(){
             .from('users')
             .select('is_deleted')
             .eq('id', user.id)
-            .single();
+            .maybeSingle();
 
         if (profileError) {
             setAlertMessage(true);
@@ -55,7 +55,10 @@ export default function LogSignPage(){
             console.error('Profile fetch error:', profileError.message);
             await supabase.auth.signOut();
             return;
-        }if (profile?.is_deleted) {
+        }
+
+        // treat missing profile the same as deleted/non-existent
+        if (!profile || profile?.is_deleted) {
             setAlertMessage(true);
             setAlertMessageText('Profile is deleted or does not exist');
             await supabase.auth.signOut();

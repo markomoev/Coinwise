@@ -21,8 +21,12 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
         .join(" ");
 
     
-        const transferMon = async () => {
-            // transfer money logic
+        const transferMon = async (e?: any) => {
+            const form = e.currentTarget as HTMLFormElement | null;
+            if (form && !form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
 
             // check for account first
             const { data: { session } } = await supabase.auth.getSession();
@@ -118,7 +122,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
             </div>
 
             {/* Form Content */}
-            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+            <form onSubmit = {(e) => transferMon(e)} className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                 {/* Transaction Name */}
                 <div>
                     <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
@@ -234,7 +238,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                 <div className="flex gap-2 sm:gap-3 pt-2 sm:pt-4">
                     <button
                         onClick={transferMon}
-                        disabled={!name || !type || !amount}
+                        disabled={!name || !type || !amount || !date}
                         className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 bg-purple-600 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm sm:text-base"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -253,7 +257,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                         Cancel
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

@@ -6,7 +6,7 @@ export default async function getAccTrendData(userId: string) {
         .from('Balances')
         .select('total')
         .eq('user_id', userId)
-        .single();
+        .maybeSingle();
 
     // Fetch transactions for calculating trend
     const { data: transactions, error: transactionsError } = await supabase
