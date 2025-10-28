@@ -1,4 +1,4 @@
-import TransactionExtendedLine from './TransactionExtendedLine';
+import TransactionExtendedLine from './extended-line/TransactionExtendedLine';
  
 import { useState } from 'react';
 
