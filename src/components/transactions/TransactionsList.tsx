@@ -16,7 +16,6 @@ type Props = {
 }
 
 export default function TransactionsList({AddTransaction, transactions}: Props) {
-
     return(
         <div className="w-full h-full bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden flex flex-col">
             {/* Header */}

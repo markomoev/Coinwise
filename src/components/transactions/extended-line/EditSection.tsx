@@ -1,16 +1,25 @@
-import { useEffect, useState } from "react";
+import DeleteAlert from "./alerts/DeleteAlert";
 
-import {supabase} from "../../../client";
+import { useState } from "react";
 
 type TransactionEditProps = {
     transactionId: number;
 }
 
+type DeleteAlert = {
+    handleDeleteAlert: () => void;
+}
+
 export default function TransactionEdit({ transactionId }: TransactionEditProps){
     // edit mode
     const [isEditing, setIsEditing] = useState(false);
+    // delete alert
+    const [showDeleteAlert, setShowDeleteAlert] = useState(false); 
+    
+    // TODO: edit functionality
     // data to be edited
-    const [data, setData] = useState({
+
+    /*const [data, setData] = useState({
         id: 0,
         userId: "",
         name: "",
@@ -88,59 +97,11 @@ export default function TransactionEdit({ transactionId }: TransactionEditProps)
             });
         }
         fetchData();
-    }, [])
+    }, []) */
 
     // delete function
-    const handleDelete = async() => {
-        const {error} = await supabase 
-        .from("Transactions")
-        .delete()
-        .eq('id', transactionId)
-        .eq('user_id', data.userId)
-
-        if(error){
-            console.error("Error deleting transaction:", error);
-            return;
-        }
-
-        // Update balance after deletion
-        let newTotal = balance.total;
-        let newIncome = balance.income;
-        let newExpenses = balance.expenses;
-        let newSavings = balance.savings;
-
-        // update the balance values based on transaction type
-        switch(data.type){
-            case "Income": 
-                newTotal -= data.amount
-                newIncome -= data.amount
-                break;
-            case "Expense":
-                newTotal += data.amount
-                newExpenses -= data.amount
-                break;
-            case "Savings":
-                newTotal += data.amount
-                newSavings -= data.amount
-                break;
-        }
-
-        // update the balance in the database
-        const {error: balanceError} = await supabase
-        .from("Balances")
-        .update({
-            total: newTotal,
-            income: newIncome,
-            expenses: newExpenses,
-            savings: newSavings
-        })
-        .eq('id', balance.id)
-        .eq('user_id', data.userId)
-
-        if(balanceError){   
-            console.error("Error updating balance:", balanceError);
-            return;
-        }
+    const handleDeleteAlert = async() => {
+        setShowDeleteAlert(true);
     }
 
 
@@ -163,10 +124,20 @@ export default function TransactionEdit({ transactionId }: TransactionEditProps)
                 Cancel
             </button>
             <button
-                onClick={handleDelete} 
+                onClick={handleDeleteAlert} 
                 className={`${isEditing ? "block" : "hidden"} md:px-4 px-3 md:py-2 py-1 text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 hover:border-red-300 transition-all duration-200 ml-auto`}>
                 Delete
             </button>
+
+            <div>
+                {showDeleteAlert && 
+                    <DeleteAlert 
+                        transactionId={transactionId}
+                        showDeleteAlert={showDeleteAlert}
+                        onCancel  = {() => setShowDeleteAlert(false)}
+                    />
+                }
+            </div>
         </div>
     )
 }

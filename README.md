@@ -117,6 +117,53 @@ Vercel is recommended:
 - Improved charts and filtering
 - Tests and accessibility improvements
 
+## Release: Alpha v0.1.2 — Transaction Management Features
+
+This release introduces transaction management capabilities and UI improvements.
+
+What's new
+- **Transaction deletion**: Users can now delete transactions with a confirmation dialog
+- **Improved transaction flow**: Added transaction ID passing through component hierarchy (TransactionsList → TransactionLine → TransactionExtendedLine → EditSection)
+- **Delete confirmation modal**: Elegant glass-morphism styled confirmation dialog with blur effects
+- **Balance updates**: Automatic balance recalculation when transactions are deleted
+- **Enhanced EditSection**: Prepared groundwork for future edit functionality
+- **Better prop management**: Fixed prop passing between transaction components
+
+UI improvements
+- **Delete Alert styling**: Modern confirmation dialog with red warning theme
+- **Subtle backdrop effects**: Minimal blur overlay without dark dimming
+- **Consistent button styling**: Hover effects and transitions across delete/cancel buttons
+- **Glass morphism design**: Semi-transparent backgrounds with backdrop blur
+
+Technical improvements
+- **Proper TypeScript types**: Added comprehensive prop types for transaction components
+- **Database integrity**: Delete operations properly update both Transactions and Balances tables
+- **Error handling**: Comprehensive error logging for delete operations
+- **Component architecture**: Better separation of concerns between display and action components
+
+How to test the new features
+1. Start the dev server:
+```powershell
+npm run dev
+```
+
+2. Test transaction deletion:
+- Go to Transactions page and expand any transaction
+- Click the "Edit" button to show action buttons
+- Click "Delete" - a confirmation dialog should appear with blur background
+- Test both "Cancel" (closes dialog) and "Delete" (removes transaction and updates balances)
+
+Known issues in this release
+- Edit functionality is prepared but not yet implemented (Save button placeholder)
+- Some transaction type case sensitivity issues may exist in balance calculations
+- Real-time updates still rely on auto-refresh rather than optimistic updates
+
+Next up
+- Transaction editing functionality
+- Real-time balance updates
+- Transaction categorization
+- Improved error handling and user feedback
+
 ## Release: Alpha v0.1.1 — Bug fixes
 
 This is a small maintenance release addressing several user-reported issues discovered during early alpha testing.
