@@ -20,6 +20,15 @@ export default function TransactionEdit({ transactionId }: TransactionEditProps)
         note: ""
     })
 
+    const [balance, setBalance] = useState({
+        id: 0,
+        userId: "",
+        total: 0,
+        income: 0,
+        expenses: 0,
+        savings: 0
+    });
+
     // get data from the db
     useEffect(() => {
         const fetchData = async() => {
@@ -31,8 +40,9 @@ export default function TransactionEdit({ transactionId }: TransactionEditProps)
                 console.error("No user logged in");
                 return;
             };
-
-            const {data: fetchData,error: fetchError} = await supabase
+            
+            // then fetch the transaction data
+            const {data: fetchTransaction,error: fetchTransactionError} = await supabase
             .from("Transactions")
             .select('*')
             .eq('id', transactionId)
@@ -40,8 +50,8 @@ export default function TransactionEdit({ transactionId }: TransactionEditProps)
             .single();
 
 
-            if (fetchError) {
-                console.error("Error fetching transaction:", fetchError);
+            if (fetchTransactionError) {
+                console.error("Error fetching transaction:", fetchTransactionError);
                 return;
             }
 
@@ -49,11 +59,32 @@ export default function TransactionEdit({ transactionId }: TransactionEditProps)
             setData({
                 id: transactionId,
                 userId: userId,
-                name: fetchData.name,
-                amount: fetchData.amount,
-                type: fetchData.type,
-                date: fetchData.date,
-                note: fetchData.note
+                name: fetchTransaction.name,
+                amount: fetchTransaction.amount,
+                type: fetchTransaction.type,
+                date: fetchTransaction.date,
+                note: fetchTransaction.note
+            });
+
+            // fetch balance data
+            const {data: fetchBalance, error: fetchBalanceError} = await supabase
+            .from("Balances")
+            .select('*')
+            .eq('user_id', userId)
+            .single();
+
+            if(fetchBalanceError){
+                console.error("Error fetching balance:", fetchBalanceError);
+                return;
+            }
+
+            setBalance({
+                id: fetchBalance.id,
+                userId: fetchBalance.user_id,
+                total: fetchBalance.total,
+                income: fetchBalance.income,
+                expenses: fetchBalance.expenses,
+                savings: fetchBalance.savings
             });
         }
         fetchData();
@@ -71,7 +102,47 @@ export default function TransactionEdit({ transactionId }: TransactionEditProps)
             console.error("Error deleting transaction:", error);
             return;
         }
-    }  
+
+        // Update balance after deletion
+        let newTotal = balance.total;
+        let newIncome = balance.income;
+        let newExpenses = balance.expenses;
+        let newSavings = balance.savings;
+
+        // update the balance values based on transaction type
+        switch(data.type){
+            case "Income": 
+                newTotal -= data.amount
+                newIncome -= data.amount
+                break;
+            case "Expense":
+                newTotal += data.amount
+                newExpenses -= data.amount
+                break;
+            case "Savings":
+                newTotal += data.amount
+                newSavings -= data.amount
+                break;
+        }
+
+        // update the balance in the database
+        const {error: balanceError} = await supabase
+        .from("Balances")
+        .update({
+            total: newTotal,
+            income: newIncome,
+            expenses: newExpenses,
+            savings: newSavings
+        })
+        .eq('id', balance.id)
+        .eq('user_id', data.userId)
+
+        if(balanceError){   
+            console.error("Error updating balance:", balanceError);
+            return;
+        }
+    }
+
 
 
     return(

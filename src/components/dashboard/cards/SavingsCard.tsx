@@ -47,7 +47,7 @@ export default function SavingsCard(){
         }
         
         if(fetchUserBalance){
-            setTotalSavings(fetchUserBalance.savings);
+            setTotalSavings(fetchUserBalance.savings || 0);
         } else {
             setTotalSavings(0);
         }
