@@ -1,12 +1,13 @@
 import EditSection from "./EditSection";
 
 type Props = {
+    id: number;
     note?: string;
     created_at?: string;
     closeLine: () => void;
 }
 
-export default function TransactionExtendedLine({ note, created_at , closeLine }: Props) {
+export default function TransactionExtendedLine({id, note, created_at , closeLine }: Props) {
     
     const dateCreated = created_at;
     const formattedDate = dateCreated?.slice(0,10).split('-').reverse().join('.')
@@ -42,7 +43,7 @@ export default function TransactionExtendedLine({ note, created_at , closeLine }
 
                 {/* Edit Section */}
                 <EditSection
-                    closeSection={() => closeLine()}
+                    transactionId={id}
                 />
             </div>
         </div>

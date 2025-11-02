@@ -3,6 +3,7 @@ import TransactionExtendedLine from './extended-line/TransactionExtendedLine';
 import { useState } from 'react';
 
 type TransactionLineProps = {
+  id: number;
   name: string;
   amount: number;
   type: string;
@@ -12,10 +13,8 @@ type TransactionLineProps = {
 };
 
 
-export default function TransactionLine({name, amount, type, date, note, created_at}: TransactionLineProps) {
+export default function TransactionLine({id, name, amount, type, date, note, created_at}: TransactionLineProps) {
     const [showLine, setShowLine] = useState(false);
-
-
     
     return(
         <div className="bg-white border border-gray-200 rounded-xl p-3 md:p-4 hover:shadow-md transition-all duration-200">
@@ -66,6 +65,7 @@ export default function TransactionLine({name, amount, type, date, note, created
             {/* Expandable Details */}
             {showLine && (
                 <TransactionExtendedLine
+                    id={id}
                     note={note}
                     created_at={created_at}
                     closeLine={() => setShowLine(false)}

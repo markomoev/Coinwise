@@ -67,6 +67,7 @@ export default function TransactionsList({AddTransaction, transactions}: Props) 
                         {transactions.map((t: Transaction) => (
                             <TransactionLine
                                 key={t.id}
+                                id={t.id}
                                 name={t.name}
                                 amount={t.amount}
                                 type={t.type}
