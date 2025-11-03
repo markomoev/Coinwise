@@ -15,6 +15,7 @@ type TransactionLineProps = {
 
 export default function TransactionLine({id, name, amount, type, date, note, created_at}: TransactionLineProps) {
     const [showLine, setShowLine] = useState(false);
+
     
     return(
         <div className="bg-white border border-gray-200 rounded-xl p-3 md:p-4 hover:shadow-md transition-all duration-200">

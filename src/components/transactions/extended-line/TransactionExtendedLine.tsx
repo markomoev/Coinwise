@@ -7,8 +7,9 @@ type Props = {
     closeLine: () => void;
 }
 
+
 export default function TransactionExtendedLine({id, note, created_at , closeLine }: Props) {
-    
+
     const dateCreated = created_at;
     const formattedDate = dateCreated?.slice(0,10).split('-').reverse().join('.')
 
