@@ -4,6 +4,7 @@ import TotalCard from "../../components/dashboard/cards/TotalCard";
 import IncomeCard from "../../components/dashboard/cards/IncomeCard";
 import ExpenseCard from "../../components/dashboard/cards/ExpenseCard";
 import SavingsCard from "../../components/dashboard/cards/SavingsCard";
+import PocketMonCard from "../../components/dashboard/cards/PocketMonCard";
 
 import FundsPopup from "../../components/dashboard/FundsPopup";
 import TransferPopup from "../../components/dashboard/TransferPopup";
@@ -141,9 +142,10 @@ export default function DashboardPage() {
                         />
 
                         {/* Statistics Cards */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
                             <IncomeCard/>
                             <ExpenseCard/>
+                            <PocketMonCard/>
                             <SavingsCard/>
                         </div>
 

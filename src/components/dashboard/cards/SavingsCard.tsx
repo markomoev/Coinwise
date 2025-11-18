@@ -19,7 +19,7 @@ export default function SavingsCard(){
         userAuth();
     }, []);
 
-    // when user make chnges, refresh data
+    // when user make changes, refresh data
     useEffect(() => {
         if (userId) {
             fetchTotalSavings(userId);

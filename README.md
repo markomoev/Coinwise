@@ -1,13 +1,28 @@
-# Coinwise — Alpha 1.0
+# Coinwise — Alpha 1.1
 
 Coinwise is a modern, lightweight personal finance tracker built with React, TypeScript, Vite, Tailwind CSS, Chart.js, and Supabase.
 
-Status: Alpha 1.0 — active development; features and UI are evolving. Expect frequent changes and occasional breaking updates.
+Status: Alpha 1.1 — active development; features and UI are evolving. 
 
-## What’s new in Alpha 1.0
+## What's new in Alpha 1.1
+
+### Pocket Money Card
+- **New dashboard card** displaying available spending money
+- Automatic calculation: Total - Savings = Pocket Money
+- Educational info box explaining the pocket money logic
+- Amber-themed styling to differentiate from other financial cards
+- Auto-refresh functionality matching other dashboard cards
+
+### Transaction Modify Button
+- **New "Modify" button** in transaction extended view
+- Located alongside the Delete button in transaction management
+- Prepares UI for future transaction editing functionality
+- Appears when clicking "Edit" on any expanded transaction
+
+## Core Features (Alpha 1.1)
 
 - Authentication with Supabase (email/password)
-- Dashboard overview with cards: Total, Income, Expenses, Savings
+- Dashboard overview with cards: Total, Income, Expenses, Pocket Money, Savings
 - Add transactions (income/expense) and savings operations (deposit/withdraw)
 - Quick transfer between main account and savings
 - Charts: Account Trend, Income vs Expense, and breakdown visuals
@@ -116,6 +131,72 @@ Vercel is recommended:
 - More robust validation and error handling
 - Improved charts and filtering
 - Tests and accessibility improvements
+
+## Release: Alpha v1.1 — Pocket Money Card & Transaction Modify Button
+
+This release introduces the Pocket Money card to help users understand their available spending funds and adds a Modify button for future transaction editing capabilities.
+
+What's new
+
+**Pocket Money Card:**
+- **New dashboard card**: Shows available spending money calculated as Total - Savings
+- **Educational design**: Info box explaining the calculation logic to users
+- **Custom hook**: `usePocketMoney` hook for fetching and calculating pocket money balance
+- **Responsive layout**: Dashboard grid updated to accommodate 4 cards (Income, Expenses, Pocket Money, Savings)
+- **Amber theme**: Distinct amber/yellow color scheme to differentiate from other financial cards
+
+**Transaction Modify Button:**
+- **Modify button**: Added in transaction extended view alongside Delete button
+- **Location**: Appears in Transactions page when expanding any transaction and clicking "Edit"
+- **Purpose**: Prepares UI groundwork for upcoming transaction editing functionality
+- **Consistent styling**: Matches existing button design patterns in the app
+
+UI improvements
+- **Consistent card styling**: Pocket Money card matches the design pattern of Income, Expense, and Savings cards
+- **Auto-refresh**: 1-second interval refresh to keep data synchronized
+- **Clear messaging**: "Money ready to use" with formula explanation (Total - Savings = Pocket Money)
+- **Professional layout**: Glass-morphism design with gradient backgrounds
+- **Enhanced transaction controls**: Modify and Delete buttons now appear together in transaction edit mode
+- **Button consistency**: Modify button styling matches existing UI patterns
+
+Technical improvements
+- **TypeScript hook**: `pocketMon.ts` hook in `components/dashboard/hooks/`
+- **Database integration**: Fetches from Balances table and calculates pocket money
+- **User authentication**: Properly retrieves user ID from Supabase Auth
+- **Error handling**: Console logging for debugging fetch operations
+- **Transaction UI structure**: Prepared groundwork for transaction editing functionality
+
+How to test the new features
+1. Start the dev server:
+```powershell
+npm run dev
+```
+
+2. Test the Pocket Money card:
+- Navigate to the Dashboard
+- The Pocket Money card appears between Expenses and Savings (3rd position)
+- Shows your available spending money (Total balance minus Savings)
+- Displays educational info: "Money ready to use" with calculation formula
+- Observe auto-refresh updates every second
+
+3. Test the Modify button:
+- Navigate to the Transactions page
+- Expand any transaction by clicking on it to view extended details
+- Click the "Edit" button to reveal action buttons
+- "Modify" button appears alongside "Delete" button
+- Note: Button is a placeholder - editing functionality coming in future release
+
+Known issues in this release
+- Pocket money calculation depends on accurate Total and Savings values
+- Real-time updates still rely on auto-refresh (1-second polling)
+- No transaction history specific to pocket money (calculated value only)
+- Modify button is placeholder only - edit functionality not yet implemented
+
+Next up
+- Implement transaction editing functionality for the Modify button
+- Optimize refresh strategy to reduce unnecessary API calls
+- Add pocket money trend visualization
+- Improve calculation accuracy with transaction-level validation
 
 ## Release: Alpha v0.1.2 — Transaction Management Features
 
