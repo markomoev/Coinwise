@@ -22,6 +22,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
 
     
         const transferMon = async (e?: any) => {
+            e.preventDefault();
             const form = e.currentTarget as HTMLFormElement | null;
             if (form && !form.checkValidity()) {
                 form.reportValidity();
@@ -39,12 +40,12 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                 const {error: insertingTransferError} = await supabase
                 .from('Transactions')
                 .insert([{ 
-                user_id: currentUser,
-                name: name,
-                type: typeToSave,
-                amount: amount,
-                date: date,
-                note: note 
+                    user_id: currentUser,
+                    name: name,
+                    type: typeToSave,
+                    amount: amount,
+                    date: date,
+                    note: note 
                 }])
 
                 if(insertingTransferError){
