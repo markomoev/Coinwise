@@ -71,11 +71,20 @@ export default async function ChartBreakData(userId: string) {
     });
 
     // Convert to chart format
-    const labels = Array.from(dailyBalances.keys()).map(date => 
-        new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-    );
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
 
-    const values = Array.from(dailyBalances.values());
+    const labels: string[] = [];
+    const values: number[] = [];
+
+    dailyBalances.forEach((balance, dateStr) => {
+        const date = new Date(dateStr);
+        if (date.getMonth() === currentMonth && date.getFullYear() === currentYear) {
+            labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+            values.push(balance);
+        }
+    });
 
     return { labels, values };
 }

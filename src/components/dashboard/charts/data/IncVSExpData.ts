@@ -1,23 +1,32 @@
 import {supabase} from "../../../../client"
 
 export default async function IncVSExpData(userId: string) {
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
 
-// fetching income and expenses from the Balances table
-const { data: balances, error: balancesError } = await supabase
-    .from('Balances')
-    .select('income, expenses')
-    .eq('user_id', userId)
-    .maybeSingle();
+    // fetching transactions for the current month
+    const { data: transactions, error: transactionsError } = await supabase
+        .from('Transactions')
+        .select('amount, type')
+        .eq('user_id', userId)
+        .gte('date', startOfMonth);
 
-if(balancesError){
-    console.error('Error fetching balances:', balancesError);
-    return { labels: [], values: [] };
-}
+    if(transactionsError){
+        console.error('Error fetching transactions:', transactionsError);
+        return { labels: [], values: [] };
+    }
 
-// storing the income and expenses
-const income = balances?.income || 0;
-const expenses = balances?.expenses || 0;
+    let income = 0;
+    let expenses = 0;
 
-// return the data in the chart format
-return { labels: ['Income', 'Expenses'], values: [income, expenses] };
+    transactions?.forEach(transaction => {
+        if(transaction.type === 'Income'){
+            income += Number(transaction.amount);
+        } else if(transaction.type === 'Expense'){
+            expenses += Number(transaction.amount);
+        }
+    });
+
+    // return the data in the chart format
+    return { labels: ['Income', 'Expenses'], values: [income, expenses] };
 }
