@@ -1,23 +1,17 @@
-# Coinwise — Alpha 1.1
+# Coinwise — Alpha 1.2
 
 Coinwise is a modern, lightweight personal finance tracker built with React, TypeScript, Vite, Tailwind CSS, Chart.js, and Supabase.
 
-Status: Alpha 1.1 — active development; features and UI are evolving. 
+Status: Alpha 1.2 — active development; features and UI are evolving. 
 
-## What's new in Alpha 1.1
+## What's new in Alpha 1.2
 
-### Pocket Money Card
-- **New dashboard card** displaying available spending money
-- Automatic calculation: Total - Savings = Pocket Money
-- Educational info box explaining the pocket money logic
-- Amber-themed styling to differentiate from other financial cards
-- Auto-refresh functionality matching other dashboard cards
+### Monthly Chart Views
+- **Focused Data**: Dashboard charts (Account Trend, Income vs Expense, Breakdown) now filter data to show only the current month.
+- **Better Performance**: improved relevance for daily tracking.
 
-### Transaction Modify Button
-- **New "Modify" button** in transaction extended view
-- Located alongside the Delete button in transaction management
-- Prepares UI for future transaction editing functionality
-- Appears when clicking "Edit" on any expanded transaction
+### Bug Fixes
+- **Transfer Popup**: Fixed a critical issue where the transfer form would reload the page before saving, preventing transfers from being recorded.
 
 ## Core Features (Alpha 1.1)
 
@@ -131,6 +125,18 @@ Vercel is recommended:
 - More robust validation and error handling
 - Improved charts and filtering
 - Tests and accessibility improvements
+
+## Release: Alpha v1.2 — Chart Improvements & Bug Fixes
+
+This release focuses on refining the dashboard charts for better usability and fixing a critical bug in the transfer functionality.
+
+What's new
+- **Monthly Chart View**: All dashboard charts (Account Trend, Income vs Expense, Breakdown) now default to showing data for the current month only, providing a more relevant day-to-day view.
+- **Transfer Fix**: Resolved an issue where the transfer popup would reload the page immediately upon submission, failing to save the transaction.
+
+How to test
+1. **Charts**: Check the dashboard charts and verify they only display data points for the current month.
+2. **Transfers**: Try making a transfer to savings. The popup should close normally, and the transaction should appear in the list without a page reload.
 
 ## Release: Alpha v1.1 — Pocket Money Card & Transaction Modify Button
 
