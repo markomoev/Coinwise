@@ -1,8 +1,15 @@
-# Coinwise — Alpha 1.2
+# Coinwise — Alpha 1.3
 
 Coinwise is a modern, lightweight personal finance tracker built with React, TypeScript, Vite, Tailwind CSS, Chart.js, and Supabase.
 
-Status: Alpha 1.2 — active development; features and UI are evolving. 
+Status: Alpha 1.3 — active development; features and UI are evolving. 
+
+## What's new in Alpha 1.3
+
+### Currency Conversion
+- **Euro Display**: The dashboard now automatically displays all financial data in Euros (€).
+- **Auto-Conversion**: Transactions and balances in BGN are automatically converted to EUR using live rates (or fixed peg).
+- **Unified UI**: Updated all cards and transaction lists to use the Euro symbol and formatting.
 
 ## What's new in Alpha 1.2
 

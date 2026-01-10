@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useCurrencyRates } from "../../../hooks/useCurrencyRates";
 
 import { supabase } from "../../../client"
 
@@ -11,6 +12,8 @@ export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
     const [totalBalance, setTotalBalance] = useState(0);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
     const [userId, setUserId] = useState<string | null>(null);
+    const { rates } = useCurrencyRates("BGN");
+    const exchangeRate = rates?.EUR || 1;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -78,7 +81,7 @@ export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
                     <div className="flex items-center gap-4">
                         <div>
                             <p className="text-4xl font-bold text-purple-600">
-                                ${totalBalance.toLocaleString()}
+                                €{(totalBalance * exchangeRate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </p>
                             <p className="text-sm text-gray-500 mt-1">Available balance</p>
                         </div>

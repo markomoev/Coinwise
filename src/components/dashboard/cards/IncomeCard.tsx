@@ -1,5 +1,6 @@
 import {supabase} from "../../../client"
 import { useState, useEffect } from "react";
+import { useCurrencyRates } from "../../../hooks/useCurrencyRates";
 
 export default function IncomeCard(){
     // last income amount variable
@@ -7,6 +8,8 @@ export default function IncomeCard(){
     const [totalIncome, setTotalIncome] = useState(0);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
     const [userId, setUserId] = useState<string | null>(null);
+    const { rates } = useCurrencyRates("BGN");
+    const exchangeRate = rates?.EUR || 1;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -101,7 +104,7 @@ export default function IncomeCard(){
             <div className="p-4 space-y-4">
                 <div>
                     <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                        ${totalIncome.toLocaleString()}
+                        €{(totalIncome * exchangeRate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </p>
                     <p className="text-xs text-gray-500">Total accumulated</p>
                 </div>
@@ -110,7 +113,7 @@ export default function IncomeCard(){
                     <div className="bg-green-50 border border-green-200 rounded-lg p-3">
                         <div className="flex items-center gap-2">
                             <div>
-                                <p className="text-sm font-semibold text-green-700">+${lastIncome.toLocaleString()}</p>
+                                <p className="text-sm font-semibold text-green-700">+€{(lastIncome * exchangeRate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                                 <p className="text-xs text-green-600">Latest income</p>
                             </div>
                         </div>

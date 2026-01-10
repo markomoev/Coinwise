@@ -142,13 +142,13 @@ export default function DashboardPage() {
                         />
 
                         {/* Statistics Cards */}
+                        {/* Statistics Cards */}
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
                             <IncomeCard/>
                             <ExpenseCard/>
                             <PocketMonCard/>
                             <SavingsCard/>
                         </div>
-
                         {/* Charts Section */}
                         <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 flex-1'>
                             <div>

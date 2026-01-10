@@ -1,5 +1,6 @@
 import {supabase} from '../../../client'
 import {useState, useEffect} from 'react'
+import { useCurrencyRates } from '../../../hooks/useCurrencyRates';
 
 
 export default function SavingsCard(){
@@ -8,6 +9,8 @@ export default function SavingsCard(){
     const [totalSavings, setTotalSavings] = useState(0);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
     const [userId, setUserId] = useState<string | null>(null);
+    const { rates } = useCurrencyRates("BGN");
+    const exchangeRate = rates?.EUR || 1;
 
     useEffect(() => {
         const userAuth = async () => {
@@ -102,7 +105,7 @@ export default function SavingsCard(){
             <div className="p-4 space-y-4">
                 <div>
                     <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                        ${totalSavings.toLocaleString()}
+                        €{(totalSavings * exchangeRate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </p>
                     <p className="text-xs text-gray-500">Total saved</p>
                 </div>
@@ -114,7 +117,7 @@ export default function SavingsCard(){
                                 <p className={`text-sm font-semibold ${
                                     lastSavings >= 0 ? 'text-blue-700' : 'text-orange-700'
                                 }`}>
-                                    {lastSavings >= 0 ? `+$${lastSavings.toLocaleString()}` : `-$${Math.abs(lastSavings).toLocaleString()}`}
+                                    {lastSavings >= 0 ? `+€${(lastSavings * exchangeRate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : `-€${(Math.abs(lastSavings) * exchangeRate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
                                 </p>
                                 <p className={`text-xs ${
                                     lastSavings >= 0 ? 'text-blue-600' : 'text-orange-600'

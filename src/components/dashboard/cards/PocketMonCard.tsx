@@ -1,9 +1,12 @@
 import {usePocketMoney} from '../hooks/pocketMon'
 import {useState, useEffect} from 'react'
+import { useCurrencyRates } from '../../../hooks/useCurrencyRates';
 
 export default function PocketMonCard(){
     const [pocketMoney, setPocketMoney] = useState<any>(0)
     const [refreshTrigger, setRefreshTrigger] = useState(0);
+    const { rates } = useCurrencyRates("BGN");
+    const exchangeRate = rates?.EUR || 1;
 
     // fetchin the pocketMoney
     useEffect(()=>{
@@ -35,7 +38,7 @@ return(
         <div className="p-4 space-y-4">
             <div>
                 <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                    ${pocketMoney.toLocaleString()}
+                    €{(pocketMoney * exchangeRate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
                 <p className="text-xs text-gray-500">Available funds</p>
             </div>
