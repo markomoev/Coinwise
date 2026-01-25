@@ -1,5 +1,4 @@
 import TransactionLine from "./TransactionLine";
-import { useCurrencyRates } from "../../hooks/useCurrencyRates";
 
 type Transaction= {
   id: number;
@@ -17,9 +16,6 @@ type Props = {
 }
 
 export default function TransactionsList({AddTransaction, transactions}: Props) {
-    const { rates } = useCurrencyRates("BGN");
-    const exchangeRate = rates?.EUR || 1;
-
     return(
         <div className="w-full h-full bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden flex flex-col">
             {/* Header */}
@@ -77,7 +73,6 @@ export default function TransactionsList({AddTransaction, transactions}: Props) 
                                 date={t.date}
                                 note={t.note}
                                 created_at={t.created_at}
-                                exchangeRate={exchangeRate}
                             />
                         ))}
                     </div>

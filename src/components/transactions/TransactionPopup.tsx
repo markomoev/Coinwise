@@ -191,7 +191,7 @@ export default function TransactionPopup({closePopup}: Props) {
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Amount ($)
+                            Amount (€)
                         </label>
                         <input 
                             type="number" 
@@ -203,7 +203,6 @@ export default function TransactionPopup({closePopup}: Props) {
                             className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-600 transition-all duration-200"
                         />
                     </div>
-
                     <div>
                         <label htmlFor="transaction-date" className="block text-sm font-medium text-gray-700 mb-2">
                             Date

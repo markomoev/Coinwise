@@ -10,16 +10,12 @@ type TransactionLineProps = {
   date?: string | null;
   note?: string;
   created_at?: string;
-  exchangeRate?: number;
 };
 
 
-export default function TransactionLine({id, name, amount, type, date, note, created_at, exchangeRate = 1}: TransactionLineProps) {
+export default function TransactionLine({id, name, amount, type, date, note, created_at}: TransactionLineProps) {
     const [showLine, setShowLine] = useState(false);
     
-    // Calculate converted amount
-    const displayAmount = amount * exchangeRate;
-
     return(
         <div className="bg-white border border-gray-200 rounded-xl p-3 md:p-4 hover:shadow-md transition-all duration-200">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -29,7 +25,7 @@ export default function TransactionLine({id, name, amount, type, date, note, cre
                         <h3 className="font-semibold text-gray-800 text-base md:text-lg truncate">{name}</h3>
                         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mt-1">
                             <span className="text-lg md:text-xl font-bold text-purple-600">
-                                €{displayAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                €{amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </span>
                             <span className={`text-xs md:text-sm font-medium px-2 py-1 rounded-full w-fit ${
                                 type === 'Income' ? 'bg-green-100 text-green-700' :

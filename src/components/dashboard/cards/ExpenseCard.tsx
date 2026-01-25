@@ -1,6 +1,5 @@
 import {supabase} from "../../../client"
 import { useState, useEffect } from "react";
-import { useCurrencyRates } from "../../../hooks/useCurrencyRates";
 
 export default function ExpenseCard(){
     // last expense amount variable
@@ -8,8 +7,6 @@ export default function ExpenseCard(){
     const [totalEpenses, setTotalExpenses] = useState(0);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
     const [userId, setUserId] = useState<string | null>(null);
-    const { rates } = useCurrencyRates("BGN");
-    const exchangeRate = rates?.EUR || 1;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -103,7 +100,7 @@ export default function ExpenseCard(){
             <div className="p-4 space-y-4">
                 <div>
                     <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                        €{(totalEpenses * exchangeRate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        €{totalEpenses.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </p>
                     <p className="text-xs text-gray-500">Total spent</p>
                 </div>
@@ -112,7 +109,7 @@ export default function ExpenseCard(){
                     <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                         <div className="flex items-center gap-2">
                             <div>
-                                <p className="text-sm font-semibold text-red-700">-€{(lastExpense * exchangeRate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                <p className="text-sm font-semibold text-red-700">-€{lastExpense.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                                 <p className="text-xs text-red-600">Latest expense</p>
                             </div>
                         </div>

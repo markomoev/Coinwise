@@ -13,9 +13,10 @@
     "@supabase/supabase-js": "^2.56.0",
     "@tailwindcss/vite": "^4.1.12",
     "chart.js": "^4.5.0",
+    "lucide-react": "^0.563.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
     "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.2.0",
     "react-router-dom": "^7.8.1",
     "vite-plugin-svgr": "^4.5.0"
   },
