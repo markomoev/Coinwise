@@ -1,8 +1,19 @@
-# Coinwise — Alpha 1.5
+# Coinwise — Alpha 1.6
 
 Coinwise is a modern, lightweight personal finance tracker built with React, TypeScript, Vite, Tailwind CSS, Chart.js, and Supabase.
 
-Status: Alpha 1.5 — active development; features and UI are evolving. 
+Status: Alpha 1.6 — active development; features and UI are evolving. 
+
+## What's new in Alpha 1.6
+
+### Branding & Design
+- **Unified Color System**: Standardized the application's accent color to a vibrant Neon Purple (`#F04DFF`), replacing previous gradients with a cleaner, bold flat aesthetic.
+- **Home Page Refresh**: Removed complex background gradients in favor of subtle, solid-color decorative elements for improved visual clarity.
+- **Hero Typography**: Integrated the Coinwise logo dynamically into the main headline as a superscript badge.
+
+### Visual Consistency
+- **Component Updates**: Updated Feature icons, Technology cards, and Call-to-Action sections to strictly adhere to the new `#F04DFF` design language.
+- **Micro-interactions**: Refined hover states and shadows on landing page elements.
 
 ## What's new in Alpha 1.5
 

@@ -14,7 +14,7 @@ export default function Techs() {
             {/* Section Header */}
             <div className="text-center mb-8 sm:mb-12">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-2">
-                    Built with <span className="text-purple-700 drop-shadow-lg">Modern Technology</span>
+                    Built with <span className="text-[#F04DFF] drop-shadow-lg">Modern Technology</span>
                 </h2>
                 <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-2">
                     Powered by industry-leading tools and frameworks for the best user experience
@@ -26,10 +26,10 @@ export default function Techs() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                     {/* React Technology */}
                     <div 
-                        className="group hover:border-purple-400 bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
+                        className="group hover:border-[#F04DFF] bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
                     >
                         <div className="flex justify-center mb-3 sm:mb-4">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-50 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <img 
                                     src={reactTech.image} 
                                     alt={`${reactTech.name} Icon`} 
@@ -37,7 +37,7 @@ export default function Techs() {
                                 />
                             </div>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-purple-700 transition-colors duration-300">
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-[#F04DFF] transition-colors duration-300">
                             {reactTech.name}
                         </h3>
                         <p className="text-gray-600 text-center text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
@@ -47,11 +47,11 @@ export default function Techs() {
 
                     {/* TypeScript Technology */}
                     <div 
-                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-purple-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
+                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-[#F04DFF] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
                         
                     >
                         <div className="flex justify-center mb-3 sm:mb-4">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-50 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <img 
                                     src={typeScriptTech.image} 
                                     alt={`${typeScriptTech.name} Icon`} 
@@ -59,7 +59,7 @@ export default function Techs() {
                                 />
                             </div>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-purple-700 transition-colors duration-300">
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-[#F04DFF] transition-colors duration-300">
                             {typeScriptTech.name}
                         </h3>
                         <p className="text-gray-600 text-center text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
@@ -69,10 +69,10 @@ export default function Techs() {
 
                     {/* Tailwind CSS Technology */}
                     <div 
-                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-purple-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
+                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-[#F04DFF] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
                     >
                         <div className="flex justify-center mb-3 sm:mb-4">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-50 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <img 
                                     src={tailwindTech.image} 
                                     alt={`${tailwindTech.name} Icon`} 
@@ -80,7 +80,7 @@ export default function Techs() {
                                 />
                             </div>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-purple-700 transition-colors duration-300">
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-[#F04DFF] transition-colors duration-300">
                             {tailwindTech.name}
                         </h3>
                         <p className="text-gray-600 text-center text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
@@ -90,10 +90,10 @@ export default function Techs() {
 
                     {/* Supabase Technology */}
                     <div 
-                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-purple-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
+                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-[#F04DFF] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
                     >
                         <div className="flex justify-center mb-3 sm:mb-4">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-50 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <img 
                                     src={supabaseTech.image} 
                                     alt={`${supabaseTech.name} Icon`} 
@@ -111,10 +111,10 @@ export default function Techs() {
 
                     {/* Git Technology */}
                     <div 
-                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-purple-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
+                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-[#F04DFF] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
                     >
                         <div className="flex justify-center mb-3 sm:mb-4">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-50 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <img 
                                     src={gitTech.image} 
                                     alt={`${gitTech.name} Icon`} 
@@ -122,7 +122,7 @@ export default function Techs() {
                                 />
                             </div>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-purple-700 transition-colors duration-300">
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-[#F04DFF] transition-colors duration-300">
                             {gitTech.name}
                         </h3>
                         <p className="text-gray-600 text-center text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
@@ -132,10 +132,10 @@ export default function Techs() {
 
                     {/* GitHub Technology */}
                     <div 
-                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-purple-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
+                        className="group bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200 p-4 sm:p-6 hover:bg-white/80 hover:border-[#F04DFF] hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
                     >
                         <div className="flex justify-center mb-3 sm:mb-4">
-                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-slate-50 border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <img 
                                     src={githubTech.image} 
                                     alt={`${githubTech.name} Icon`} 
@@ -143,7 +143,7 @@ export default function Techs() {
                                 />
                             </div>
                         </div>
-                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-purple-700 transition-colors duration-300">
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-800 text-center mb-2 sm:mb-3 group-hover:text-[#F04DFF] transition-colors duration-300">
                             {githubTech.name}
                         </h3>
                         <p className="text-gray-600 text-center text-sm leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
