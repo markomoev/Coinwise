@@ -1,6 +1,8 @@
 import {usePocketMoney} from '../hooks/pocketMon'
 import {useState, useEffect} from 'react'
 
+import { Coins } from 'lucide-react';
+
 export default function PocketMonCard(){
     const [pocketMoney, setPocketMoney] = useState<any>(0)
     const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -20,33 +22,22 @@ export default function PocketMonCard(){
     }, []);
 
 return(
-    <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 p-4 border-b border-gray-200">
-            <div className="flex items-center gap-3">
-                <div>
-                    <h3 className="font-semibold text-amber-700">Pocket Money</h3>
-                    <p className="text-xs text-gray-600">Available spending</p>
-                </div>
+    <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between h-full hover:shadow-md transition-all duration-300">
+        <div className="flex justify-between items-start mb-2">
+            <div className="p-2 bg-amber-50 rounded-lg text-amber-600">
+                <Coins/>
             </div>
+            <span className="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Pocket</span>
         </div>
-
-        {/* Content */}
-        <div className="p-4 space-y-4">
-            <div>
-                <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                    €{pocketMoney.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                </p>
-                <p className="text-xs text-gray-500">Available funds</p>
-            </div>
-            
-            <div className="flex items-center gap-2">
-                    <div>
-                        <p className="text-sm font-semibold text-amber-700">Money ready to use</p>
-                        <p className="text-xs text-amber-600">Total - Savings = Pocket Money</p>
-                    </div>
-                </div>
-            </div>
+        
+        <div>
+            <p className="text-2xl font-bold text-gray-900 mt-2">
+                €{pocketMoney.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </p>
+            <p className="text-xs text-amber-600 font-medium mt-1">
+                Ready to spend
+            </p>
         </div>
+    </div>
 )
 }

@@ -1,6 +1,7 @@
 import {supabase} from '../../../client'
 import {useState, useEffect} from 'react'
 
+import { Landmark } from 'lucide-react';
 
 export default function SavingsCard(){
     // last savings amount variable
@@ -87,43 +88,30 @@ export default function SavingsCard(){
     }, []);
 
     return(
-        <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 border-b border-gray-200">
-                <div className="flex items-center gap-3">
-                    <div>
-                        <h3 className="font-semibold text-blue-700">Savings</h3>
-                        <p className="text-xs text-gray-600">Money saved</p>
-                    </div>
+        <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between h-full hover:shadow-md transition-all duration-300">
+            <div className="flex justify-between items-start mb-2">
+                <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
+                    <Landmark/>
                 </div>
+                <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Savings</span>
             </div>
-
-            {/* Content */}
-            <div className="p-4 space-y-4">
-                <div>
-                    <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                        €{totalSavings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                    </p>
-                    <p className="text-xs text-gray-500">Total saved</p>
-                </div>
-
+            
+            <div>
+                <p className="text-2xl font-bold text-gray-900 mt-2">
+                    €{totalSavings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </p>
                 {lastSavings !== 0 && (
-                    <div className={`${lastSavings >= 0 ? 'bg-blue-50 border-blue-200' : 'bg-orange-50 border-orange-200'} border rounded-lg p-3`}>
-                        <div className="flex items-center gap-2">
-                            <div>
-                                <p className={`text-sm font-semibold ${
-                                    lastSavings >= 0 ? 'text-blue-700' : 'text-orange-700'
-                                }`}>
-                                    {lastSavings >= 0 ? `+€${lastSavings.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : `-€${Math.abs(lastSavings).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
-                                </p>
-                                <p className={`text-xs ${
-                                    lastSavings >= 0 ? 'text-blue-600' : 'text-orange-600'
-                                }`}>
-                                    Latest {lastSavings >= 0 ? 'deposit' : 'withdrawal'}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <p className={`text-xs font-medium mt-1 flex items-center gap-1 ${
+                        lastSavings >= 0 ? 'text-blue-600' : 'text-orange-600'
+                    }`}>
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {lastSavings >= 0 
+                                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+                            }
+                        </svg>
+                        {lastSavings >= 0 ? '+' : '-'}€{Math.abs(lastSavings).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </p>
                 )}
             </div>
         </div>

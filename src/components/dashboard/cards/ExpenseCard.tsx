@@ -1,6 +1,8 @@
 import {supabase} from "../../../client"
 import { useState, useEffect } from "react";
 
+import { CircleOff, TrendingDown } from 'lucide-react';
+
 export default function ExpenseCard(){
     // last expense amount variable
     const [lastExpense, setLastExpense] = useState(0);
@@ -85,35 +87,23 @@ export default function ExpenseCard(){
     }, []);
 
     return(
-        <div className="bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-red-50 to-rose-50 p-4 border-b border-gray-200">
-                <div className="flex items-center gap-3">
-                    <div>
-                        <h3 className="font-semibold text-red-700">Expenses</h3>
-                        <p className="text-xs text-gray-600">Total spending</p>
-                    </div>
+        <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex flex-col justify-between h-full hover:shadow-md transition-all duration-300">
+            <div className="flex justify-between items-start mb-2">
+                <div className="p-2 bg-red-50 rounded-lg text-red-600">
+                    <CircleOff/>
                 </div>
+                <span className="bg-red-100 text-red-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Expense</span>
             </div>
-
-            {/* Content */}
-            <div className="p-4 space-y-4">
-                <div>
-                    <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-                        €{totalEpenses.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                    </p>
-                    <p className="text-xs text-gray-500">Total spent</p>
-                </div>
-
+            
+            <div>
+                <p className="text-2xl font-bold text-gray-900 mt-2">
+                    €{totalEpenses.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </p>
                 {lastExpense > 0 && (
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                        <div className="flex items-center gap-2">
-                            <div>
-                                <p className="text-sm font-semibold text-red-700">-€{lastExpense.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-                                <p className="text-xs text-red-600">Latest expense</p>
-                            </div>
-                        </div>
-                    </div>
+                    <p className="text-xs text-red-600 font-medium mt-1 flex items-center gap-1">
+                        <TrendingDown className = "w-4 h-4"/>
+                        €{lastExpense.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    </p>
                 )}
             </div>
         </div>

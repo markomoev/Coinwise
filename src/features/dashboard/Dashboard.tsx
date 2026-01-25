@@ -57,43 +57,26 @@ export default function DashboardPage() {
             <div className="w-full min-h-screen relative">
                 <div className='w-full flex flex-row'>
                     <SideBar/>
-                    <div className="flex flex-1 flex-col px-4 md:px-10 pt-20 md:pt-10 md:pr-10 md:ml-64 relative">
+                    <div className="flex flex-1 flex-col px-4 sm:px-6 lg:px-8 pt-24 md:pt-12 md:ml-64 relative bg-gray-50/50">
                         {/* Blurred cards in background */}
-                        <div className="blur-sm opacity-30 pointer-events-none space-y-6">
-                            <div className="w-full bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-4 md:p-6 rounded-2xl">
-                                <div><p className='text-lg'>Total balance:</p></div>
-                                <div className='w-full flex flex-col sm:flex-row sm:justify-between gap-4'>
-                                    <div><p className='font-bold text-2xl md:text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>$0</p></div>
-                                    <div className='flex flex-row gap-2 sm:gap-4'>
-                                        <button className="font-semibold border border-black/10 rounded-2xl px-2 py-1 sm:px-3 text-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">Transfer</button>
-                                        <button className="font-semibold border border-black/10 rounded-2xl px-2 py-1 sm:px-3 text-sm bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">Add funds</button>
-                                    </div>
-                                </div>
+                        <div className="blur-sm opacity-40 pointer-events-none space-y-8 max-w-7xl mx-auto w-full">
+                            <div className="flex flex-col gap-1">
+                                <div className="h-8 w-32 bg-gray-300 rounded-lg"></div>
+                                <div className="h-5 w-48 bg-gray-200 rounded-lg"></div>
+                            </div>
+
+                            <div className="w-full bg-white border border-black/5 bg-opacity-90 backdrop-blur-xl shadow-lg p-6 rounded-2xl h-48">
+                                {/* Total Card Placeholder */}
                             </div>
                             
-                            <div className='w-full grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6'>  
-                                <div className='flex flex-col gap-6 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-4 md:p-6 rounded-2xl'>
-                                    <div><p className='text-lg'>Income:</p></div>
-                                    <div className='flex flex-row gap-4 md:gap-7'>
-                                        <div><p className='font-bold text-2xl md:text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>$0</p></div>
-                                        <div><p className='text-lg font-semibold text-green-700'>+$0</p></div>
-                                    </div>
+                            <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-6'>  
+                                <div className='flex flex-col gap-6'>
+                                     <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
+                                     <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
                                 </div>
-                                
-                                <div className='flex flex-col gap-6 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-4 md:p-6 rounded-2xl'>
-                                    <div><p className='text-lg'>Expenses:</p></div>
-                                    <div className='flex flex-row gap-4 md:gap-7'>
-                                        <div><p className='font-bold text-2xl md:text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>$0</p></div>
-                                        <div><p className='text-lg font-semibold text-red-700'>-$0</p></div>
-                                    </div>
-                                </div>
-                                
-                                <div className='flex flex-col gap-6 bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-4 md:p-6 rounded-2xl'>
-                                    <div><p className='text-lg'>Savings:</p></div>
-                                    <div className='flex flex-row gap-4 md:gap-7'>
-                                        <div><p className='font-bold text-2xl md:text-3xl bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent'>$0</p></div>
-                                        <div><p className='text-lg font-semibold text-stone-700'>+$0</p></div>
-                                    </div>
+                                <div className='flex flex-col gap-6'>
+                                     <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
+                                     <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
                                 </div>
                             </div>
                         </div>
@@ -127,46 +110,67 @@ export default function DashboardPage() {
     }
 
     return(
-        <div className="w-full min-h-screen">
-            <div className='w-full flex flex-row h-screen'>
+        <div className="w-full min-h-screen bg-gray-50 flex flex-row">
+            <SideBar/>
+
+            <main className="flex-1 flex flex-col md:ml-64 relative overflow-y-auto h-screen scroll-smooth">
+                {/* Immersive Top Background */}
+                <div className="absolute top-0 left-0 w-full h-[45vh] bg-gradient-to-br from-purple-700 via-indigo-700 to-purple-900 rounded-b-[3rem] shadow-xl z-0 overflow-hidden">
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                </div>
+
+                {/* Content Container */}
+                <div className="relative z-10 w-full max-w-5xl mx-auto px-6 py-12 flex flex-col gap-10">
                     
-                    <SideBar/>
+                    {/* Header & Total Balance Section */}
+                    <div className="flex flex-col items-center animate-fade-in-down">
+                        <h1 className="text-white/80 font-medium text-lg mb-6 tracking-wide">Good funds, have fun</h1>
+                        
+                        <div className="w-full max-w-md transform hover:scale-105 transition-transform duration-500">
+                             <TotalCard
+                                showTransferPopup={() => setShowTransferPopup(true)}
+                                showFundsPopup={() => setShowFundsPopup(true)}
+                            />
+                        </div>
+                    </div>
 
-                <div className="flex flex-1 flex-col overflow-y-auto md:ml-64">
-                    {/* Financial Cards Section */}
-                    <div className="w-full px-4 md:px-10 pt-20 md:pt-10 pb-6 space-y-6">
-                        {/* Total Balance Card */}
-                        <TotalCard
-                            showTransferPopup={() => setShowTransferPopup(true)}
-                            showFundsPopup={() => setShowFundsPopup(true)}
-                        />
-
-                        {/* Statistics Cards */}
-                        {/* Statistics Cards */}
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
-                            <IncomeCard/>
-                            <ExpenseCard/>
+                    {/* Stats Row - Floating Cards */}
+                    <div className="flex flex-row overflow-x-auto gap-4 -mt-4 pb-4 -mx-6 px-6 snap-x snap-mandatory no-scrollbar">
+                        <div className="min-w-[85vw] sm:min-w-[280px] flex-none snap-center transform hover:-translate-y-1 transition-transform duration-300">
                             <PocketMonCard/>
+                        </div>
+                        <div className="min-w-[85vw] sm:min-w-[280px] flex-none snap-center transform hover:-translate-y-1 transition-transform duration-300">
                             <SavingsCard/>
                         </div>
-                        {/* Charts Section */}
-                        <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 flex-1'>
-                            <div>
+                        <div className="min-w-[85vw] sm:min-w-[280px] flex-none snap-center transform hover:-translate-y-1 transition-transform duration-300">
+                            <IncomeCard/>
+                        </div>
+                        <div className="min-w-[85vw] sm:min-w-[280px] flex-none snap-center transform hover:-translate-y-1 transition-transform duration-300">
+                            <ExpenseCard/>
+                        </div>
+                    </div>
+
+                    {/* Charts Section - Clean & Minimal */}
+                    <div className="space-y-6 pb-12">
+                        <h3 className="text-gray-800 font-bold text-xl px-2">Financial Insights</h3>
+                        
+                        <div className="flex flex-row overflow-x-auto gap-6 -mx-6 px-6 pb-6 snap-x snap-mandatory no-scrollbar">
+                            <div className="min-w-[90vw] md:min-w-[600px] flex-none snap-center p-6 rounded-3xl transition-shadow duration-300">
                                 <AccTrend/>
                             </div>
-                            {/* Placeholder for second chart */}
-                            <div>
+                            <div className="min-w-[90vw] md:min-w-[600px] flex-none snap-center p-6 rounded-3xl transition-shadow duration-300">
                                 <IncVSExp/>
                             </div>
-                            {/* Placeholder for third chart */}
-                            <div>
+                            <div className="min-w-[90vw] md:min-w-[600px] flex-none snap-center p-6 transition-shadow duration-300">
                                 <ChartBreak/>
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </div>
+                </div>
+            </main>
 
             {showFundsPopup && (
                 <>

@@ -1,8 +1,23 @@
-# Coinwise — Alpha 1.3
+# Coinwise — Alpha 1.5
 
 Coinwise is a modern, lightweight personal finance tracker built with React, TypeScript, Vite, Tailwind CSS, Chart.js, and Supabase.
 
-Status: Alpha 1.3 — active development; features and UI are evolving. 
+Status: Alpha 1.5 — active development; features and UI are evolving. 
+
+## What's new in Alpha 1.5
+
+### UI/UX Redesign
+- **New Dashboard**: Complete visual overhaul with a light, modern aesthetic featuring purple gradients and glass-morphism effects.
+- **Mobile Experience**: Implemented horizontal snap-scrolling for Stat Cards and Charts to optimize screen real estate on mobile devices.
+- **Visual Clarity**: Simplified "Hero" balance display and cleaner component hierarchy.
+
+### Core Logic Updates
+- **Euro Standardization**: Removed complex currency conversion logic in favor of a stable, native Euro implementation.
+- **Code Cleanup**: Extensive refactoring of transaction handling and card components for better maintainability.
+
+### General Improvements
+- **Branding**: Updated Sidebar with prominent logo and improved navigation styling.
+- **Performance**: Reduced component re-renders and optimized scroll grouping.
 
 ## What's new in Alpha 1.3
 
