@@ -6,7 +6,7 @@ import { supabase } from '../../client';
 const Activity = (React as any).Activity;
 
 import { Home, LayoutDashboard, PlusCircle, User, Settings, PanelRightOpen, PanelLeftClose } from "lucide-react"
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/logo_big.png'
 
 type NavItem = {
     title: string;
@@ -142,7 +142,7 @@ export default function SideBar() {
                                              hover:text-[#D633E6]
                                              ${collapsed ? "justify-center" : ""}`}
                                 >
-                                    <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
+                                    <div className="md:mt-2 mt-0 w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
                                         <div className={`mt-2 w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110 ${isCurrentPage ? 'text-[#D633E6]' : 'text-gray-500'} group-hover:text-[#D633E6]`}>
                                             {item.icon}
                                         </div>
@@ -158,7 +158,7 @@ export default function SideBar() {
                     </nav>
 
                     {/* User Section */}
-                    <div className="flex flex-col gap-2 pt-4 mt-auto border-t border-gray-100 flex-shrink-0 pb-4 w-full">
+                    <div className="flex flex-col gap-2 pt-4 md:mt-auto mt-4 border-t border-gray-200 flex-shrink-0 pb-4 w-full">
                         <Link
                             to="/login"
                             title={collapsed ? username : ""}
@@ -166,7 +166,7 @@ export default function SideBar() {
                                      hover:text-[#D633E6]
                                      ${collapsed ? "justify-center" : ""}`}
                         >
-                            <div className="mt-2 w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
+                            <div className="md:mt-2 mt-0 w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
                                 <div className={`w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110 group-hover:text-[#D633E6] ${location.pathname === '/login' ? 'text-[#D633E6]' : 'text-gray-500'}`}>
                                     <User />
                                 </div>
@@ -185,7 +185,7 @@ export default function SideBar() {
                                      hover:text-[#D633E6]
                                      ${collapsed ? "justify-center" : ""}`}
                         >
-                            <div className="mt-2 w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
+                            <div className="md:mt-2 mt-0 w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
                                 <div className={`w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110 group-hover:text-[#D633E6] ${location.pathname === '/settings' ? 'text-[#D633E6]' : 'text-gray-500'}`}>
                                     <Settings />
                                 </div>

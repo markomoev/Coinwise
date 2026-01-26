@@ -35,7 +35,7 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
             {/* Section Header */}
             <div className='text-center mb-8 sm:mb-12'>
                 <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-2'>
-                    Why Choose <span className='text-[#F04DFF] drop-shadow-lg '>Coinwise?</span>
+                    Why Choose <span className='text-[#D633E6] drop-shadow-lg '>Coinwise?</span>
                 </h2>
                 <p className='text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-2'>
                     Experience the future of personal finance management with our cutting-edge features
@@ -45,9 +45,9 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
             {/* Info Cards Grid */}
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8'>
                 {/* Easy to Use Card */}
-                <div className='bg-white/80 hover:border-[#F04DFF] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
+                <div className='bg-white/80 hover:border-[#F6A30F] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
                     <div className='flex items-start space-x-3 sm:space-x-4'>
-                        <div className='w-12 h-12 bg-[#F04DFF] rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <div className='w-12 h-12 bg-[#F6A30F] rounded-xl flex items-center justify-center flex-shrink-0'>
                             <LightningIcon className='w-6 h-6 text-white' />
                         </div>
                         <div>
@@ -60,9 +60,9 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 </div>
 
                 {/* Secure & Private Card */}
-                <div className='bg-white/80 hover:border-[#F04DFF] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
+                <div className='bg-white/80 hover:border-[#10B981] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
                     <div className='flex items-start space-x-3 sm:space-x-4'>
-                        <div className='w-12 h-12 bg-[#F04DFF] rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <div className='w-12 h-12 bg-[#10B981] rounded-xl flex items-center justify-center flex-shrink-0'>
                             <SecurityIcon className='w-6 h-6 text-white' />
                         </div>
                         <div>
@@ -75,9 +75,9 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 </div>
 
                 {/* Smart Insights Card */}
-                <div className='bg-white/80 hover:border-[#F04DFF] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
+                <div className='bg-white/80 hover:border-[#3B82F6] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
                     <div className='flex items-start space-x-3 sm:space-x-4'>
-                        <div className='w-12 h-12 bg-[#F04DFF] rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <div className='w-12 h-12 bg-[#3B82F6] rounded-xl flex items-center justify-center flex-shrink-0'>
                             <BulbIcon className='w-6 h-6 text-white' />
                         </div>
                         <div>
@@ -90,9 +90,9 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 </div>
 
                 {/* Real-time Sync Card */}
-                <div className='bg-white/80 hover:border-[#F04DFF] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
+                <div className='bg-white/80 hover:border-[#8B5CF6] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
                     <div className='flex items-start space-x-3 sm:space-x-4'>
-                        <div className='w-12 h-12 bg-[#F04DFF] rounded-xl flex items-center justify-center flex-shrink-0'>
+                        <div className='w-12 h-12 bg-[#8B5CF6] rounded-xl flex items-center justify-center flex-shrink-0'>
                             <ArrowsIcon className='w-6 h-6 text-white' />
                         </div>
                         <div>

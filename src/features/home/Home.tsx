@@ -39,14 +39,14 @@ export default function HomePage(){
                         {/* Background Elements */}
                         <div className="absolute top-0 inset-x-0 h-full w-full -z-10 overflow-hidden">
                            {/* Decorative circles instead of gradients */}
-                           <div className="absolute top-[10%] left-[20%] w-[500px] h-[500px] bg-[#F04DFF]/5 rounded-full filter blur-[80px]"></div>
-                           <div className="absolute bottom-[0%] right-[10%] w-[600px] h-[600px] bg-[#F04DFF]/5 rounded-full filter blur-[80px]"></div>
+                           <div className="absolute top-[10%] left-[20%] w-[500px] h-[500px] bg-[#D633E6]/5 rounded-full filter blur-[80px]"></div>
+                           <div className="absolute bottom-[0%] right-[10%] w-[600px] h-[600px] bg-[#D633E6]/5 rounded-full filter blur-[80px]"></div>
                         </div>
 
                         <div className='text-center max-w-5xl mx-auto z-10'>
                             {/* Main Heading */}
                             <h1 className='text-4xl sm:text-5xl md:text-7xl font-bold text-slate-900 mb-6 sm:mb-8 leading-tight tracking-tight animate-fade-in-up animation-delay-100'>
-                                Master Your Money with <span className='relative inline-block text-[#F04DFF]'>
+                                Master Your Money with <span className='relative inline-block text-[#D633E6]'>
                                     Coinwise
                                     <img src={Logo} alt="Logo" className="absolute -top-2 -right-8 w-8 h-8 sm:w-12 sm:h-12 sm:-top-4 sm:-right-12 object-contain" />
                                 </span>
@@ -59,7 +59,7 @@ export default function HomePage(){
                             
                             {/* CTA Buttons */}
                             <div className='flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-16 sm:mb-24 px-4 animate-fade-in-up animation-delay-300'>
-                                <Link to={isAuthenticated ? "/dashboard" : "/login"} className='group px-8 sm:px-10 py-4 bg-[#F04DFF] hover:bg-[#d945e6] text-white rounded-full font-bold text-lg flex items-center justify-center transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1'>
+                                <Link to={isAuthenticated ? "/dashboard" : "/login"} className='group px-8 sm:px-10 py-4 bg-[#D633E6] hover:bg-[#b02bc0] text-white rounded-full font-bold text-lg flex items-center justify-center transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1'>
                                     Get Started
                                     <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
                                 </Link>
@@ -67,7 +67,7 @@ export default function HomePage(){
                                   onClick={() => {
                                     document.getElementById('features-section')?.scrollIntoView({ behavior: 'smooth' });
                                   }}
-                                  className='cursor-pointer px-8 sm:px-10 py-4 bg-white/80 backdrop-blur-sm border border-slate-200 text-slate-700 font-bold rounded-full text-lg hover:bg-white hover:text-[#F04DFF] hover:border-[#F04DFF]/30 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1'>
+                                  className='cursor-pointer px-8 sm:px-10 py-4 bg-white/80 backdrop-blur-sm border border-slate-200 text-slate-700 font-bold rounded-full text-lg hover:bg-white hover:text-[#D633E6] hover:border-[#D633E6]/30 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1'>
                                     Explore Features
                                 </button>
                             </div>
@@ -87,7 +87,7 @@ export default function HomePage(){
                     
                     {/* Info Section */}
                     <div id ='info-section' className='px-4 sm:px-6 lg:px-8 py-20 relative overflow-hidden'>
-                         <div className="absolute top-0 right-0 w-1/2 h-full bg-[#F04DFF]/5 -z-10"></div>
+                         <div className="absolute top-0 right-0 w-1/2 h-full bg-[#D633E6]/5 -z-10"></div>
                         <Info/>
                     </div>
                     

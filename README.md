@@ -1,34 +1,28 @@
-# Coinwise — Alpha 1.6
+# Coinwise — Alpha 1.4
 
 Coinwise is a modern, lightweight personal finance tracker built with React, TypeScript, Vite, Tailwind CSS, Chart.js, and Supabase.
 
-Status: Alpha 1.6 — active development; features and UI are evolving. 
+Status: Alpha 1.4 — active development; features and UI are evolving. 
 
-## What's new in Alpha 1.6
+## What's new in Alpha 1.4
 
-### Branding & Design
-- **Unified Color System**: Standardized the application's accent color to a vibrant Neon Purple (`#F04DFF`), replacing previous gradients with a cleaner, bold flat aesthetic.
-- **Home Page Refresh**: Removed complex background gradients in favor of subtle, solid-color decorative elements for improved visual clarity.
-- **Hero Typography**: Integrated the Coinwise logo dynamically into the main headline as a superscript badge.
+### Immersive UI & Branding
+- **New Visual Identity**: Shifted primary branding to a deep **Pink (`#D633E6`)**, paired with immersive Blue-to-Pink gradients and noise textures for a premium feel.
+- **Unified Design Material**: Dashboard and Transactions pages now share the "Immersive Top" layout, featuring glassmorphism, consistent typography, and blurred backgrounds.
 
-### Visual Consistency
-- **Component Updates**: Updated Feature icons, Technology cards, and Call-to-Action sections to strictly adhere to the new `#F04DFF` design language.
-- **Micro-interactions**: Refined hover states and shadows on landing page elements.
+### Navigation & Layout
+- **Sidebar 2.0**: Completely refactored sidebar featuring:
+  - **Collapsible Mode**: Desktop users can now collapse the sidebar for more screen real estate.
+  - **Mobile Optimization**: improved spacing, sticky positioning, and better user section placement.
+  - **Styles**: Refined active states and hover effects.
 
-## What's new in Alpha 1.5
+### Transactions Redesign
+- **Visual Overhaul**: The Transactions page has been rebuilt to match the Dashboard's aesthetic, removing legacy flat colors in favor of immersive headers and floating lists.
+- **Empty States**: added stylized empty states for new users.
 
-### UI/UX Redesign
-- **New Dashboard**: Complete visual overhaul with a light, modern aesthetic featuring purple gradients and glass-morphism effects.
-- **Mobile Experience**: Implemented horizontal snap-scrolling for Stat Cards and Charts to optimize screen real estate on mobile devices.
-- **Visual Clarity**: Simplified "Hero" balance display and cleaner component hierarchy.
-
-### Core Logic Updates
-- **Euro Standardization**: Removed complex currency conversion logic in favor of a stable, native Euro implementation.
-- **Code Cleanup**: Extensive refactoring of transaction handling and card components for better maintainability.
-
-### General Improvements
-- **Branding**: Updated Sidebar with prominent logo and improved navigation styling.
-- **Performance**: Reduced component re-renders and optimized scroll grouping.
+### UX Improvements
+- **Popups Refined**: "Add Funds" and "Transfer" popups are now perfectly centered on mobile with updated inputs and brand-consistent colors.
+- **Authentication Views**: Non-authenticated states now feature consistent blurred backgrounds and centered prompts across the app.
 
 ## What's new in Alpha 1.3
 

@@ -115,10 +115,10 @@ export default function DashboardPage() {
 
             <main className="flex-1 flex flex-col relative overflow-y-auto h-screen scroll-smooth">
                 {/* Immersive Top Background */}
-                <div className="absolute top-0 left-0 w-full h-[45vh] bg-gradient-to-br from-purple-700 via-indigo-700 to-purple-900 rounded-b-[3rem] shadow-xl z-0 overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-[45vh] bg-gradient-to-br from-blue-700 to-[#D633E6] rounded-b-[3rem] shadow-xl z-0 overflow-hidden">
                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#D633E6]/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
                 </div>
 
                 {/* Content Container */}
@@ -176,12 +176,12 @@ export default function DashboardPage() {
                 <>
                     {/* overlay */}
                     <div
-                        className="fixed inset-0 z-40 md:bg-black/50"
+                        className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity"
                         onClick={() => setShowFundsPopup(false)}
                     />
 
                     {/* popup */}
-                    <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4 p-0">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
                         <div className="w-full max-w-md sm:max-w-lg flex items-center justify-center">
                             <FundsPopup closePopup={() => setShowFundsPopup(false)} />
                         </div>
@@ -193,12 +193,12 @@ export default function DashboardPage() {
                 <>
                     {/* overlay */}
                     <div
-                        className="fixed inset-0 z-40 md:bg-black/50"
+                        className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity"
                         onClick={() => setShowTransferPopup(false)}
                     />
 
                     {/* popup */}
-                    <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4 p-0">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
                         <div className="w-full max-w-md sm:max-w-lg flex items-center justify-center">
                             <TransferPopup closeTransferPopup={() => setShowTransferPopup(false)} />
                         </div>

@@ -27,7 +27,7 @@ export default function TransactionEdit({ transactionId }: TransactionEditProps)
         <div className="flex gap-2 pt-2 border-t border-gray-200">
             <button
                 onClick={() => setIsModifying(true)}
-                className="md:px-4 px-3 md:py-2 py-1 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-200 rounded-lg hover:bg-blue-100 hover:border-blue-300 transition-all duration-200">
+                className="md:px-4 px-3 md:py-2 py-1 text-sm font-semibold text-[#D633E6] bg-[#D633E6]/10 border border-[#D633E6]/20 rounded-lg hover:bg-[#D633E6]/20 hover:border-[#D633E6]/30 transition-all duration-200">
                 Modify
             </button>
 

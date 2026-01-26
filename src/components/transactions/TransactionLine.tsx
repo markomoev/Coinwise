@@ -24,7 +24,7 @@ export default function TransactionLine({id, name, amount, type, date, note, cre
                     <div className="min-w-0 flex-1">
                         <h3 className="font-semibold text-gray-800 text-base md:text-lg truncate">{name}</h3>
                         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mt-1">
-                            <span className="text-lg md:text-xl font-bold text-purple-600">
+                            <span className="text-lg md:text-xl font-bold text-[#D633E6]">
                                 €{amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </span>
                             <span className={`text-xs md:text-sm font-medium px-2 py-1 rounded-full w-fit ${
