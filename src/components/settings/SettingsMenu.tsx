@@ -13,7 +13,7 @@ export default function SettingsMenu({ activeSection, setActiveSection }: Settin
     return(
         <div className="w-full">
             <div className="mb-6">
-                <h2 className="text-xl font-semibold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+                <h2 className="text-xl font-bold text-gray-900">
                     Menu
                 </h2>
             </div>
@@ -23,10 +23,10 @@ export default function SettingsMenu({ activeSection, setActiveSection }: Settin
                     <button
                         key={item.id}
                         onClick={() => setActiveSection(item.id)}
-                        className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 text-left ${
+                        className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 text-left font-medium ${
                             activeSection === item.id
-                                ? 'bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-300/50 text-purple-700 font-semibold'
-                                : 'hover:bg-black/10 text-gray-700 border border-transparent'
+                                ? 'bg-[#D633E6]/10 text-[#D633E6]'
+                                : 'hover:bg-gray-50 text-gray-500'
                         }`}
                     >
                         <span>{item.label}</span>

@@ -140,11 +140,11 @@ export default function accSettings(){
     return(
         <div className="w-full max-w-2xl bg-white/90 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden">
             {/* Header */}
-            <div className="bg-purple-50 p-6 border-b border-gray-200">
+            <div className="bg-[#D633E6]/5 p-6 border-b border-gray-100">
                 <div className="flex items-center gap-3">
                     <div>
-                        <h2 className="text-2xl font-bold text-purple-700">Account Settings</h2>
-                        <p className="text-gray-600">Manage your profile information and preferences</p>
+                        <h2 className="text-2xl font-bold text-gray-900">Account Settings</h2>
+                        <p className="text-gray-500 font-medium">Manage your profile information and preferences</p>
                     </div>
                 </div>
             </div>
@@ -164,8 +164,8 @@ export default function accSettings(){
                                 readOnly={!editMode}
                                 className={`w-full p-3 rounded-xl border transition-all duration-200 ${
                                     editMode 
-                                        ? 'bg-white border-purple-300 focus:border-purple-600 focus:ring-2 focus:ring-purple-200' 
-                                        : 'bg-gray-50 border-gray-200 text-gray-600'
+                                        ? 'bg-white border-[#D633E6]/30 focus:border-[#D633E6] focus:ring-4 focus:ring-[#D633E6]/10 outline-none' 
+                                        : 'bg-gray-50/50 border-gray-200 text-gray-500'
                                 }`}
                                 type="email"
                                 placeholder="Your email address"
@@ -182,8 +182,8 @@ export default function accSettings(){
                                 readOnly={!editMode}
                                 className={`w-full p-3 rounded-xl border transition-all duration-200 ${
                                     editMode 
-                                        ? 'bg-white border-purple-300 focus:border-purple-600 focus:ring-2 focus:ring-purple-200' 
-                                        : 'bg-gray-50 border-gray-200 text-gray-600'
+                                        ? 'bg-white border-[#D633E6]/30 focus:border-[#D633E6] focus:ring-4 focus:ring-[#D633E6]/10 outline-none' 
+                                        : 'bg-gray-50/50 border-gray-200 text-gray-500'
                                 }`}
                                 type="text"
                                 placeholder="Your username"
@@ -200,7 +200,7 @@ export default function accSettings(){
                         <>
                             <button
                                 onClick={editProfile}
-                                className="flex items-center gap-2 px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all duration-200 font-medium"
+                                className="flex items-center gap-2 px-4 py-2 bg-[#D633E6] hover:bg-[#b02bc0] text-white rounded-xl hover:shadow-lg hover:shadow-[#D633E6]/30 hover:scale-[1.02] transition-all duration-200 font-medium"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -210,7 +210,7 @@ export default function accSettings(){
                             
                             <button
                                 onClick={logOutUser}
-                                className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 font-medium"
+                                className="flex items-center gap-2 px-4 py-2 border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-200 font-medium"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
