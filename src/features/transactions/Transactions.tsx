@@ -143,11 +143,9 @@ export default function TransactionsPage() {
     }
 
     return (
-        <div className="w-full h-screen">
-            <div className="w-full flex flex-row h-full">
-                <SideBar/>
-                
-                <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:px-10 pb-4 h-full md:ml-64">
+        <div className="flex flex-row overflow-hidden h-screen w-full">
+            <SideBar/>
+            <div className="flex flex-1 flex-col px-4 pt-20 md:pt-10 md:px-10 pb-4 h-full">
 
                     {/* Transaction Content */}
                     <div className="w-full flex-1 min-h-0">
@@ -157,7 +155,6 @@ export default function TransactionsPage() {
                         />
                     </div>
                 </div>
-            </div>
 
             {/* Overlay + Popup */}
             {showPopup && (
@@ -168,7 +165,7 @@ export default function TransactionsPage() {
                         onClick={() => setShowPopup(false)}
                     />
                     {/* Popup */}
-                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center md:p-4 p-0">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4 p-0">
                         <div className="w-full max-w-md sm:max-w-lg flex items-center justify-center">
                             <TransactionPopup
                                 closePopup={() => setShowPopup(false)} 

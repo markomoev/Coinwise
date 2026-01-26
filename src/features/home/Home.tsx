@@ -32,7 +32,7 @@ export default function HomePage(){
         <div className='w-full min-h-screen bg-slate-50'>
             <div className='w-full flex flex-row gap-0 min-h-screen'>
                 <SideBar/>
-                <div className='flex-1 flex flex-col overflow-y-auto md:pl-64'>
+                <div className='flex-1 flex flex-col overflow-y-auto'>
                     {/* Hero Section */}
                     <div className='relative flex flex-col items-center justify-center min-h-[90vh] px-4 pt-20 md:pt-10 sm:px-6 lg:px-8 overflow-hidden'>
                         

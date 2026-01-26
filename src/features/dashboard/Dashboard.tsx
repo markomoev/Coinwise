@@ -82,7 +82,7 @@ export default function DashboardPage() {
                         </div>
                         
                         {/* Auth overlay bubble */}
-                        <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-40 flex items-center justify-center p-4">
+                        <div className="fixed inset-0 z-20 flex items-center justify-center p-4">
                             <div className="bg-white/95 border border-black/20 backdrop-blur-2xl shadow-2xl p-6 md:p-12 rounded-3xl text-center max-w-md w-full">
                                 <div className="mb-4">
                                     <div className="w-12 h-12 md:w-16 md:h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -113,7 +113,7 @@ export default function DashboardPage() {
         <div className="w-full min-h-screen bg-gray-50 flex flex-row">
             <SideBar/>
 
-            <main className="flex-1 flex flex-col md:ml-64 relative overflow-y-auto h-screen scroll-smooth">
+            <main className="flex-1 flex flex-col relative overflow-y-auto h-screen scroll-smooth">
                 {/* Immersive Top Background */}
                 <div className="absolute top-0 left-0 w-full h-[45vh] bg-gradient-to-br from-purple-700 via-indigo-700 to-purple-900 rounded-b-[3rem] shadow-xl z-0 overflow-hidden">
                     <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
@@ -181,7 +181,7 @@ export default function DashboardPage() {
                     />
 
                     {/* popup */}
-                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center md:p-4 p-0">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4 p-0">
                         <div className="w-full max-w-md sm:max-w-lg flex items-center justify-center">
                             <FundsPopup closePopup={() => setShowFundsPopup(false)} />
                         </div>
@@ -198,7 +198,7 @@ export default function DashboardPage() {
                     />
 
                     {/* popup */}
-                    <div className="fixed inset-0 md:inset-y-0 md:left-64 md:right-0 z-50 flex items-center justify-center md:p-4 p-0">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4 p-0">
                         <div className="w-full max-w-md sm:max-w-lg flex items-center justify-center">
                             <TransferPopup closeTransferPopup={() => setShowTransferPopup(false)} />
                         </div>

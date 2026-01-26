@@ -1,29 +1,29 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {supabase} from '../../client';
+import { supabase } from '../../client';
 
-import HomeIcon from '../../public/sidebar/home.png'
-import DashIcon from '../../public/sidebar/dashboard.png'
-import PlusIcon from '../../public/sidebar/plus.png'
-import UserIcon from '../../public/sidebar/user.png'
-import SettingsIcon from '../../public/sidebar/settings.png'
-import Logo from '../../assets/logo.png' // Import Logo
+// Workaround for missing React 19 types
+const Activity = (React as any).Activity;
+
+import { Home, LayoutDashboard, PlusCircle, User, Settings, PanelRightOpen, PanelLeftClose } from "lucide-react"
+import Logo from '../../assets/logo.png'
 
 type NavItem = {
     title: string;
     path: string;
-    icon: string;
+    icon: any;
     alt: string;
 };
 
 const navItems: NavItem[] = [
-    { title: 'Home', path: '/home', icon: HomeIcon, alt: 'Home Icon' },
-    { title: 'Dashboard', path: '/dashboard', icon: DashIcon, alt: 'Dashboard Icon' },
-    { title: 'Transactions', path: '/transactions', icon: PlusIcon, alt: 'Plus Icon' },
+    { title: 'Home', path: '/home', icon: <Home />, alt: 'Home Icon' },
+    { title: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard />, alt: 'Dashboard Icon' },
+    { title: 'Transactions', path: '/transactions', icon: <PlusCircle />, alt: 'Transactions Icon' },
 ];
 
 export default function SideBar() {
     const [open, setOpen] = useState(false);
+    const [collapsed, setCollapsed] = useState(false);
     const [username, setUsername] = useState('Add Profile');
 
     // for logged in or not logged in user
@@ -41,12 +41,12 @@ export default function SideBar() {
         const fetchUsername = async () => {
             const { data, error } = await supabase.auth.getSession()
 
-            if(data?.session?.user?.user_metadata?.username){
+            if (data?.session?.user?.user_metadata?.username) {
                 setUsername(data.session?.user.user_metadata.username);
                 // if user is logged in, don't let them access login page
-                setIsActive(true);   
+                setIsActive(true);
             }
-            if(error){
+            if (error) {
                 console.error('Error fetching username:', error);
             }
         }
@@ -89,30 +89,47 @@ export default function SideBar() {
                 <span className="block w-6 h-0.5 bg-black/40"></span>
             </button>
 
+            {/* Desktop Spacer - Reserves space for fixed sidebar */}
+            <div className={`hidden md:block flex-shrink-0 transition-all duration-300 ${collapsed ? "w-20" : "w-64"}`} />
+
             {/* Sidebar */}
             <div
                 className={`
                     fixed top-0 left-0 z-30 transition-all duration-300
                     bg-gradient-to-br from-white/95 to-gray-50/95 backdrop-blur-xl
                     border-r border-black/5 shadow-lg
-                    text-lg font-normal w-64 h-screen overflow-y-auto
-                    ${open ? "translate-x-0" : "-translate-x-full"}
-                    md:translate-x-0 md:w-64 md:h-screen
-                    md:border-r md:bg-white/90
+                    text-lg font-normal h-screen overflow-y-auto
+                    ${open ? "translate-x-0 w-64" : "-translate-x-full w-64"}
+                    md:translate-x-0 md:bg-white/90 md:top-0
+                    ${collapsed ? "md:w-20" : "md:w-64"}
                     overscroll-contain
                 `}
             >
-                <div className="w-full flex flex-col p-3 min-h-full pb-safe items-starts">
+                <div className="fixed w-full flex flex-col p-3 min-h-full pb-safe items-center md:items-stretch">
                     {/* Website Name */}
-                    <Link to="/home" className="flex items-center gap-3 px-3 py-4 mb-4 md:mb-6 md:mt-0 mt-10 border-b border-gray-100">
-                        <img src={Logo} alt="Coinwise Logo" className="w-14 h-14 object-contain" />
-                        <span className="text-3xl font-bold text-purple-700">
-                            Coinwise
-                        </span>
+                    <Link to="/home" className={`flex items-center gap-3 px-3 py-4 mb-4 md:mb-6 md:mt-0 mt-10 border-b border-gray-100 ${collapsed ? "justify-center" : ""}`}>
+                        <Activity mode={collapsed ? "visible" : "hidden"}>
+                            <img src={Logo} alt="Coinwise Logo" className={`object-contain transition-all duration-300 ${collapsed ? "w-10 h-10" : "w-14 h-14"}`} />
+                        </Activity>
+                        {!collapsed && (
+                            <span className="text-3xl font-bold text-[#D633E6] whitespace-nowrap overflow-hidden transition-all duration-300">
+                                Coinwise
+                            </span>
+                        )}
                     </Link>
 
+                    {/* Collapse Toggle Button (Desktop Only) */}
+                    <button
+                        type="button"
+                        onClick={() => setCollapsed(!collapsed)}
+                        className="mr-5 hidden md:flex absolute top-2 -right-4 bg-white border border-gray-100 rounded-full p-1 text-gray-400 hover:text-[#D633E6] shadow-sm z-50 hover:scale-110 transition-all"
+                    >
+                        {collapsed ? <PanelRightOpen size={16} className = "rotate-180"/> 
+                                   : <PanelLeftClose size={16}/>}
+                    </button>
+
                     {/* Main Navigation */}
-                    <nav className="flex flex-col gap-2 flex-shrink-0">
+                    <nav className="flex flex-col gap-2 flex-shrink-0 w-full">
                         {navItems.map((item) => {
                             const isCurrentPage = location.pathname === item.path;
 
@@ -120,46 +137,64 @@ export default function SideBar() {
                                 <Link
                                     key={item.path}
                                     to={item.path}
-                                    className={`${isCurrentPage ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
-                                             hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10`}
+                                    title={collapsed ? item.title : ""}
+                                    className={`${isCurrentPage ? 'text-[#D633E6]' : 'text-gray-600'} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
+                                             hover:text-[#D633E6]
+                                             ${collapsed ? "justify-center" : ""}`}
                                 >
-                                <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
-                                    {item.icon && <img src={item.icon} alt={item.alt} className="w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110" />}
-                                </div>
-                                <span className="text-lg md:text-xl text-gray-600 font-medium group-hover:text-gray-800 transition-colors duration-200">
-                                    {item.title}
-                                </span>
-                            </Link>
-                        );
+                                    <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
+                                        <div className={`mt-2 w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110 ${isCurrentPage ? 'text-[#D633E6]' : 'text-gray-500'} group-hover:text-[#D633E6]`}>
+                                            {item.icon}
+                                        </div>
+                                    </div>
+                                    {!collapsed && (
+                                        <span className={`text-lg md:text-xl font-medium group-hover:text-[#D633E6] transition-colors duration-200 whitespace-nowrap overflow-hidden ${isCurrentPage ? 'text-[#D633E6]' : 'text-gray-600'}`}>
+                                            {item.title}
+                                        </span>
+                                    )}
+                                </Link>
+                            );
                         })}
                     </nav>
 
                     {/* User Section */}
-                    <div className="flex flex-col gap-2 pt-4 mt-50 md:mt-auto border-t border-gray-100 flex-shrink-0 pb-4">
-                        <Link 
+                    <div className="flex flex-col gap-2 pt-4 mt-auto border-t border-gray-100 flex-shrink-0 pb-4 w-full">
+                        <Link
                             to="/login"
-                            className={`${isActive ? 'pointer-events-none' : ''} ${location.pathname === '/login' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
-                                     hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10`}
+                            title={collapsed ? username : ""}
+                            className={`${isActive ? 'pointer-events-none' : ''} ${location.pathname === '/login' ? 'text-[#D633E6]' : 'text-gray-600'} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
+                                     hover:text-[#D633E6]
+                                     ${collapsed ? "justify-center" : ""}`}
                         >
-                            <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
-                                <img src={UserIcon} alt="User Icon" className="w-6 h-6 md:w-8 md:h-8 opacity-90 bg-clip-text transition-transform duration-200 group-hover:scale-110" />
+                            <div className="mt-2 w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
+                                <div className={`w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110 group-hover:text-[#D633E6] ${location.pathname === '/login' ? 'text-[#D633E6]' : 'text-gray-500'}`}>
+                                    <User />
+                                </div>
                             </div>
-                            <span className="text-lg md:text-xl text-purple-700 font-medium">
-                                {username}
-                            </span>
+                            {!collapsed && (
+                                <span className="text-lg md:text-xl text-[#D633E6] font-medium whitespace-nowrap overflow-hidden">
+                                    {username}
+                                </span>
+                            )}
                         </Link>
-                        
-                        <Link 
+
+                        <Link
                             to="/settings"
-                            className={`${!isActive ? 'pointer-events-none' : ''} ${location.pathname === '/settings' ? 'bg-purple-700/10' : ''} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
-                                     hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-blue-500/10`}
+                            title={collapsed ? "Settings" : ""}
+                            className={`${!isActive ? 'pointer-events-none' : ''} ${location.pathname === '/settings' ? 'text-[#D633E6]' : 'text-gray-600'} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
+                                     hover:text-[#D633E6]
+                                     ${collapsed ? "justify-center" : ""}`}
                         >
-                            <div className="w-8 h-8 md:w-11 md:h-11 flex items-center justify-center">
-                                <img src={SettingsIcon} alt="Settings Icon" className="w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110" />
+                            <div className="mt-2 w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
+                                <div className={`w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110 group-hover:text-[#D633E6] ${location.pathname === '/settings' ? 'text-[#D633E6]' : 'text-gray-500'}`}>
+                                    <Settings />
+                                </div>
                             </div>
-                            <span className="text-lg md:text-xl text-gray-600 font-medium group-hover:text-gray-800">
-                                Settings
-                            </span>
+                            {!collapsed && (
+                                <span className={`text-lg md:text-xl font-medium group-hover:text-[#D633E6] whitespace-nowrap overflow-hidden ${location.pathname === '/settings' ? 'text-[#D633E6]' : 'text-gray-600'}`}>
+                                    Settings
+                                </span>
+                            )}
                         </Link>
                     </div>
                 </div>
