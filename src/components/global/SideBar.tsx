@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { supabase } from '../../client';
 
@@ -7,6 +7,7 @@ const Activity = (React as any).Activity;
 
 import { Home, LayoutDashboard, PlusCircle, User, Settings, PanelRightOpen, PanelLeftClose } from "lucide-react"
 import Logo from '../../assets/logo_big.png'
+import { SidebarContext } from "../../context/SidebarContext";
 
 type NavItem = {
     title: string;
@@ -23,7 +24,7 @@ const navItems: NavItem[] = [
 
 export default function SideBar() {
     const [open, setOpen] = useState(false);
-    const [collapsed, setCollapsed] = useState(false);
+    const {collapsed, setCollapsed} = useContext(SidebarContext)
     const [username, setUsername] = useState('Add Profile');
 
     // for logged in or not logged in user
