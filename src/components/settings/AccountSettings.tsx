@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import {supabase} from '../../client'
+import LanguageSwitch from '../global/LanguageSwitch'
 
 export default function accSettings(){
     const navigate = useNavigate();
@@ -191,6 +192,12 @@ export default function accSettings(){
                                 onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
+
+                        {/* Language Settings */}
+                        <div className="pt-2">
+                            <LanguageSwitch />
+                        </div>
+
                     </div>
                 </div>
 

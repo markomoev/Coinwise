@@ -2,14 +2,11 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { supabase } from '../../client';
 
-import LightningIcon from '../../public/home/info/lightning.svg?react';
-import SecurityIcon from '../../public/home/info/security.svg?react';
-import BulbIcon from '../../public/home/info/bulb.svg?react';
-import ArrowsIcon from '../../public/home/info/arrows.svg?react';
-
-import infoTexts from './texts/InfoTexts.json';
+import { Zap, ShieldCheck, Lightbulb, RefreshCw } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Info(){
+    const { t } = useTranslation();
 
 const [isAuthenticated, setIsAuthenticated] = useState(false);
   
@@ -35,10 +32,10 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
             {/* Section Header */}
             <div className='text-center mb-8 sm:mb-12'>
                 <h2 className='text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4 px-2'>
-                    Why Choose <span className='text-[#D633E6] drop-shadow-lg '>Coinwise?</span>
+                    {t("info-heading")}
                 </h2>
                 <p className='text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-2'>
-                    Experience the future of personal finance management with our cutting-edge features
+                    {t("info-subheading")}
                 </p>
             </div>
 
@@ -48,12 +45,12 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 <div className='bg-white/80 hover:border-[#F6A30F] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
                     <div className='flex items-start space-x-3 sm:space-x-4'>
                         <div className='w-12 h-12 bg-[#F6A30F] rounded-xl flex items-center justify-center flex-shrink-0'>
-                            <LightningIcon className='w-6 h-6 text-white' />
+                            <Zap className='w-6 h-6 text-white' />
                         </div>
                         <div>
-                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>Lightning Fast</h3>
+                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>{t("benefit-1-title")}</h3>
                             <p className='text-sm sm:text-base text-gray-600 leading-relaxed'>
-                                {infoTexts["Easy Use"]}
+                                {t("benefit-1-desc")}
                             </p>
                         </div>
                     </div>
@@ -63,12 +60,12 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 <div className='bg-white/80 hover:border-[#10B981] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
                     <div className='flex items-start space-x-3 sm:space-x-4'>
                         <div className='w-12 h-12 bg-[#10B981] rounded-xl flex items-center justify-center flex-shrink-0'>
-                            <SecurityIcon className='w-6 h-6 text-white' />
+                            <ShieldCheck className='w-6 h-6 text-white' />
                         </div>
                         <div>
-                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>Secure & Private</h3>
+                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>{t("benefit-2-title")}</h3>
                             <p className='text-sm sm:text-base text-gray-600 leading-relaxed'>
-                                {infoTexts["Security"]}
+                                {t("benefit-2-desc")}
                             </p>
                         </div>
                     </div>
@@ -78,12 +75,12 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 <div className='bg-white/80 hover:border-[#3B82F6] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
                     <div className='flex items-start space-x-3 sm:space-x-4'>
                         <div className='w-12 h-12 bg-[#3B82F6] rounded-xl flex items-center justify-center flex-shrink-0'>
-                            <BulbIcon className='w-6 h-6 text-white' />
+                            <Lightbulb className='w-6 h-6 text-white' />
                         </div>
                         <div>
-                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>Smart Insights</h3>
+                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>{t("benefit-3-title")}</h3>
                             <p className='text-sm sm:text-base text-gray-600 leading-relaxed'>
-                                {infoTexts["Smart Insights"]}
+                                {t("benefit-3-desc")}
                             </p>
                         </div>
                     </div>
@@ -93,12 +90,12 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
                 <div className='bg-white/80 hover:border-[#8B5CF6] backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8 hover:bg-white/90 hover:shadow-lg transition-all duration-300'>
                     <div className='flex items-start space-x-3 sm:space-x-4'>
                         <div className='w-12 h-12 bg-[#8B5CF6] rounded-xl flex items-center justify-center flex-shrink-0'>
-                            <ArrowsIcon className='w-6 h-6 text-white' />
+                            <RefreshCw className='w-6 h-6 text-white' />
                         </div>
                         <div>
-                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>Real-time Sync</h3>
+                            <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3'>{t("benefit-4-title")}</h3>
                             <p className='text-sm sm:text-base text-gray-600 leading-relaxed'>
-                                {infoTexts["Real-time Sync"]}
+                                {t("benefit-4-desc")}
                             </p>
                         </div>
                     </div>
@@ -108,15 +105,14 @@ const [isAuthenticated, setIsAuthenticated] = useState(false);
             {/* Call to Action */}
             <div className='text-center mt-12 sm:mt-16'>
                 <div className='bg-[#F04DFF]/5 backdrop-blur-lg rounded-2xl border border-gray-200 p-6 sm:p-8'>
-                    <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 px-2'>Ready to Take Control of Your Finances?</h3>
+                    <h3 className='text-xl sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4 px-2'>{t("cta-title")}</h3>
                     <p className='text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 max-w-2xl mx-auto px-2'>
-                        Join thousands of users who have already transformed their financial lives with Coinwise. 
-                        Start your journey to financial freedom today.
+                        {t("cta-desc")}
                     </p>
                     <Link 
                         to={isAuthenticated ? "/dashboard" : "/login"}
                         className='inline-block px-6 sm:px-8 py-3 bg-[#F04DFF] text-white font-semibold rounded-lg hover:bg-[#d945e6] transition-all duration-300 transform hover:scale-105 shadow-lg'>
-                        Start Tracking Now
+                        {t("cta-button")}
                     </Link>
                 </div>
             </div>

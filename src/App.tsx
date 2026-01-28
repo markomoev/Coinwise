@@ -12,7 +12,6 @@ import TransactionsPage from "./features/transactions/Transactions";
 import { useState } from "react";
 import {SidebarContext} from "./context/SidebarContext"
 
-
 export default function App() {
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
