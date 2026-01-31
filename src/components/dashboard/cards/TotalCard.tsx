@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../../../client"
+import { useTranslation } from "react-i18next";
 
 type Props = {
     showFundsPopup: () => void;
@@ -7,6 +8,7 @@ type Props = {
 }
 
 export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
+    const { t } = useTranslation();
     const [totalBalance, setTotalBalance] = useState(0);
     const [refreshTrigger, setRefreshTrigger] = useState(0);
     const [userId, setUserId] = useState<string | null>(null);
@@ -60,7 +62,7 @@ export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
 
     return(
         <div className="w-full text-center py-8">
-            <h2 className="text-gray-100/80 text-sm font-medium uppercase tracking-wide mb-2">Total Balance</h2>
+            <h2 className="text-gray-100/80 text-sm font-medium uppercase tracking-wide mb-2">{t('dashboard-title')}</h2>
             <div className="flex flex-col items-center justify-center">
                 <span className="text-5xl md:text-6xl font-bold text-white tracking-tight drop-shadow-sm">
                     €{totalBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -78,7 +80,7 @@ export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                         </svg>
                     </div>
-                    <span className="text-xs text-white/90 font-medium tracking-wide">Transfer</span>
+                    <span className="text-xs text-white/90 font-medium tracking-wide">{t('dashboard-transfer')}</span>
                 </button>
 
                 <button 
@@ -90,9 +92,9 @@ export default function TotalCard({showFundsPopup, showTransferPopup}: Props) {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
                     </div>
-                    <span className="text-xs text-white/90 font-medium tracking-wide">Add Funds</span>
+                    <span className="text-xs text-white/90 font-medium tracking-wide">{t('dashboard-add-funds')}</span>
                 </button>
             </div>
         </div>
     )
-}   
+}

@@ -1,9 +1,11 @@
 import {usePocketMoney} from '../hooks/pocketMon'
 import {useState, useEffect} from 'react'
+import { useTranslation } from "react-i18next";
 
 import { Coins } from 'lucide-react';
 
 export default function PocketMonCard(){
+    const { t } = useTranslation();
     const [pocketMoney, setPocketMoney] = useState<any>(0)
     const [refreshTrigger, setRefreshTrigger] = useState(0);
 
@@ -27,7 +29,7 @@ return(
             <div className="p-2 bg-amber-50 rounded-lg text-amber-600">
                 <Coins/>
             </div>
-            <span className="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Pocket</span>
+            <span className="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">{t('dashboard-pocket')}</span>
         </div>
         
         <div>
@@ -35,7 +37,7 @@ return(
                 €{pocketMoney.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
             <p className="text-xs text-amber-600 font-medium mt-1">
-                Ready to spend
+                {t('dashboard-pocket-ready')}
             </p>
         </div>
     </div>

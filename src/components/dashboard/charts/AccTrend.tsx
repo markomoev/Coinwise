@@ -4,19 +4,21 @@ import {Chart as ChartJS,
         LinearScale, 
         PointElement, 
         LineElement,
-        Title, Tooltip, Legend
+        Title, Tooltip, Filler, Legend
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement,
-    Title, Tooltip, Legend
+    Title, Tooltip, Filler, Legend
 );
 
 import getAccTrendData from'./data/AccTrendData';
 
 import { useState, useEffect } from 'react';
 import { supabase } from '../../../client';
+import { useTranslation } from 'react-i18next';
 
 export default function AccTrend() {
+    const { t } = useTranslation();
     const [chartData, setChartData] = useState({ labels: [], values: [] });
 
     // auth for user
@@ -48,7 +50,7 @@ export default function AccTrend() {
         labels: chartData.labels,
         datasets: [
             {
-                label: 'Account Balance',
+                label: t('chart-acc-balance-label'),
                 data: chartData.values,
                 fill: true,
                 borderColor: '#9333ea',
@@ -104,8 +106,8 @@ export default function AccTrend() {
             {/* Header */}
             <div className="flex items-center gap-3 mb-4">
                 <div>
-                    <h3 className="text-base font-bold text-gray-800">Account Trends</h3>
-                    <p className="text-xs text-gray-600">7-day overview</p>
+                    <h3 className="text-base font-bold text-gray-800">{t('chart-acc-trend-title')}</h3>
+                    <p className="text-xs text-gray-600">{t('chart-acc-trend-subtitle')}</p>
                 </div>
             </div>
 

@@ -1,24 +1,25 @@
 import {supabase} from '../../client'
-
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type Popup = {
     closeTransferPopup: () => void;
 }
 
 export default function TransferPopup({closeTransferPopup}: Popup) {
-        // storing all the clinets info from the funds popup
-        const [name, setName] = useState('');
-        const [type, setType] = useState('');
-        const [amount, setAmount] = useState('' as number | string);
-        const [date, setDate] = useState('');
-        const [note, setNote] = useState('');
+    const { t } = useTranslation();
+    // storing all the clinets info from the funds popup
+    const [name, setName] = useState('');
+    const [type, setType] = useState('');
+    const [amount, setAmount] = useState('' as number | string);
+    const [date, setDate] = useState('');
+    const [note, setNote] = useState('');
     
-        // better formatted type of the transfer type
-        const typeToSave = type
-        .split(" ")
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join(" ");
+    // better formatted type of the transfer type
+    const typeToSave = type
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
 
     
         const transferMon = async (e?: any) => {
@@ -116,8 +117,8 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                         </svg>
                     </div>
                     <div>
-                        <h2 className="text-lg sm:text-xl font-bold text-gray-800">Transfer Money</h2>
-                        <p className="text-xs sm:text-sm text-gray-600">Manage your savings account transactions</p>
+                        <h2 className="text-lg sm:text-xl font-bold text-gray-800">{t('popup-transfer-title')}</h2>
+                        <p className="text-xs sm:text-sm text-gray-600">{t('popup-transfer-subtitle')}</p>
                     </div>
                 </div>
             </div>
@@ -127,11 +128,11 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                 {/* Transaction Name */}
                 <div>
                     <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                        Transaction Name
+                        {t('popup-label-name')}
                     </label>
                     <input 
                         type="text" 
-                        placeholder="e.g., Savings transfer, Emergency fund, etc."
+                        placeholder={t('popup-placeholder-transfer')}
                         className="w-full p-3 sm:p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#D633E6]/20 focus:border-[#D633E6] transition-all duration-200"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -141,7 +142,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                 {/* Savings Operation */}
                 <div>
                     <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-3">
-                        Savings Operation
+                        {t('popup-label-savings-op')}
                     </label>
                     <div className="grid grid-cols-2 gap-2 sm:gap-3">
                         <label className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-200 ${
@@ -159,10 +160,10 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                                 className="w-4 h-4 text-green-600 focus:ring-green-500"
                             />
                             <div className="flex items-center gap-2">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
                                 </svg>
-                                <span className="text-sm font-medium">Deposit</span>
+                                <span className="text-sm font-medium">{t('popup-op-deposit')}</span>
                             </div>
                         </label>
 
@@ -181,10 +182,10 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                                 className="w-4 h-4 text-red-600 focus:ring-red-500"
                             />
                             <div className="flex items-center gap-2">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13l-5 5m0 0l-5-5m5 5V6" />
                                 </svg>
-                                <span className="text-sm font-medium">Withdrawal</span>
+                                <span className="text-sm font-medium">{t('popup-op-withdrawal')}</span>
                             </div>
                         </label>
                     </div>
@@ -194,7 +195,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                            Amount ($)
+                            {t('chart-inc-exp-amount')} ($)
                         </label>
                         <input 
                             type="number" 
@@ -209,7 +210,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
 
                     <div>
                         <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                            Date
+                            {t('popup-label-date')}
                         </label>
                         <input 
                             type="date"
@@ -223,11 +224,11 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                 {/* Note */}
                 <div>
                     <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                        Notes (Optional)
+                        {t('popup-label-notes')}
                     </label>
-                    <textarea 
+                    <textarea  
                         name="note" 
-                        placeholder="Add any additional details about this transfer..."
+                        placeholder={t('popup-placeholder-transfer-notes')}
                         rows={3}
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
@@ -245,7 +246,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        Transfer Money
+                        {t('dashboard-transfer')}
                     </button>
 
                     <button 
@@ -255,7 +256,7 @@ export default function TransferPopup({closeTransferPopup}: Popup) {
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                        Cancel
+                        {t('popup-button-cancel')}
                     </button>
                 </div>
             </form>

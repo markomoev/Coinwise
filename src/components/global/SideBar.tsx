@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext} from "react";
 import { Link, useLocation } from "react-router-dom";
 import { supabase } from '../../client';
+import { useTranslation } from "react-i18next";
 
 // Workaround for missing React 19 types
 const Activity = (React as any).Activity;
@@ -23,6 +24,7 @@ const navItems: NavItem[] = [
 ];
 
 export default function SideBar() {
+    const { t } = useTranslation('dashboard');
     const [open, setOpen] = useState(false);
     const {collapsed, setCollapsed} = useContext(SidebarContext)
     const [username, setUsername] = useState('Add Profile');
@@ -138,7 +140,7 @@ export default function SideBar() {
                                 <Link
                                     key={item.path}
                                     to={item.path}
-                                    title={collapsed ? item.title : ""}
+                                    title={collapsed ? t(item.title) : ""}
                                     className={`${isCurrentPage ? 'text-[#D633E6]' : 'text-gray-600'} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
                                              hover:text-[#D633E6]
                                              ${collapsed ? "justify-center" : ""}`}
@@ -150,7 +152,7 @@ export default function SideBar() {
                                     </div>
                                     {!collapsed && (
                                         <span className={`text-lg md:text-xl font-medium group-hover:text-[#D633E6] transition-colors duration-200 whitespace-nowrap overflow-hidden ${isCurrentPage ? 'text-[#D633E6]' : 'text-gray-600'}`}>
-                                            {item.title}
+                                            {t(item.title)}
                                         </span>
                                     )}
                                 </Link>
@@ -162,7 +164,7 @@ export default function SideBar() {
                     <div className="flex flex-col gap-2 pt-4 md:mt-auto mt-4 border-t border-gray-200 flex-shrink-0 pb-4 w-full">
                         <Link
                             to="/login"
-                            title={collapsed ? username : ""}
+                            title={collapsed ? (username === 'Add Profile' ? t('sidebar-add-profile') : username) : ""}
                             className={`${isActive ? 'pointer-events-none' : ''} ${location.pathname === '/login' ? 'text-[#D633E6]' : 'text-gray-600'} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
                                      hover:text-[#D633E6]
                                      ${collapsed ? "justify-center" : ""}`}
@@ -174,14 +176,14 @@ export default function SideBar() {
                             </div>
                             {!collapsed && (
                                 <span className="text-lg md:text-xl text-[#D633E6] font-medium whitespace-nowrap overflow-hidden">
-                                    {username}
+                                     {username === 'Add Profile' ? t('sidebar-add-profile') : username}
                                 </span>
                             )}
                         </Link>
 
                         <Link
                             to="/settings"
-                            title={collapsed ? "Settings" : ""}
+                            title={collapsed ? t('sidebar-settings') : ""}
                             className={`${!isActive ? 'pointer-events-none' : ''} ${location.pathname === '/settings' ? 'text-[#D633E6]' : 'text-gray-600'} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
                                      hover:text-[#D633E6]
                                      ${collapsed ? "justify-center" : ""}`}
@@ -193,7 +195,7 @@ export default function SideBar() {
                             </div>
                             {!collapsed && (
                                 <span className={`text-lg md:text-xl font-medium group-hover:text-[#D633E6] whitespace-nowrap overflow-hidden ${location.pathname === '/settings' ? 'text-[#D633E6]' : 'text-gray-600'}`}>
-                                    Settings
+                                    {t('Settings')}
                                 </span>
                             )}
                         </Link>

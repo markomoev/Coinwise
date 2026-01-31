@@ -15,7 +15,10 @@ import { Link } from "react-router-dom";
 import AccTrend from "../../components/dashboard/charts/AccTrend";
 import IncVSExp from "../../components/dashboard/charts/IncVSExp";
 import ChartBreak from "../../components/dashboard/charts/ChartBreak";
+import { useTranslation } from "react-i18next";
+
 export default function DashboardPage() {
+    const { t } = useTranslation();
     const [showFundsPopup, setShowFundsPopup] = useState(false);
     const [showTransferPopup, setShowTransferPopup] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,7 +47,7 @@ export default function DashboardPage() {
                     <SideBar/>
                     <div className="flex flex-1 flex-col items-center justify-center px-4 md:px-10 pt-20 md:pt-10 md:pl-64">
                         <div className="bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-6 md:p-8 rounded-2xl">
-                            <p className="text-lg">Loading...</p>
+                            <p className="text-lg">{t('chart-loading')}</p>
                         </div>
                     </div>
                 </div>
@@ -91,15 +94,15 @@ export default function DashboardPage() {
                                         </svg>
                                     </div>
                                 </div>
-                                <h2 className="text-xl md:text-2xl font-bold mb-3 text-purple-700">Authentication Required</h2>
+                                <h2 className="text-xl md:text-2xl font-bold mb-3 text-purple-700">{t('auth-required-title')}</h2>
                                 <p className="text-gray-600 mb-6 leading-relaxed text-sm md:text-base">
-                                    Please log in to access your financial dashboard and view your balance, transactions, and savings.
+                                    {t('auth-required-desc')}
                                 </p>
                                 <div className="flex flex-col gap-3">
                                     <Link to="/login" className="cursor-pointer bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-6 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
-                                        Go to Login
+                                        {t('auth-login-button')}
                                     </Link>
-                                    <p className="text-xs md:text-sm text-gray-500">Use the sidebar to navigate</p>
+                                    <p className="text-xs md:text-sm text-gray-500">{t('auth-sidebar-hint')}</p>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +129,7 @@ export default function DashboardPage() {
                     
                     {/* Header & Total Balance Section */}
                     <div className="flex flex-col items-center animate-fade-in-down">
-                        <h1 className="text-white/80 font-medium text-lg mb-6 tracking-wide">Good funds, have fun</h1>
+                        <h1 className="text-white/80 font-medium text-lg mb-6 tracking-wide">{t('dashboard-greeting')}</h1>
                         
                         <div className="w-full max-w-md transform hover:scale-105 transition-transform duration-500">
                              <TotalCard
@@ -154,7 +157,7 @@ export default function DashboardPage() {
 
                     {/* Charts Section - Clean & Minimal */}
                     <div className="space-y-6 pb-12">
-                        <h3 className="text-gray-800 font-bold text-xl px-2">Financial Insights</h3>
+                        <h3 className="text-gray-800 font-bold text-xl px-2">{t('dashboard-financial-insights')}</h3>
                         
                         <div className="flex flex-row overflow-x-auto gap-6 -mx-6 px-6 pb-6 snap-x snap-mandatory no-scrollbar">
                             <div className="min-w-[90vw] md:min-w-[600px] flex-none snap-center p-6 rounded-3xl transition-shadow duration-300">

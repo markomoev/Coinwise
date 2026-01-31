@@ -1,9 +1,11 @@
 import {supabase} from "../../../client"
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import { CircleOff, TrendingDown } from 'lucide-react';
 
 export default function ExpenseCard(){
+    const { t } = useTranslation();
     // last expense amount variable
     const [lastExpense, setLastExpense] = useState(0);
     const [totalEpenses, setTotalExpenses] = useState(0);
@@ -92,7 +94,7 @@ export default function ExpenseCard(){
                 <div className="p-2 bg-red-50 rounded-lg text-red-600">
                     <CircleOff/>
                 </div>
-                <span className="bg-red-100 text-red-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Expense</span>
+                <span className="bg-red-100 text-red-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">{t('dashboard-expenses')}</span>
             </div>
             
             <div>

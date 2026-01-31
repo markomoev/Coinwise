@@ -1,14 +1,14 @@
 import {supabase}from '../../client'
-
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { useTranslation } from "react-i18next";
 
 type Props = {
     closePopup: () => void;
 }
 
 export default function FundsPopup({closePopup}: Props) {
-
+    const { t } = useTranslation();
     // storing all the clinets info from the funds popup
     const [name, setName] = useState('');
     const [type, setType] = useState('');
@@ -125,8 +125,8 @@ export default function FundsPopup({closePopup}: Props) {
                         </svg>
                     </div>
                     <div>
-                        <h2 className="text-lg sm:text-xl font-bold text-gray-800">Add Funds</h2>
-                        <p className="text-xs sm:text-sm text-gray-600">Add money to your account balance</p>
+                        <h2 className="text-lg sm:text-xl font-bold text-gray-800">{t('dashboard-add-funds')}</h2>
+                        <p className="text-xs sm:text-sm text-gray-600">{t('popup-add-subtitle')}</p>
                     </div>
                 </div>
             </div>
@@ -136,30 +136,28 @@ export default function FundsPopup({closePopup}: Props) {
                 {/* Transaction Name */}
                 <div>
                     <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                        Transaction Name
+                        {t('popup-label-name')}
                     </label>
                     <input 
                         type="text" 
-                        placeholder="e.g., Initial deposit, Gift money, etc."
-                        className="w-full p-3 sm:p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#D633E6]/20 focus:border-[#D633E6] transition-all duration-200"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        placeholder={t('popup-placeholder-name')}
+                        className="w-full p-3 sm:p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#D633E6]/20 focus:border-[#D633E6] transition-all duration-200"
                     />
                 </div>
 
-                {/* Fund Type */}
                 <div>
                     <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-3">
-                        Type of Funds
+                        {t('popup-label-type')}
                     </label>
                     <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                        <label className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-200 ${
+                                                <label className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-200 ${
                             type === 'total' 
                                 ? 'border-[#D633E6]/30 bg-[#D633E6]/5 text-[#D633E6]' 
-                                : 'border-gray-300 hover:border-gray-400'
+                                : 'border-gray-200 hover:border-[#D633E6]/30 hover:bg-[#D633E6]/5'
                         }`}>
                             <input 
-                                id="total"
                                 name="funds-type"
                                 type="radio" 
                                 checked={type === 'total'}
@@ -168,20 +166,19 @@ export default function FundsPopup({closePopup}: Props) {
                                 className="w-4 h-4 text-[#D633E6] focus:ring-[#D633E6]"
                             />
                             <div className="flex items-center gap-2">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
-                                <span className="text-sm font-medium">Total Balance</span>
+                                <span className="text-sm font-medium">{t('dashboard-title')}</span>
                             </div>
                         </label>
 
                         <label className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-200 ${
                             type === 'savings' 
                                 ? 'border-green-300 bg-green-50 text-green-700' 
-                                : 'border-gray-300 hover:border-gray-400'
+                                : 'border-gray-200 hover:border-green-300 hover:bg-green-50'
                         }`}>
                             <input 
-                                id="savings"
                                 name="funds-type"
                                 type="radio" 
                                 checked={type === 'savings'}
@@ -190,10 +187,10 @@ export default function FundsPopup({closePopup}: Props) {
                                 className="w-4 h-4 text-green-600 focus:ring-green-500"
                             />
                             <div className="flex items-center gap-2">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
-                                <span className="text-sm font-medium">Savings</span>
+                                <span className="text-sm font-medium">{t('dashboard-savings')}</span>
                             </div>
                         </label>
                     </div>
@@ -203,7 +200,7 @@ export default function FundsPopup({closePopup}: Props) {
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                            Amount ($)
+                            {t('chart-inc-exp-amount')} ($)
                         </label>
                         <input 
                             type="number" 
@@ -219,7 +216,7 @@ export default function FundsPopup({closePopup}: Props) {
 
                     <div>
                         <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                            Date
+                            {t('popup-label-date')}
                         </label>
                         <input 
                             type="date"
@@ -233,11 +230,11 @@ export default function FundsPopup({closePopup}: Props) {
                 {/* Note */}
                 <div>
                     <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-                        Notes (Optional)
+                        {t('popup-label-notes')}
                     </label>
                     <textarea 
                         name="note" 
-                        placeholder="Add any additional details about this transaction..."
+                        placeholder={t('popup-placeholder-notes')}
                         rows={3}
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
@@ -256,7 +253,7 @@ export default function FundsPopup({closePopup}: Props) {
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        Add Funds
+                        {t('dashboard-add-funds')}
                     </button>
 
                     <button 
@@ -266,7 +263,7 @@ export default function FundsPopup({closePopup}: Props) {
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                        Cancel
+                        {t('popup-button-cancel')}
                     </button>
                 </div>
             </form>

@@ -1,31 +1,13 @@
-import { useEffect, useState } from 'react';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from 'chart.js';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { supabase } from '../../../client';
-import ChartBreakData from './data/ChartBreakData';
+import getChartBreakData from './data/ChartBreakData';
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Filler, Legend);
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler
-);
-
-export default function ChartBreak() {
+export default function SavingsGrowth() {
+  const { t } = useTranslation();
   const [chartData, setChartData] = useState<{ labels: string[]; values: number[] }>({
     labels: [],
     values: [],
@@ -44,7 +26,7 @@ export default function ChartBreak() {
         return;
       }
 
-      const data = await ChartBreakData(user.id);
+      const data = await getChartBreakData(user.id);
       setChartData({
         labels: Array.isArray(data?.labels) ? data.labels : [],
         values: Array.isArray(data?.values) ? (data.values as number[]) : [],
@@ -68,7 +50,7 @@ export default function ChartBreak() {
     labels: chartData.labels,
     datasets: [
       {
-        label: 'Savings Balance',
+        label: t('chart-savings-balance-label'),
         data: chartData.values,
         fill: true,
         backgroundColor: 'rgba(34, 197, 94, 0.12)', // green-500 @ 12%
@@ -98,7 +80,7 @@ export default function ChartBreak() {
         cornerRadius: 8,
         padding: 12,
         callbacks: {
-          label: (ctx: any) => `Savings: $${(ctx.parsed?.y ?? 0).toLocaleString()}`,
+          label: (ctx: any) => `${t('dashboard-savings')}: $${(ctx.parsed?.y ?? 0).toLocaleString()}`,
         },
       },
     },
@@ -124,25 +106,25 @@ export default function ChartBreak() {
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h3 className="text-base font-bold text-gray-800">Savings Growth</h3>
-          <p className="text-xs text-gray-600">Recent trend</p>
+          <h3 className="text-base font-bold text-gray-800">{t('chart-savings-growth-title')}</h3>
+          <p className="text-xs text-gray-600">{t('chart-savings-growth-subtitle')}</p>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 bg-green-500 rounded-full" />
-          <span className="text-xs text-green-600 font-medium">Growing</span>
+          <span className="text-xs text-green-600 font-medium">{t('chart-savings-growing')}</span>
         </div>
       </div>
 
       {/* Chart */}
       <div className="w-full flex-1 relative overflow-hidden">
         {loading ? (
-          <div className="absolute inset-0 flex items-center justify-center text-xs text-gray-500">Loading…</div>
+          <div className="absolute inset-0 flex items-center justify-center text-xs text-gray-500">{t('chart-loading')}…</div>
         ) : chartData.values.length > 0 ? (
           <div className="h-full w-full">
             <Line data={data} options={options} />
           </div>
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-xs text-gray-500">No savings data yet</div>
+          <div className="absolute inset-0 flex items-center justify-center text-xs text-gray-500">{t('chart-no-data')}</div>
         )}
       </div>
 
@@ -150,17 +132,17 @@ export default function ChartBreak() {
       <div className="mt-4 pt-4 border-t border-gray-100">
         <div className="flex justify-between items-center">
           <div className="text-center">
-            <p className="text-xs text-gray-500">Current</p>
+            <p className="text-xs text-gray-500">{t('chart-stat-current')}</p>
             <p className="text-sm font-semibold text-green-600">
               ${current.toLocaleString()}
             </p>
           </div>
           <div className="text-center">
-            <p className="text-xs text-gray-500">Goal Progress</p>
+            <p className="text-xs text-gray-500">{t('chart-stat-goal')}</p>
             <p className="text-sm font-semibold text-gray-700">—</p>
           </div>
           <div className="text-center">
-            <p className="text-xs text-gray-500">This Week</p>
+            <p className="text-xs text-gray-500">{t('chart-stat-this-week')}</p>
             <p className="text-sm font-semibold text-green-600">—</p>
           </div>
         </div>

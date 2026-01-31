@@ -3,18 +3,26 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector"
 
 // Import your translation files directly
-import enJSON from "./public/locales/en/translation.json";
-import bgHomeMainJSON from "./public/locales/bg/home/translation.json";
+import enHomeJSON from "./public/locales/en/home/translation.json";
+import enDashboardJSON from "./public/locales/en/dashboard/translation.json";
+import bgHomeJSON from "./public/locales/bg/home/translation.json";
+import bgDashboardJSON from "./public/locales/bg/dashboard/translation.json";
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      en: { translation: enJSON },
+      en: { 
+        translation: {
+          ...enHomeJSON,
+          ...enDashboardJSON
+        } 
+      },
       bg: { 
         translation: { 
-          ...bgHomeMainJSON 
+          ...bgHomeJSON,
+          ...bgDashboardJSON
         } 
       }
     },

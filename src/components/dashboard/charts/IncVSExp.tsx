@@ -2,30 +2,31 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
+  PointElement,
   BarElement,
   Title,
   Tooltip,
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import getIncVSExpData from './data/IncVSExpData';
+import { supabase } from '../../../client';
 
 // register the components
 ChartJS.register(
   CategoryScale,
   LinearScale,
+  PointElement,
   BarElement,
   Title,
   Tooltip,
   Legend
 );
 
-// import the data
-import IncVSExpData from './data/IncVSExpData';
-
-import { useState, useEffect } from 'react';
-import { supabase } from '../../../client';
-
 export default function IncomeVSExpenses() {
+    const { t } = useTranslation();
     const [chartData, setChartData] = useState({ labels: [], values: [] });
 
 
@@ -36,7 +37,7 @@ export default function IncomeVSExpenses() {
                 
                 if(user){
                     // fetch the trend data
-                    const trendData: any = await IncVSExpData(user.id);
+                    const trendData: any = await getIncVSExpData(user.id);
 
                     setChartData(trendData);
                 }
@@ -60,7 +61,7 @@ export default function IncomeVSExpenses() {
         labels: chartData.labels,
         datasets: [
             {
-                label: 'Amount',
+                label: t('chart-inc-exp-amount'),
                 data: chartData.values,
                 backgroundColor: [
                     'rgba(34, 197, 94, 0.8)', // Green for income
@@ -124,8 +125,8 @@ export default function IncomeVSExpenses() {
             {/* Header */}
             <div className="flex items-center gap-3 mb-4">
                 <div>
-                    <h3 className="text-base font-bold text-gray-800">Income vs Expenses</h3>
-                    <p className="text-xs text-gray-600">Current month comparison</p>
+                    <h3 className="text-base font-bold text-gray-800">{t('chart-inc-exp-title')}</h3>
+                    <p className="text-xs text-gray-600">{t('chart-inc-exp-subtitle')}</p>
                 </div>
             </div>
 

@@ -1,9 +1,11 @@
 import {supabase} from "../../../client"
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Plus, TrendingUp } from 'lucide-react';
 
 export default function IncomeCard(){
+    const { t } = useTranslation();
     // last income amount variable
     const [lastIncome, setLastIncome] = useState(0);
     const [totalIncome, setTotalIncome] = useState(0);
@@ -93,7 +95,7 @@ export default function IncomeCard(){
                 <div className="p-2 bg-green-50 rounded-lg text-green-600">
                     <Plus/>
                 </div>
-                <span className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Income</span>
+                <span className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">{t('dashboard-income')}</span>
             </div>
             
             <div>

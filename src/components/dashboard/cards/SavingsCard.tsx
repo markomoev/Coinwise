@@ -1,9 +1,11 @@
 import {supabase} from '../../../client'
 import {useState, useEffect} from 'react'
+import { useTranslation } from "react-i18next";
 
 import { Landmark } from 'lucide-react';
 
 export default function SavingsCard(){
+    const { t } = useTranslation();
     // last savings amount variable
     const [lastSavings, setLastSavings] = useState(0);
     const [totalSavings, setTotalSavings] = useState(0);
@@ -93,7 +95,7 @@ export default function SavingsCard(){
                 <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
                     <Landmark/>
                 </div>
-                <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">Savings</span>
+                <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wide">{t('dashboard-savings')}</span>
             </div>
             
             <div>
