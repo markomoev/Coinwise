@@ -1,13 +1,15 @@
-# Coinwise — Beta 1.5
+# Coinwise — Beta 1.6
 
 Coinwise is a modern, lightweight personal finance tracker built with React, TypeScript, Vite, Tailwind CSS, Chart.js, and Supabase.
 
-Status: Beta 1.5 — The "Immersive" update is complete; focusing on polish and performance.
+Status: Beta 1.6 — Translations and Polish update complete.
 
-## What's new in Beta 1.5
+## What's new in Beta 1.6
 
-### Complete Design System Overhaul
-- **Unified Aesthetic**: The "Immersive" design language (gradients, noise textures, glassmorphism) is now applied across the entire application: Dashboard, Transactions, and Settings.
+### Localization & Translations
+- **Full Bulgarian Translation**: The entire application (Sidebar, Transactions, Settings, Dashboard) is now fully translated into Bulgarian.
+- **Dynamic Content**: Transaction tags, counts, and subtitles dynamically switch languages.
+- **Settings Page**: Terms, Support, and Danger Zone sections fully localized.
 - **Settings Reimagined**: The Settings page has been rebuilt from scratch with a stunning gradient header, floating cards, and responsive navigation.
 
 ### Visual Polish
