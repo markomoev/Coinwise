@@ -1,0 +1,35 @@
+{
+    "settings-title": "Настройки",
+    "settings-menu-account": "Акаунт",
+    "settings-menu-preferences": "Предпочитания",
+    "settings-menu-notifications": "Известия",
+    "settings-menu-security": "Сигурност",
+    "settings-menu-help": "Помощ и Поддръжка",
+    
+    "settings-acc-profile": "Настройки на профила",
+    "settings-acc-username": "Потребителско име",
+    "settings-acc-email": "Имейл адрес",
+    "settings-acc-save": "Запази промените",
+    
+    "settings-pref-title": "Предпочитания за приложението",
+    "settings-pref-lang": "Език",
+    "settings-pref-theme": "Тема",
+    "settings-pref-currency": "Валута",
+
+    "settings-support-desc": "Нуждаете се от помощ? Ние сме тук, за да ви помогнем!",
+    "settings-support-contact": "Информация за контакти",
+    
+    "settings-terms-menu": "Правила и Политики",
+    "settings-terms-title": "Правила и Политики",
+    "settings-terms-privacy-title": "Политика за поверителност",
+    "settings-terms-privacy-desc": "Вашата поверителност е важна за нас. Ние събираме и използваме данните ви отговорно.",
+    "settings-terms-tos-title": "Условия за ползване",
+    "settings-terms-tos-desc": "Използвайки Coinwise, вие се съгласявате с нашите правила и условия.",
+    "settings-pref-manage-desc": "Управлявайте предпочитанията на приложението",
+    
+    "settings-acc-btn-edit": "Редактирай Профил",
+    "settings-acc-danger-title": "Опасна Зона",
+    "settings-acc-danger-desc": "Изтриването на акаунта ви ще премахне трайно всички ваши данни. Това действие не може да бъде отменено.",
+    "settings-acc-btn-delete": "Изтрий Акаунт",
+    "settings-acc-manage-desc": "Управлявайте информацията за профила и предпочитанията си"
+}

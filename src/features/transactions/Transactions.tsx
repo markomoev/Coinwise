@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { supabase } from "../../client";
+import { useTranslation } from "react-i18next";
 
 import SideBar from "../../components/global/SideBar";
 import TransactionsList from "../../components/transactions/TransactionsList";
@@ -17,6 +18,7 @@ type Transaction= {
 };
 
 export default function TransactionsPage() {
+    const { t } = useTranslation();
     const [showPopup, setShowPopup] = useState(false);
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -90,7 +92,7 @@ export default function TransactionsPage() {
                     <SideBar/>
                     <div className="flex flex-1 items-center justify-center px-4 md:px-10 pt-20 md:pt-10 md:ml-64">
                         <div className="bg-white border border-black/10 bg-opacity-90 backdrop-blur-xl shadow-lg p-6 md:p-8 rounded-2xl">
-                            <p className="text-lg">Loading...</p>
+                            <p className="text-lg">{t('chart-loading')}</p>
                         </div>
                     </div>
                 </div>
@@ -115,7 +117,7 @@ export default function TransactionsPage() {
                          {/* Fake Header/List for visual behind blur */}
                          <div className="flex flex-col h-full pointer-events-none opacity-50 blur-sm">
                             <div className="flex flex-col items-center mb-10">
-                                <h1 className="text-white/90 font-bold text-3xl md:text-4xl tracking-tight">Transactions</h1>
+                                <h1 className="text-white/90 font-bold text-3xl md:text-4xl tracking-tight">{t('trans-title')}</h1>
                             </div>
                            
                             <div className="w-full flex-1 bg-white/20 rounded-3xl"></div>
@@ -132,17 +134,17 @@ export default function TransactionsPage() {
                                         </svg>
                                     </div>
                                     <h2 className="text-2xl font-bold mb-3 text-gray-900">
-                                        Authentication Required
+                                        {t('trans-auth-req')}
                                     </h2>
                                     <p className="text-gray-600 leading-relaxed">
-                                        Please log in to view and manage your transaction history.
+                                        {t('trans-auth-desc')}
                                     </p>
                                 </div>
                                 <div className="flex flex-col gap-3">
                                     <Link to="/login" className="cursor-pointer bg-[#D633E6] hover:bg-[#b02bc0] text-white font-semibold py-3.5 px-6 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
-                                        Go to Login
+                                        {t('auth-login-button')}
                                     </Link>
-                                    <p className="text-sm text-gray-500">or sign up to get started</p>
+                                    <p className="text-sm text-gray-500">{t('sidebar-signup')}</p>
                                 </div>
                             </div>
                         </div>
@@ -167,8 +169,8 @@ export default function TransactionsPage() {
                 <div className="relative z-10 w-full max-w-5xl mx-auto px-6 py-12 flex flex-col gap-8 flex-1 min-h-[calc(100vh-2rem)]">
                      {/* Header */}
                      <div className="flex flex-col items-center animate-fade-in-down flex-shrink-0 text-center">
-                        <h1 className="text-white/90 font-bold text-3xl md:text-4xl tracking-tight drop-shadow-md">Transactions</h1>
-                        <p className="text-white/80 text-lg font-medium mt-2">Manage your financial history</p>
+                        <h1 className="text-white/90 font-bold text-3xl md:text-4xl tracking-tight drop-shadow-md">{t('trans-title')}</h1>
+                        <p className="text-white/80 text-lg font-medium mt-2">{t('trans-subtitle')}</p>
                     </div>
 
                     {/* Transaction Content */}

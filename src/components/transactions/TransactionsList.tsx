@@ -1,4 +1,5 @@
 import TransactionLine from "./TransactionLine";
+import { useTranslation } from "react-i18next";
 
 type Transaction= {
   id: number;
@@ -16,6 +17,7 @@ type Props = {
 }
 
 export default function TransactionsList({AddTransaction, transactions}: Props) {
+    const { t } = useTranslation();
     return(
         <div className="w-full h-full bg-white/95 border border-black/10 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden flex flex-col">
             {/* Header */}
@@ -26,8 +28,8 @@ export default function TransactionsList({AddTransaction, transactions}: Props) 
                             <svg className="w-6 h-6 text-[#D633E6]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
                         </div>
                         <div>
-                            <h2 className="text-lg md:text-xl font-bold text-gray-800">All Transactions</h2>
-                            <p className="text-xs md:text-sm text-gray-500 font-medium">{transactions.length} transaction{transactions.length !== 1 ? 's' : ''} found</p>
+                            <h2 className="text-lg md:text-xl font-bold text-gray-800">{t('trans-title')}</h2>
+                            <p className="text-xs md:text-sm text-gray-500 font-medium">{t('trans-count-found', { count: transactions.length })}</p>
                         </div>
                     </div>
 
@@ -38,7 +40,7 @@ export default function TransactionsList({AddTransaction, transactions}: Props) 
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
-                        Add New
+                        {t('trans-add-btn')}
                     </button>
                 </div>
             </div>
@@ -50,8 +52,8 @@ export default function TransactionsList({AddTransaction, transactions}: Props) 
                         <div className="w-16 h-16 md:w-20 md:h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4 border border-gray-100">
                              <svg className="w-8 h-8 md:w-10 md:h-10 text-gray-300" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
                         </div>
-                        <h3 className="text-base md:text-lg font-bold text-gray-800 mb-2">No transactions yet</h3>
-                        <p className="text-sm md:text-base text-gray-500 text-center mb-6 max-w-sm">Start tracking your finances by adding your first transaction</p>
+                        <h3 className="text-base md:text-lg font-bold text-gray-800 mb-2">{t('trans-empty')}</h3>
+                        <p className="text-sm md:text-base text-gray-500 text-center mb-6 max-w-sm">{t('trans-empty-desc')}</p>
                         <button
                             onClick={AddTransaction}
                             className="flex items-center gap-2 px-5 py-2.5 bg-[#D633E6] hover:bg-[#b02bc0] text-white rounded-xl hover:shadow-lg hover:shadow-[#D633E6]/30 hover:scale-[1.02] transition-all duration-300 font-semibold text-sm md:text-base"
@@ -59,7 +61,7 @@ export default function TransactionsList({AddTransaction, transactions}: Props) 
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                             </svg>
-                            Add Your First Transaction
+                            {t('trans-add-btn')}
                         </button>
                     </div>
                 ) : (

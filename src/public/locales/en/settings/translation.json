@@ -1,0 +1,35 @@
+{
+    "settings-title": "Settings",
+    "settings-menu-account": "Account",
+    "settings-menu-preferences": "Preferences",
+    "settings-menu-notifications": "Notifications",
+    "settings-menu-security": "Security",
+    "settings-menu-help": "Help & Support",
+    
+    "settings-acc-profile": "Profile Settings",
+    "settings-acc-username": "Username",
+    "settings-acc-email": "Email Address",
+    "settings-acc-save": "Save Changes",
+    
+    "settings-pref-title": "App Preferences",
+    "settings-pref-lang": "Language",
+    "settings-pref-theme": "Theme",
+    "settings-pref-currency": "Currency",
+    
+    "settings-support-desc": "Need help? We're here to assist you!",
+    "settings-support-contact": "Contact Information",
+    
+    "settings-terms-menu": "Terms & Policies",
+    "settings-terms-title": "Terms and Policies",
+    "settings-terms-privacy-title": "Privacy Policy",
+    "settings-terms-privacy-desc": "Your privacy is important to us. We collect and use your data responsibly.",
+    "settings-terms-tos-title": "Terms of Service",
+    "settings-terms-tos-desc": "By using Coinwise, you agree to our terms and conditions.",
+    "settings-pref-manage-desc": "Manage your app preferences",
+    
+    "settings-acc-btn-edit": "Edit Profile",
+    "settings-acc-danger-title": "Danger Zone",
+    "settings-acc-danger-desc": "Deleting your account will permanently remove all your data. This action cannot be undone.",
+    "settings-acc-btn-delete": "Delete Account",
+    "settings-acc-manage-desc": "Manage your profile information and preferences"
+}

@@ -1,6 +1,7 @@
 import TransactionExtendedLine from './extended-line/TransactionExtendedLine';
  
 import { useState } from 'react';
+import { useTranslation } from "react-i18next";
 
 type TransactionLineProps = {
   id: number;
@@ -14,6 +15,7 @@ type TransactionLineProps = {
 
 
 export default function TransactionLine({id, name, amount, type, date, note, created_at}: TransactionLineProps) {
+    const { t } = useTranslation();
     const [showLine, setShowLine] = useState(false);
     
     return(
@@ -33,7 +35,10 @@ export default function TransactionLine({id, name, amount, type, date, note, cre
                                 type === 'Savings' ? 'bg-blue-100 text-blue-700' :
                                 'bg-gray-100 text-gray-700'
                             }`}>
-                                {type}
+                                {type === 'Income' ? t('trans-type-income') :
+                                 type === 'Expense' ? t('trans-type-expense') :
+                                 type === 'Savings' ? t('trans-type-savings') :
+                                 type}
                             </span>
                         </div>
                     </div>
@@ -42,8 +47,8 @@ export default function TransactionLine({id, name, amount, type, date, note, cre
                 {/* Right side - Date and Expand Button */}
                 <div className="flex items-center justify-between sm:justify-end gap-3 md:gap-4">
                     <div className="text-left sm:text-right">
-                        <p className="text-xs md:text-sm text-gray-500">Transaction Date</p>
-                        <p className="font-medium text-gray-700 text-sm md:text-base">{date || 'No date'}</p>
+                        <p className="text-xs md:text-sm text-gray-500">{t('trans-date-label')}</p>
+                        <p className="font-medium text-gray-700 text-sm md:text-base">{date || t('trans-date-none')}</p>
                     </div>
                     
                     <button 

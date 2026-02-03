@@ -1,0 +1,11 @@
+{
+    "sidebar-home": "Home",
+    "sidebar-dashboard": "Dashboard",
+    "sidebar-transactions": "Transactions",
+    "sidebar-profile": "Profile",
+    "sidebar-settings": "Settings",
+    "sidebar-login": "Login",
+    "sidebar-signup": "Sign Up",
+    "sidebar-logout": "Logout",
+    "sidebar-add-profile": "Add Profile"
+}

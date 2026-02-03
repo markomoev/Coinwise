@@ -3,10 +3,13 @@ interface SettingsMenuProps {
     setActiveSection: (section: string) => void
 }
 
+import { useTranslation } from "react-i18next";
+
 export default function SettingsMenu({ activeSection, setActiveSection }: SettingsMenuProps) {
+    const { t } = useTranslation();
     const menuItems = [
-        { id: 'account', label: 'Account'},
-        { id: 'support', label: 'Support'},
+        { id: 'account', label: 'settings-menu-account'},
+        { id: 'support', label: 'settings-menu-help'},
         { id: 'terms', label: 'Terms & Policies'}
     ]
 
@@ -29,7 +32,7 @@ export default function SettingsMenu({ activeSection, setActiveSection }: Settin
                                 : 'hover:bg-gray-50 text-gray-500'
                         }`}
                     >
-                        <span>{item.label}</span>
+                        <span>{item.id === 'terms' ? item.label : t(item.label)}</span>
                     </button>
                 ))}
             </div>

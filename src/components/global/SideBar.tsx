@@ -18,13 +18,13 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-    { title: 'Home', path: '/home', icon: <Home />, alt: 'Home Icon' },
-    { title: 'Dashboard', path: '/dashboard', icon: <LayoutDashboard />, alt: 'Dashboard Icon' },
-    { title: 'Transactions', path: '/transactions', icon: <PlusCircle />, alt: 'Transactions Icon' },
+    { title: 'sidebar-home', path: '/home', icon: <Home />, alt: 'Home Icon' },
+    { title: 'sidebar-dashboard', path: '/dashboard', icon: <LayoutDashboard />, alt: 'Dashboard Icon' },
+    { title: 'sidebar-transactions', path: '/transactions', icon: <PlusCircle />, alt: 'Transactions Icon' },
 ];
 
 export default function SideBar() {
-    const { t } = useTranslation('dashboard');
+    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const {collapsed, setCollapsed} = useContext(SidebarContext)
     const [username, setUsername] = useState('Add Profile');
@@ -146,7 +146,7 @@ export default function SideBar() {
                                              ${collapsed ? "justify-center" : ""}`}
                                 >
                                     <div className="md:mt-2 mt-0 w-8 h-8 md:w-11 md:h-11 flex items-center justify-center flex-shrink-0">
-                                        <div className={`mt-2 w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110 ${isCurrentPage ? 'text-[#D633E6]' : 'text-gray-500'} group-hover:text-[#D633E6]`}>
+                                        <div className={`mt-0 w-6 h-6 md:w-8 md:h-8 transition-transform duration-200 group-hover:scale-110 ${isCurrentPage ? 'text-[#D633E6]' : 'text-gray-500'} group-hover:text-[#D633E6]`}>
                                             {item.icon}
                                         </div>
                                     </div>
@@ -195,7 +195,7 @@ export default function SideBar() {
                             </div>
                             {!collapsed && (
                                 <span className={`text-lg md:text-xl font-medium group-hover:text-[#D633E6] whitespace-nowrap overflow-hidden ${location.pathname === '/settings' ? 'text-[#D633E6]' : 'text-gray-600'}`}>
-                                    {t('Settings')}
+                                    {t('sidebar-settings')}
                                 </span>
                             )}
                         </Link>

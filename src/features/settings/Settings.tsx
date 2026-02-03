@@ -2,8 +2,10 @@ import SideBar from "../../components/global/SideBar"
 import AccountSettings from '../../components/settings/AccountSettings'
 import SettingsMenu from '../../components/settings/SettingsMenu'
 import { useState } from 'react'
+import { useTranslation } from "react-i18next";
 
 export default function SettingsPage(){
+    const { t } = useTranslation();
     const [activeSection, setActiveSection] = useState('account')
 
     const renderActiveSection = () => {
@@ -13,11 +15,11 @@ export default function SettingsPage(){
             case 'support':
                 return (
                     <div className="w-full max-w-2xl bg-white/90 border border-black/10 backdrop-blur-xl shadow-lg p-8 rounded-2xl">
-                        <h2 className="text-2xl font-bold mb-6 text-gray-900">Support</h2>
+                        <h2 className="text-2xl font-bold mb-6 text-gray-900">{t('settings-menu-help')}</h2>
                         <div className="space-y-4 text-gray-700">
-                            <p>Need help? We're here to assist you!</p>
+                            <p>{t('settings-support-desc')}</p>
                             <div className="bg-gray-50/50 p-6 rounded-2xl border border-gray-100">
-                                <h3 className="font-bold mb-3 text-gray-900">Contact Information</h3>
+                                <h3 className="font-bold mb-3 text-gray-900">{t('settings-support-contact')}</h3>
                                 <div className="space-y-2 text-gray-600">
                                     <p className="flex items-center gap-2">
                                         <span className="font-medium text-gray-400">Email:</span> 
@@ -35,15 +37,15 @@ export default function SettingsPage(){
             case 'terms':
                 return (
                     <div className="w-full max-w-2xl bg-white/90 border border-black/10 backdrop-blur-xl shadow-lg p-8 rounded-2xl">
-                        <h2 className="text-2xl font-bold mb-6 text-gray-900">Terms and Policies</h2>
+                        <h2 className="text-2xl font-bold mb-6 text-gray-900">{t('settings-terms-title')}</h2>
                         <div className="space-y-4 text-gray-700">
                             <div className="bg-gray-50/50 p-6 rounded-2xl border border-gray-100">
-                                <h3 className="font-bold mb-2 text-gray-900">Privacy Policy</h3>
-                                <p className="text-gray-600 leading-relaxed">Your privacy is important to us. We collect and use your data responsibly.</p>
+                                <h3 className="font-bold mb-2 text-gray-900">{t('settings-terms-privacy-title')}</h3>
+                                <p className="text-gray-600 leading-relaxed">{t('settings-terms-privacy-desc')}</p>
                             </div>
                             <div className="bg-gray-50/50 p-6 rounded-2xl border border-gray-100">
-                                <h3 className="font-bold mb-2 text-gray-900">Terms of Service</h3>
-                                <p className="text-gray-600 leading-relaxed">By using Coinwise, you agree to our terms and conditions.</p>
+                                <h3 className="font-bold mb-2 text-gray-900">{t('settings-terms-tos-title')}</h3>
+                                <p className="text-gray-600 leading-relaxed">{t('settings-terms-tos-desc')}</p>
                             </div>
                         </div>
                     </div>
@@ -67,8 +69,8 @@ export default function SettingsPage(){
                 <div className="relative z-10 w-full max-w-5xl mx-auto px-6 py-12 flex flex-col gap-10">
                      {/* Header */}
                      <div className="flex flex-col items-center animate-fade-in-down text-center">
-                        <h1 className="text-white/90 font-bold text-3xl md:text-4xl tracking-tight drop-shadow-md">Settings</h1>
-                        <p className="text-white/80 text-lg font-medium mt-2">Manage your app preferences</p>
+                        <h1 className="text-white/90 font-bold text-3xl md:text-4xl tracking-tight drop-shadow-md">{t('settings-title')}</h1>
+                        <p className="text-white/80 text-lg font-medium mt-2">{t('settings-pref-manage-desc')}</p>
                     </div>
 
                     {/* Settings Content */}

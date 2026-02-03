@@ -2,8 +2,10 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import {supabase} from '../../client'
 import LanguageSwitch from '../global/LanguageSwitch'
+import { useTranslation } from "react-i18next";
 
 export default function accSettings(){
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     // displaying email and username
@@ -144,8 +146,8 @@ export default function accSettings(){
             <div className="bg-[#D633E6]/5 p-6 border-b border-gray-100">
                 <div className="flex items-center gap-3">
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-900">Account Settings</h2>
-                        <p className="text-gray-500 font-medium">Manage your profile information and preferences</p>
+                        <h2 className="text-2xl font-bold text-gray-900">{t('settings-menu-account')}</h2>
+                        <p className="text-gray-500 font-medium">{t('settings-acc-manage-desc')}</p>
                     </div>
                 </div>
             </div>
@@ -154,12 +156,12 @@ export default function accSettings(){
             <div className="p-6 space-y-6">
                 {/* Profile Information */}
                 <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-800">Profile Information</h3>
+                    <h3 className="text-lg font-semibold text-gray-800">{t('settings-acc-profile')}</h3>
                     
                     <div className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Email Address
+                                {t('settings-acc-email')}
                             </label>
                             <input 
                                 readOnly={!editMode}
@@ -169,7 +171,7 @@ export default function accSettings(){
                                         : 'bg-gray-50/50 border-gray-200 text-gray-500'
                                 }`}
                                 type="email"
-                                placeholder="Your email address"
+                                placeholder={t('settings-acc-email')}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
@@ -177,7 +179,7 @@ export default function accSettings(){
 
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Username
+                                {t('settings-acc-username')}
                             </label>
                             <input 
                                 readOnly={!editMode}
@@ -187,7 +189,7 @@ export default function accSettings(){
                                         : 'bg-gray-50/50 border-gray-200 text-gray-500'
                                 }`}
                                 type="text"
-                                placeholder="Your username"
+                                placeholder={t('settings-acc-username')}
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                             />
@@ -212,7 +214,7 @@ export default function accSettings(){
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                 </svg>
-                                Edit Profile
+                                {t('settings-acc-btn-edit')}
                             </button>
                             
                             <button
@@ -222,7 +224,7 @@ export default function accSettings(){
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                 </svg>
-                                Log Out
+                                {t('sidebar-logout')}
                             </button>
                         </>
                     ) : (
@@ -234,7 +236,7 @@ export default function accSettings(){
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                 </svg>
-                                Save Changes
+                                {t('settings-acc-save')}
                             </button>
                             
                             <button
@@ -244,7 +246,7 @@ export default function accSettings(){
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
-                                Cancel
+                                {t('trans-btn-cancel')}
                             </button>
                         </>
                     )}
@@ -252,9 +254,9 @@ export default function accSettings(){
 
                 {/* Danger Zone */}
                 <div className="mt-8 p-4 bg-red-50 border border-red-200 rounded-xl">
-                    <h4 className="text-lg font-semibold text-red-800 mb-2">Danger Zone</h4>
+                    <h4 className="text-lg font-semibold text-red-800 mb-2">{t('settings-acc-danger-title')}</h4>
                     <p className="text-red-600 text-sm mb-4">
-                        Deleting your account will permanently remove all your data. This action cannot be undone.
+                        {t('settings-acc-danger-desc')}
                     </p>
                     <button
                         onClick={deleteProfile}
@@ -263,7 +265,7 @@ export default function accSettings(){
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
-                        Delete Account
+                        {t('settings-acc-btn-delete')}
                     </button>
                 </div>
             </div>

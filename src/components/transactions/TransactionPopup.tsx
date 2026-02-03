@@ -1,13 +1,15 @@
-import {supabase} from '../../client'
+import { supabase } from '../../client'
 
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { useTranslation } from "react-i18next";
 
 type Props = {
     closePopup: () => void;
 }
 
 export default function TransactionPopup({closePopup}: Props) {
+    const { t } = useTranslation();
     // storing all the clinets info from the popups
     const [name, setName] = useState('');
     const [type, setType] = useState('');
@@ -111,7 +113,7 @@ export default function TransactionPopup({closePopup}: Props) {
                         <svg className="w-5 h-5 text-[#D633E6]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
                     </div>
                     <div>
-                        <h2 className="text-xl font-bold text-gray-800">Add New Transaction</h2>
+                        <h2 className="text-xl font-bold text-gray-800">{t('trans-popup-add-title')}</h2>
                         <p className="text-sm text-gray-500 font-medium">Record your income, expense, or savings</p>
                     </div>
                 </div>
@@ -122,11 +124,11 @@ export default function TransactionPopup({closePopup}: Props) {
                 {/* Transaction Name */}
                 <div>
                     <label className="block text-sm font-bold text-gray-700 mb-2">
-                        Transaction Name
+                        {t('trans-label-name')}
                     </label>
                     <input 
                         type="text" 
-                        placeholder="e.g., Grocery shopping, Salary, etc."
+                        placeholder={t('trans-label-name')} 
                         className="w-full p-3 border border-gray-200 rounded-xl focus:ring-4 focus:ring-[#D633E6]/10 focus:border-[#D633E6] transition-all duration-200 outline-none"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -136,7 +138,7 @@ export default function TransactionPopup({closePopup}: Props) {
                 {/* Transaction Type */}
                 <div>
                     <label className="block text-sm font-bold text-gray-700 mb-3">
-                        Transaction Type
+                        {t('trans-label-type')}
                     </label>
                     <div className="grid grid-cols-2 gap-3">
                         <label className={`flex items-center gap-3 p-3 border rounded-xl cursor-pointer transition-all duration-200 ${
@@ -157,7 +159,7 @@ export default function TransactionPopup({closePopup}: Props) {
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
                                 </svg>
-                                <span className="font-bold">Income</span>
+                                <span className="font-bold">{t('trans-filter-income')}</span>
                             </div>
                         </label>
 
@@ -179,7 +181,7 @@ export default function TransactionPopup({closePopup}: Props) {
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 13l-5 5m0 0l-5-5m5 5V6" />
                                 </svg>
-                                <span className="font-bold">Expense</span>
+                                <span className="font-bold">{t('trans-filter-expense')}</span>
                             </div>
                         </label>
                     </div>
@@ -189,7 +191,7 @@ export default function TransactionPopup({closePopup}: Props) {
                 <div className="grid grid-cols-2 gap-4">
                     <div>
                         <label className="block text-sm font-bold text-gray-700 mb-2">
-                            Amount (€)
+                            {t('trans-label-amount')} (€)
                         </label>
                         <input 
                             type="number" 
@@ -203,7 +205,7 @@ export default function TransactionPopup({closePopup}: Props) {
                     </div>
                     <div>
                         <label htmlFor="transaction-date" className="block text-sm font-bold text-gray-700 mb-2">
-                            Date
+                            {t('trans-label-date')}
                         </label>
                         <input required
                             id="transaction-date"
@@ -218,11 +220,11 @@ export default function TransactionPopup({closePopup}: Props) {
                 {/* Note */}
                 <div>
                     <label className="block text-sm font-bold text-gray-700 mb-2">
-                        Notes (Optional)
+                        {t('trans-label-note')}
                     </label>
                     <textarea 
                         name="note" 
-                        placeholder="Add any additional details about this transaction..."
+                        placeholder={t('trans-placeholder-note')}
                         rows={3}
                         value={note}
                         onChange={(e) => setNote(e.target.value)}
@@ -241,7 +243,7 @@ export default function TransactionPopup({closePopup}: Props) {
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
-                        Add Transaction
+                        {t('trans-btn-save')}
                     </button>
 
                     <button 
@@ -252,7 +254,7 @@ export default function TransactionPopup({closePopup}: Props) {
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                         </svg>
-                        Cancel
+                        {t('trans-btn-cancel')}
                     </button>
                 </div>
             </form>
