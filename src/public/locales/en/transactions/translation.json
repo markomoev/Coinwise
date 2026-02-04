@@ -33,5 +33,7 @@
     "trans-type-expense": "Expense",
     "trans-type-savings": "Savings",
     "trans-date-label": "Transaction Date",
-    "trans-date-none": "No date"
+    "trans-date-none": "No date",
+
+    "description-not-signedin": "Use the sidebar to navigate"
 }

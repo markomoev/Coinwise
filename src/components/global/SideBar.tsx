@@ -184,7 +184,7 @@ export default function SideBar() {
                         <Link
                             to="/settings"
                             title={collapsed ? t('sidebar-settings') : ""}
-                            className={`${!isActive ? 'pointer-events-none' : ''} ${location.pathname === '/settings' ? 'text-[#D633E6]' : 'text-gray-600'} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
+                            className={`${location.pathname === '/settings' ? 'text-[#D633E6]' : 'text-gray-600'} group flex items-center gap-4 p-2 md:p-3 rounded-lg transition-all duration-200
                                      hover:text-[#D633E6]
                                      ${collapsed ? "justify-center" : ""}`}
                         >

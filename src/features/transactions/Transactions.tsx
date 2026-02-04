@@ -125,7 +125,7 @@ export default function TransactionsPage() {
 
 
                         {/* Auth overlay bubble */}
-                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        <div className="absolute inset-0 z-50 flex items-center justify-center p-4">
                             <div className="bg-white/95 border border-black/10 backdrop-blur-2xl shadow-2xl p-8 md:p-12 rounded-3xl text-center max-w-md w-full animate-fade-in-up">
                                 <div className="mb-6">
                                     <div className="w-16 h-16 bg-[#D633E6]/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -141,10 +141,10 @@ export default function TransactionsPage() {
                                     </p>
                                 </div>
                                 <div className="flex flex-col gap-3">
-                                    <Link to="/login" className="cursor-pointer bg-[#D633E6] hover:bg-[#b02bc0] text-white font-semibold py-3.5 px-6 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
+                                    <Link to="/login" className="cursor-pointer bg-[#D633E6] hover:bg-[#b02bc0] text-white font-semibold py-3.5 px-6 rounded-2xl hover:shadow-lg hover:scale-[1.02] hover:shadow-[#D633E6]/30 transition-all duration-300">
                                         {t('auth-login-button')}
                                     </Link>
-                                    <p className="text-sm text-gray-500">{t('sidebar-signup')}</p>
+                                    <p className="text-sm text-gray-500">{t('description-not-signedin')}</p>
                                 </div>
                             </div>
                         </div>

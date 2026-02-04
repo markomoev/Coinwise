@@ -33,5 +33,7 @@
     "trans-type-expense": "Разход",
     "trans-type-savings": "Спестяване",
     "trans-date-label": "Дата на транзакцията",
-    "trans-date-none": "Няма дата"
+    "trans-date-none": "Няма дата",
+
+    "description-not-signedin": "Използвайте страничната лента за навигация"
 }

@@ -57,53 +57,51 @@ export default function DashboardPage() {
 
     if (!isAuthenticated) {
         return (
-            <div className="w-full min-h-screen relative">
-                <div className='w-full flex flex-row'>
-                    <SideBar/>
-                    <div className="flex flex-1 flex-col px-4 sm:px-6 lg:px-8 pt-24 md:pt-12 md:ml-64 relative bg-gray-50/50">
-                        {/* Blurred cards in background */}
-                        <div className="blur-sm opacity-40 pointer-events-none space-y-8 max-w-7xl mx-auto w-full">
-                            <div className="flex flex-col gap-1">
-                                <div className="h-8 w-32 bg-gray-300 rounded-lg"></div>
-                                <div className="h-5 w-48 bg-gray-200 rounded-lg"></div>
-                            </div>
+            <div className="w-full min-h-screen relative flex flex-row">
+                <SideBar/>
+                <div className="flex flex-1 flex-col px-4 sm:px-6 lg:px-8 pt-24 md:pt-12 relative bg-gray-50/50">
+                    {/* Blurred cards in background */}
+                    <div className="blur-sm opacity-40 pointer-events-none space-y-8 max-w-7xl mx-auto w-full">
+                        <div className="flex flex-col gap-1">
+                            <div className="h-8 w-32 bg-gray-300 rounded-lg"></div>
+                            <div className="h-5 w-48 bg-gray-200 rounded-lg"></div>
+                        </div>
 
-                            <div className="w-full bg-white border border-black/5 bg-opacity-90 backdrop-blur-xl shadow-lg p-6 rounded-2xl h-48">
-                                {/* Total Card Placeholder */}
-                            </div>
-                            
-                            <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-6'>  
-                                <div className='flex flex-col gap-6'>
-                                     <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
-                                     <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
-                                </div>
-                                <div className='flex flex-col gap-6'>
-                                     <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
-                                     <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
-                                </div>
-                            </div>
+                        <div className="w-full bg-white border border-black/5 bg-opacity-90 backdrop-blur-xl shadow-lg p-6 rounded-2xl h-48">
+                            {/* Total Card Placeholder */}
                         </div>
                         
-                        {/* Auth overlay bubble */}
-                        <div className="fixed inset-0 z-20 flex items-center justify-center p-4">
-                            <div className="bg-white/95 border border-black/20 backdrop-blur-2xl shadow-2xl p-6 md:p-12 rounded-3xl text-center max-w-md w-full">
-                                <div className="mb-4">
-                                    <div className="w-12 h-12 md:w-16 md:h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
-                                    </div>
+                        <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-6'>  
+                            <div className='flex flex-col gap-6'>
+                                    <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
+                                    <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
+                            </div>
+                            <div className='flex flex-col gap-6'>
+                                    <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
+                                    <div className="bg-white border border-black/5 shadow-lg p-6 rounded-2xl h-32"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {/* Auth overlay bubble */}
+                    <div className="absolute inset-0 z-20 flex items-center justify-center p-4">
+                        <div className="bg-white/95 border border-black/10 backdrop-blur-2xl shadow-2xl p-6 md:p-12 rounded-3xl text-center max-w-md w-full animate-fade-in-up">
+                            <div className="mb-4">
+                                <div className="w-12 h-12 md:w-16 md:h-16 bg-[#D633E6]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg className="w-6 h-6 md:w-8 md:h-8 text-[#D633E6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                    </svg>
                                 </div>
-                                <h2 className="text-xl md:text-2xl font-bold mb-3 text-purple-700">{t('auth-required-title')}</h2>
-                                <p className="text-gray-600 mb-6 leading-relaxed text-sm md:text-base">
-                                    {t('auth-required-desc')}
-                                </p>
-                                <div className="flex flex-col gap-3">
-                                    <Link to="/login" className="cursor-pointer bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-6 rounded-2xl hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
-                                        {t('auth-login-button')}
-                                    </Link>
-                                    <p className="text-xs md:text-sm text-gray-500">{t('auth-sidebar-hint')}</p>
-                                </div>
+                            </div>
+                            <h2 className="text-xl md:text-2xl font-bold mb-3 text-[#D633E6]">{t('auth-required-title')}</h2>
+                            <p className="text-gray-600 mb-6 leading-relaxed text-sm md:text-base">
+                                {t('auth-required-desc')}
+                            </p>
+                            <div className="flex flex-col gap-3">
+                                <Link to="/login" className="cursor-pointer bg-[#D633E6] hover:bg-[#b02bc0] text-white font-semibold py-3 px-6 rounded-2xl hover:shadow-lg hover:shadow-[#D633E6]/30 hover:scale-[1.02] transition-all duration-300">
+                                    {t('auth-login-button')}
+                                </Link>
+                                <p className="text-xs md:text-sm text-gray-500">{t('auth-sidebar-hint')}</p>
                             </div>
                         </div>
                     </div>
