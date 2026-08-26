@@ -3,9 +3,11 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 
+const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename || undefined}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
