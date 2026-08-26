@@ -4,8 +4,8 @@ const HERO_IMAGE =
   "https://images.unsplash.com/photo-1767463130546-1e0bffcd906f?auto=format&fit=crop&w=1800&q=80";
 
 const TEAM = [
-  { name: "Даниел Александров", role: "Развъдник и контакт" },
-  { name: "Алек Петров", role: "Грижа и отглеждане" },
+  { name: "Марко Моев", role: "Развъдник и контакт" },
+  { name: "Александър Несторов", role: "Грижа и отглеждане" },
 ];
 
 export default function Contact() {
